@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - {{ current_settings.get('butler_name', 'Hydrus Butler') }}</title>
+    <link rel="stylesheet" href="{{ url_for('static_files', filename='css/' + current_settings.get('theme', 'default') + '.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Settings - {{ current_settings.get('butler_name', 'Hydrus Butler') }}</h1>
+        <nav>
+            <a href="{{ url_for('index') }}">
+                <button>Back to Main</button>
+            </a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Application Settings</h2>
+        <p>Configure connections and automation parameters for your Hydrus Client.</p>
+
+        <form id="settings-form" method="post" action="{{ url_for('handle_save_settings') }}">
+            
+            <section id="hydrus-api-settings">
+                <h3>Hydrus Client API Details</h3>
+                <div>
+                    <label for="api-address">API Address:</label>
+                    <input type="text" id="api-address" name="api-address" value="{{ current_settings.get('api_address', 'http://localhost:45869') }}" required>
+                </div>
+                <div>
+                    <label for="api-key">API Access Key:</label>
+                    <input type="password" id="api-key" name="api-key" value="" placeholder="Enter API Key" autocomplete="new-password">
+                    <p><small>Leave blank to keep the existing key.</small></p>
+                </div>
+                <div>
+                     <h4>Required API Permissions:</h4>
+                     <div class="note">
+                         <p>To use all features of this application, the API key needs the following permissions from your Hydrus client:</p>
+                         <ul>
+                             <li><b>Import and Delete Files</b></li>
+                             <li><b>Edit File Tags</b></li>
+                             <li><b>Search for and Fetch Files</b></li>
+                             <li><b>Edit File Ratings</b></li>
+                         </ul>
+                         <p><small>When setting your API key's permissions in Hydrus, ensure these are selected, or grant "permits everything".</small></p>
+                         <hr style="margin-top: 15px; margin-bottom: 15px; border: 0; border-top: 1px solid #4a627a;">
+                         <p><strong>Important:</strong> For this web application to communicate correctly with the Hydrus API from your browser (especially for fetching service lists on the Rules page), you must enable "support CORS headers" in your Hydrus Client settings. This is usually found under <code>services</code> → <code>manage services</code> → <code>client API</code>.</p>
+                     </div>
+                 </div>
+            </section>
+
+            <hr>
+
+            <section id="automation-settings">
+                 <h3>Automation Parameters</h3>
+                  <div>
+                      <label for="rule-interval-seconds">Rule Execution Interval (seconds):</label>
+                      <input type="number" id="rule-interval-seconds" name="rule-interval-seconds" value="{{ current_settings.get('rule_interval_seconds', 0) }}" min="0" step="10" required>
+                      <p><small>Set to 0 to disable automatic rule execution. Rules can still be run manually.</small></p>
+                  </div>
+
+                  <div>
+                       <label for="last-viewed-threshold-seconds">Exclude Recently Viewed Files (seconds):</label>
+                       <input type="number" id="last-viewed-threshold-seconds" name="last-viewed-threshold-seconds" value="{{ current_settings.get('last_viewed_threshold_seconds', 3600) }}" min="0" step="10" required>
+                       <p><small>Files viewed within this many seconds will be excluded from rule searches. This helps prevent moving files you may currently be viewing or interacting with. Set to 0 to disable this filter.</small></p>
+                  </div>
+
+                  <div class="checkbox-row">
+                       <input type="checkbox" id="show-run-notifications" name="show-run-notifications" {% if current_settings.get('show_run_notifications', True) %}checked{% endif %}>
+                       <label for="show-run-notifications">Show confirmation and result notifications when manually running a rule.</label>
+                  </div>
+                  <div class="checkbox-row">
+                    <input type="checkbox" id="show-run-all-notifications" name="show-run-all-notifications" {% if current_settings.get('show_run_all_notifications', True) %}checked{% endif %}>
+                    <label for="show-run-all-notifications">Show confirmation and result notifications when manually running all rules.</label>
+               </div>
+            </section>
+            
+            {# --- START MODIFICATION: Moved Butler Name setting here --- #}
+            <hr>
+            <section id="personalization-settings"> {# Changed ID for clarity #}
+                <h3>Personalization</h3>
+                <div>
+                    <label for="butler-name">Rename your butler:</label>
+                    <input type="text" id="butler-name" name="butler-name" value="{{ current_settings.get('butler_name', 'Hydrus Butler') }}" required>
+                </div>
+            </section>
+            {# --- END MODIFICATION --- #}
+
+            <hr>
+            <section id="appearance-settings">
+                <h3>Appearance</h3>
+                <div>
+                    <label for="theme-select">Application Theme:</label>
+                    <select id="theme-select" name="theme">
+                        {% for theme_name in current_settings.get('available_themes', ['default']) %}
+                            <option value="{{ theme_name }}" {% if current_settings.get('theme') == theme_name %}selected{% endif %}>
+                                {{ theme_name|capitalize }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                    <p><small>Select the visual theme for the application. New themes can be added by placing .css files in the <code>static/css</code> directory.</small></p>
+                </div>
+            </section>
+
+            <button type="submit">Save Settings</button>
+        </form>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div id="flashes-container">
+                    {% for category, message in messages %}
+                        <div class="flash-message flash-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <div id="status-message" class="status-message" style="display: none;"></div>
+
+    </main>
+
+<footer>
+        {# --- MODIFICATION: Dynamic Footer with a sentence --- #}
+        <p>Kept in order by {{ current_settings.get('butler_name', 'Hydrus Butler') }} © 2025</p>
+    </footer>
+</body>
+</html>

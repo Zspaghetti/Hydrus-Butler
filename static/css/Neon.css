@@ -1,0 +1,718 @@
+@import url('./fonts/google-fonts-1748599613138.css'); 
+
+:root {
+    /* General */
+    --font-primary: 'Rajdhani', sans-serif; /* Techy sans-serif */
+    --font-headings: 'Orbitron', sans-serif; /* Futuristic, blocky display font */
+    --body-bg-color: #0d0c1d; /* Deep space blue/purple */
+    --body-text-color: #c0c0ff; /* Light lavender/cyan */
+    --border-radius-default: 2px; /* Sharp, digital edges */
+    --border-radius-round: 50%;
+
+    /* Neon Accents (Choose 2-3 main ones) */
+    --neon-pink: #ff00ff;
+    --neon-cyan: #00ffff;
+    --neon-lime: #39ff14;
+    --neon-orange: #ff8c00;
+
+    --box-shadow-default-color: var(--neon-pink); /* Glow effect */
+    --box-shadow-default: 0 0 8px var(--box-shadow-default-color), 0 0 12px var(--box-shadow-default-color);
+    --box-shadow-modal-color: var(--neon-cyan);
+    --box-shadow-modal: 0 0 15px var(--box-shadow-modal-color), 0 0 25px var(--box-shadow-modal-color);
+    --overlay-bg-color: rgba(13, 12, 29, 0.85); /* Dark, slightly transparent */
+
+    /* Panel Colors */
+    --panel-bg-color: #1a1832; /* Slightly lighter deep blue/purple */
+    --panel-text-color: var(--body-text-color);
+    --panel-secondary-bg-color: #232044; /* For table even rows, input bg */
+    --panel-tertiary-bg-color: #2c2855;   /* Table hover, borders */
+
+    /* Text Colors */
+    --text-primary-color: var(--body-text-color);
+    --text-secondary-color: #8a8aff; /* Muted lavender */
+    --text-on-accent-color: #0d0c1d;   /* Dark text on bright neon buttons (if needed, usually light text) */
+    --text-on-neon-text-color: #ffffff; /* Pure white for text on neon elements */
+    --text-placeholder-color: #5c5c8a;
+    --text-label-color: var(--text-secondary-color);
+    --text-label-strong-color: var(--neon-cyan); /* Strong labels glow cyan */
+
+    /* Input/Control Colors */
+    --input-bg-color: #100e23; /* Very dark, almost black */
+    --input-text-color: var(--neon-lime); /* Lime green text in inputs */
+    --input-border-color: var(--panel-tertiary-bg-color);
+    --input-focus-border-color: var(--neon-pink);
+    --input-focus-box-shadow-color: var(--neon-pink);
+    --input-disabled-bg-color: #1f1d30;
+    --input-disabled-text-color: #4a4a6a;
+    --input-disabled-border-color: #2a2840;
+
+    /* Button Colors (Semantic) */
+    /* Primary (Save, main positive actions) */
+    --button-primary-bg-color: transparent;
+    --button-primary-text-color: var(--neon-pink);
+    --button-primary-border-color: var(--neon-pink);
+    --button-primary-hover-bg-color: var(--neon-pink);
+    --button-primary-hover-text-color: #0d0c1d;
+    /* Secondary (Navigation, standard actions) */
+    --button-secondary-bg-color: transparent;
+    --button-secondary-text-color: var(--neon-cyan);
+    --button-secondary-border-color: var(--neon-cyan);
+    --button-secondary-hover-bg-color: var(--neon-cyan);
+    --button-secondary-hover-text-color: #0d0c1d;
+    /* Accent (Distinct actions, e.g., "Add Another") */
+    --button-accent-bg-color: transparent;
+    --button-accent-text-color: var(--neon-lime);
+    --button-accent-border-color: var(--neon-lime);
+    --button-accent-hover-bg-color: var(--neon-lime);
+    --button-accent-hover-text-color: #0d0c1d;
+    /* Edit/Warning */
+    --button-edit-bg-color: transparent;
+    --button-edit-text-color: var(--neon-orange);
+    --button-edit-border-color: var(--neon-orange);
+    --button-edit-hover-bg-color: var(--neon-orange);
+    --button-edit-hover-text-color: #0d0c1d;
+    /* Danger/Delete (Destructive actions) */
+    --button-danger-bg-color: #ff3333; /* Bright red */
+    --button-danger-text-color: #ffffff;
+    --button-danger-border-color: #ff3333;
+    --button-danger-hover-bg-color: #ff0000;
+    --button-danger-hover-text-color: #ffffff;
+
+    /* Link Colors */
+    --link-color: var(--neon-cyan);
+    --link-hover-color: var(--neon-pink);
+    --link-text-shadow: 0 0 5px var(--link-color);
+
+    /* Table Colors */
+    --table-header-bg-color: var(--panel-bg-color);
+    --table-header-text-color: var(--neon-pink);
+    --table-border-color: var(--panel-tertiary-bg-color);
+    --table-row-odd-bg-color: transparent;
+    --table-row-even-bg-color: var(--panel-secondary-bg-color);
+    --table-row-hover-bg-color: var(--panel-tertiary-bg-color);
+    --table-text-color: var(--text-primary-color);
+
+    /* Conditional UI Colors (Rule Editor) */
+    --condition-row-bg-color: rgba(35, 32, 68, 0.7); /* More transparent */
+    --condition-row-text-color: var(--text-primary-color);
+    --condition-row-nested-bg-color: rgba(44, 40, 85, 0.7);
+    --condition-row-nested-border-color: var(--neon-lime);
+    --condition-options-area-bg-color: var(--input-bg-color);
+    --condition-options-area-border-color: var(--input-border-color);
+    --or-group-border-color: var(--neon-cyan); /* Dashed Cyan border for OR group */
+
+    /* Flash Message Colors */
+    --flash-success-bg-color: rgba(57, 255, 20, 0.15); /* Lime */
+    --flash-success-text-color: var(--neon-lime);
+    --flash-success-border-color: var(--neon-lime);
+    --flash-error-bg-color: rgba(255, 51, 51, 0.15); /* Red */
+    --flash-error-text-color: #ff3333;
+    --flash-error-border-color: #ff3333;
+    --flash-info-bg-color: rgba(0, 255, 255, 0.15); /* Cyan */
+    --flash-info-text-color: var(--neon-cyan);
+    --flash-info-border-color: var(--neon-cyan);
+
+    /* Filetype UI Colors */
+    --filetype-container-bg-color: rgba(26, 24, 50, 0.8);
+    --filetype-container-border-color: var(--neon-pink);
+    --filetype-separator-color: var(--panel-tertiary-bg-color);
+    --filetype-toggle-color: var(--neon-cyan);
+
+    /* Note/Info Box Colors */
+    --note-bg-color: var(--panel-secondary-bg-color);
+    --note-text-color: var(--text-primary-color);
+    --note-border-color: var(--neon-orange);
+    --hr-color: var(--panel-tertiary-bg-color);
+
+    /* Text shadow for glowing effect */
+    --text-glow-default: 0 0 5px currentColor;
+    --text-glow-strong: 0 0 8px currentColor, 0 0 10px currentColor;
+}
+
+/* --- Global Resets & Base Styles --- */
+body {
+    font-family: var(--font-primary);
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    background-color: var(--body-bg-color);
+    /* Optional: Subtle grid background */
+    background-image:
+        linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 30px 30px;
+    color: var(--body-text-color);
+    font-size: 16px;
+    line-height: 1.6;
+    text-shadow: 0 0 2px rgba(192, 192, 255, 0.2); /* Subtle general text glow */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-headings);
+    color: var(--neon-pink); /* Headings are Pink */
+    margin-top: 1.5em;
+    margin-bottom: 0.6em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: var(--text-glow-strong);
+}
+h1 { font-size: 2.8em; font-weight: 900; }
+h2 { font-size: 2.2em; }
+h3 { font-size: 1.8em; color: var(--neon-cyan); } /* Tertiary headings in Cyan */
+
+p { margin-bottom: 1.2em; }
+
+a {
+    color: var(--link-color);
+    text-decoration: none;
+    font-weight: 500;
+    text-shadow: var(--link-text-shadow);
+    transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+a:hover {
+    color: var(--link-hover-color);
+    text-decoration: none; /* No underline, rely on color change and glow */
+    text-shadow: 0 0 8px var(--link-hover-color);
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, transparent, var(--neon-cyan), transparent);
+    margin: 30px 0;
+}
+
+ul { list-style: none; padding: 0; }
+ul li { margin-bottom: 8px; }
+ul li::before { /* Custom bullet points */
+    content: '» ';
+    color: var(--neon-pink);
+    margin-right: 8px;
+    text-shadow: var(--text-glow-default);
+}
+
+
+/* --- Layout Components --- */
+header {
+    background-color: rgba(13, 12, 29, 0.7); /* Semi-transparent header */
+    backdrop-filter: blur(5px); /* Glassmorphism if browser supports */
+    color: var(--panel-text-color);
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--neon-cyan);
+    box-shadow: 0 2px 10px rgba(0, 255, 255, 0.2);
+    position: sticky; /* Sticky header */
+    top: 0;
+    z-index: 900;
+}
+
+header h1 {
+    color: var(--neon-pink); /* Header title is pink */
+    margin: 0;
+    font-size: 1.8em;
+    text-shadow: 0 0 10px var(--neon-pink);
+}
+
+nav button {
+    padding: 8px 15px;
+    background-color: var(--button-secondary-bg-color);
+    color: var(--button-secondary-text-color);
+    border: 1px solid var(--button-secondary-border-color);
+    box-shadow: 0 0 5px var(--button-secondary-border-color);
+    border-radius: var(--border-radius-default);
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 500;
+    text-transform: uppercase;
+    transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+nav button:hover {
+    background-color: var(--button-secondary-hover-bg-color);
+    color: var(--button-secondary-hover-text-color);
+    box-shadow: 0 0 10px var(--button-secondary-border-color), 0 0 15px var(--button-secondary-border-color);
+}
+
+main {
+    padding: 30px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    color: var(--text-secondary-color);
+    font-size: 0.9em;
+    border-top: 1px solid var(--neon-pink);
+    background-color: var(--body-bg-color); /* Match body for seamless feel */
+}
+footer p {
+    text-shadow: none; /* Remove general text glow for footer if too much */
+}
+
+/* --- General Form Styles --- */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--text-label-strong-color); /* Cyan labels */
+    text-transform: uppercase;
+    font-size: 0.9em;
+    letter-spacing: 0.5px;
+    text-shadow: var(--text-glow-default);
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px 12px;
+    box-sizing: border-box;
+    background-color: var(--input-bg-color);
+    border: 1px solid var(--input-border-color);
+    color: var(--input-text-color);
+    border-radius: var(--border-radius-default);
+    margin-bottom: 18px;
+    font-family: var(--font-primary);
+    font-size: 1em;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    caret-color: var(--neon-lime); /* Cursor color */
+}
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--input-focus-border-color);
+    box-shadow: 0 0 8px var(--input-focus-box-shadow-color), inset 0 0 5px rgba(255,0,255,0.3); /* Glow and inner glow */
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--text-placeholder-color);
+    opacity: 0.7;
+}
+
+select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%2300ffff'%3E%3Cpath d='M4.293 6.707L8 10.414l3.707-3.707L13.121 8.12l-5.121 5.121-5.121-5.121z'/%3E%3C/svg%3E"); /* Neon arrow */
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 12px 12px;
+    padding-right: 35px;
+}
+select option { /* Style dropdown options */
+    background-color: var(--input-bg-color);
+    color: var(--input-text-color);
+}
+
+
+/* --- Button Styles --- */
+button,
+input[type="button"],
+input[type="submit"] {
+    padding: 10px 20px;
+    border-radius: var(--border-radius-default);
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 700; /* Bold buttons */
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+    border-style: solid;
+    border-width: 1px;
+    position: relative; /* For pseudo-elements if needed for effects */
+}
+button:active, input[type="button"]:active, input[type="submit"]:active {
+    transform: translateY(1px);
+}
+button:focus, input[type="button"]:focus, input[type="submit"]:focus {
+    outline: none; /* Custom focus below */
+}
+
+/* Shared button styling */
+.btn-base-style {
+    text-shadow: 0 0 5px currentColor; /* Text glow for buttons */
+    box-shadow: 0 0 3px currentColor, inset 0 0 2px rgba(255,255,255,0.2); /* Outer glow and subtle inner highlight */
+}
+.btn-base-style:hover {
+    text-shadow: 0 0 8px currentColor, 0 0 10px currentColor; /* Stronger text glow on hover */
+    box-shadow: 0 0 8px currentColor, 0 0 12px currentColor, inset 0 0 5px rgba(0,0,0,0.3);
+}
+.btn-base-style:focus {
+    box-shadow: 0 0 8px currentColor, 0 0 12px currentColor, 0 0 0 2px var(--body-bg-color), 0 0 0 4px currentColor; /* Complex focus ring */
+}
+
+
+button[type="submit"] {
+    background-color: var(--button-primary-bg-color);
+    color: var(--button-primary-text-color);
+    border-color: var(--button-primary-border-color);
+}
+button[type="submit"]:hover {
+    background-color: var(--button-primary-hover-bg-color);
+    color: var(--button-primary-hover-text-color);
+}
+button[type="submit"].btn-base-style { /* Apply base style to submit */ }
+
+
+.add-button { /* Floating Action Button */
+    width: 50px; height: 50px;
+    font-size: 1.8em;
+    background-color: var(--neon-pink);
+    color: var(--body-bg-color);
+    border: none;
+    border-radius: var(--border-radius-round);
+    position: fixed;
+    bottom: 30px; right: 30px;
+    box-shadow: 0 0 15px var(--neon-pink), 0 0 25px var(--neon-pink), 0 0 5px #fff inset; /* Strong glow */
+    line-height: 50px; /* Center icon */
+    text-align: center;
+    z-index: 500;
+    transition: all 0.3s ease;
+}
+.add-button:hover {
+    background-color: var(--neon-pink); /* Keep bg */
+    color: #fff; /* Brighter text */
+    transform: scale(1.1) rotate(90deg); /* Funky hover */
+    box-shadow: 0 0 20px var(--neon-pink), 0 0 35px var(--neon-pink), 0 0 10px #fff inset;
+}
+
+.secondary-button {
+    background-color: var(--button-secondary-bg-color);
+    color: var(--button-secondary-text-color);
+    border-color: var(--button-secondary-border-color);
+    margin-bottom: 10px;
+}
+.secondary-button:hover {
+    background-color: var(--button-secondary-hover-bg-color);
+    color: var(--button-secondary-hover-text-color);
+}
+.secondary-button.btn-base-style { /* Apply base style */ }
+
+.add-destination-button {
+    background-color: var(--button-accent-bg-color);
+    color: var(--button-accent-text-color);
+    border-color: var(--button-accent-border-color);
+    margin-top: 10px; margin-bottom: 10px;
+}
+.add-destination-button:hover {
+    background-color: var(--button-accent-hover-bg-color);
+    color: var(--button-accent-hover-text-color);
+}
+.add-destination-button.btn-base-style { /* Apply base style */ }
+
+/* Apply base styles to all semantic buttons */
+button[type="submit"], .secondary-button, .add-destination-button,
+#rules-table td button, #rule-form .add-condition-button, #rule-form .remove-condition-button,
+#rule-form .remove-destination-button {
+    /* This is tricky because of specificity, better to apply a class or style individually */
+    /* Using individual application for now */
+}
+
+/* Individual button specific styling if base is not enough */
+#rules-table td button.run-button { /* Secondary style */
+    background-color: var(--button-secondary-bg-color); color: var(--button-secondary-text-color); border-color: var(--button-secondary-border-color);
+}
+#rules-table td button.run-button:hover { background-color: var(--button-secondary-hover-bg-color); color: var(--button-secondary-hover-text-color); }
+#rules-table td button.edit-button { /* Edit style */
+    background-color: var(--button-edit-bg-color); color: var(--button-edit-text-color); border-color: var(--button-edit-border-color);
+}
+#rules-table td button.edit-button:hover { background-color: var(--button-edit-hover-bg-color); color: var(--button-edit-hover-text-color); }
+#rules-table td button.delete-button { /* Danger style */
+    background-color: var(--button-danger-bg-color); color: var(--button-danger-text-color); border-color: var(--button-danger-border-color);
+}
+#rules-table td button.delete-button:hover { background-color: var(--button-danger-hover-bg-color); color: var(--button-danger-hover-text-color); }
+
+
+/* --- Settings Form Specific Styles (#settings-form) --- */
+#settings-form div:not(.checkbox-row) { margin-bottom: 20px; }
+#settings-form input[type="number"] { width: 120px; }
+
+#settings-form .checkbox-row {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 10px; padding: 10px 5px;
+    border: 1px solid transparent; /* For hover effect */
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+#settings-form .checkbox-row:hover {
+    border-color: var(--neon-pink);
+    background-color: rgba(255,0,255,0.05);
+}
+#settings-form .checkbox-row label {
+     margin-bottom: 0; font-weight: 400; color: var(--text-primary-color); /* Regular text for these labels */
+     flex-grow: 1; padding-right: 15px; text-transform: none; text-shadow: none; letter-spacing: 0;
+ }
+#settings-form .checkbox-row input[type="checkbox"] {
+    width: auto; margin: 0; flex-shrink: 0;
+    appearance: none; /* Custom checkbox */
+    width: 18px; height: 18px;
+    border: 1px solid var(--neon-cyan);
+    border-radius: 2px;
+    position: relative;
+    cursor: pointer;
+    vertical-align: middle;
+}
+#settings-form .checkbox-row input[type="checkbox"]:checked {
+    background-color: var(--neon-cyan);
+    box-shadow: 0 0 5px var(--neon-cyan);
+}
+#settings-form .checkbox-row input[type="checkbox"]:checked::before {
+    content: '✓'; /* Or a more techy symbol */
+    font-family: sans-serif; /* Ensure checkmark renders */
+    position: absolute;
+    top: -1px; left: 3px;
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--body-bg-color);
+}
+
+/* --- Rules Table (#rules-table-container, #rules-table) --- */
+#rules-table-container {
+    margin-top: 30px; overflow-x: auto;
+    border: 1px solid var(--neon-pink);
+    border-radius: var(--border-radius-default);
+    box-shadow: var(--box-shadow-default);
+    background-color: rgba(26, 24, 50, 0.5); /* Semi-transparent table bg */
+}
+#rules-table { width: 100%; border-collapse: collapse; }
+#rules-table th, #rules-table td {
+    border: 1px solid var(--table-border-color); /* Grid lines */
+    padding: 12px 15px; text-align: left; color: var(--table-text-color); vertical-align: middle;
+}
+#rules-table th {
+    background-color: var(--table-header-bg-color);
+    color: var(--table-header-text-color);
+    font-family: var(--font-headings);
+    font-weight: 700; font-size: 0.95em;
+    text-transform: uppercase; letter-spacing: 0.8px;
+    text-shadow: var(--text-glow-strong);
+}
+#rules-table tbody tr:nth-child(even) { background-color: var(--table-row-even-bg-color); }
+#rules-table tbody tr:hover {
+    background-color: var(--table-row-hover-bg-color);
+    color: var(--neon-lime); /* Text turns lime on hover */
+}
+#rules-table tbody tr:hover td { border-color: var(--neon-lime); }
+#rules-table td button {
+    padding: 6px 10px; margin-right: 5px; font-size: 0.85em;
+    /* Specific button styles already applied above */
+}
+
+/* --- Modal Styles (.modal-overlay, .modal-content) --- */
+.modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: var(--overlay-bg-color);
+    backdrop-filter: blur(3px) brightness(0.7);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 1000; padding: 20px; box-sizing: border-box;
+}
+
+/* START MODIFIED SECTION FOR MODAL SCROLLING AND STRUCTURE */
+.modal-content {
+    background-color: var(--panel-bg-color);
+    padding: 20px 25px; /* Added padding directly here */
+    border-radius: var(--border-radius-default);
+    border: 1px solid var(--neon-cyan);
+    width: 100%; max-width: 750px;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto; /* Make modal-content scrollable */
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    color: var(--panel-text-color);
+    box-shadow: var(--box-shadow-modal);
+    position: relative; display: flex; flex-direction: column;
+
+    /* Custom scrollbar for modal content itself */
+    scrollbar-width: thin;
+    scrollbar-color: var(--neon-pink) var(--panel-secondary-bg-color);
+}
+.modal-content::-webkit-scrollbar { width: 8px; }
+.modal-content::-webkit-scrollbar-track { background: var(--panel-secondary-bg-color); }
+.modal-content::-webkit-scrollbar-thumb { background-color: var(--neon-pink); border-radius: 4px; border: 2px solid var(--panel-secondary-bg-color); }
+
+.modal-header { /* Kept for potential future use with structured modals */
+    padding: 15px 25px;
+    border-bottom: 1px solid var(--neon-cyan);
+}
+.modal-body { /* Kept for potential future use with structured modals */
+    padding: 20px 25px;
+    overflow-y: auto; flex-grow: 1;
+    min-height: 0; /* Important if this structure is used */
+}
+.modal-footer { /* Kept for potential future use with structured modals */
+    padding: 15px 25px;
+    border-top: 1px solid var(--neon-cyan);
+    text-align: right; background-color: var(--panel-secondary-bg-color);
+}
+.modal-footer button { margin-left: 10px; }
+
+.modal-content h3 { /* Applies to h3 within .modal-content */
+    color: var(--neon-cyan); margin: 0 0 20px 0; /* Ensured bottom margin for spacing */
+    font-size: 1.6em; text-shadow: var(--text-glow-strong);
+}
+/* END MODIFIED SECTION FOR MODAL SCROLLING AND STRUCTURE */
+
+/* START MODIFIED SECTION FOR CLOSE BUTTON */
+.close-button {
+    position: absolute; top: 12px; right: 18px; /* Slightly adjusted position */
+    font-size: 1.6em; /* Reduced size */
+    font-weight: 600; /* Less bold */
+    color: var(--neon-pink);
+    background: none; border: none; cursor: pointer;
+    line-height: 1; padding: 5px; /* Decent clickable area */
+    text-shadow: 0 0 6px var(--neon-pink); /* Slightly reduced shadow */
+    transition: transform 0.2s ease, color 0.2s ease, text-shadow 0.2s ease;
+}
+.close-button:hover {
+    color: var(--neon-cyan); /* Changed hover color from white to cyan */
+    text-shadow: 0 0 8px var(--neon-cyan); /* Shadow matches new color */
+    transform: rotate(90deg) scale(1.1); /* Slightly less aggressive scale */
+}
+/* END MODIFIED SECTION FOR CLOSE BUTTON */
+
+
+/* --- Rule Form Styles (#rule-form) --- */
+#rule-form .add-condition-button, #rule-form .remove-condition-button,
+#rule-form .remove-destination-button { padding: 8px 15px; margin: 8px 5px 8px 0; }
+
+#rule-form .add-condition-button { /* Secondary style */
+    background-color: var(--button-secondary-bg-color); color: var(--button-secondary-text-color); border-color: var(--button-secondary-border-color);
+}
+#rule-form .add-condition-button:hover { background-color: var(--button-secondary-hover-bg-color); color: var(--button-secondary-hover-text-color); }
+
+#rule-form .remove-condition-button, #rule-form .remove-destination-button { /* Danger style */
+    background-color: var(--button-danger-bg-color); color: var(--button-danger-text-color); border-color: var(--button-danger-border-color);
+}
+#rule-form .remove-condition-button:hover, #rule-form .remove-destination-button:hover { background-color: var(--button-danger-hover-bg-color); color: var(--button-danger-hover-text-color); }
+
+/* Condition Rows */
+.condition-row {
+    background-color: var(--condition-row-bg-color);
+    padding: 15px; margin-bottom: 12px;
+    border-radius: var(--border-radius-default);
+    border: 1px solid var(--panel-tertiary-bg-color);
+    display: flex; align-items: center; flex-wrap: wrap; gap: 12px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.condition-row:hover {
+    border-color: var(--neon-lime);
+    box-shadow: 0 0 5px var(--neon-lime);
+}
+.condition-row.nested-condition-row {
+    background-color: var(--condition-row-nested-bg-color);
+    border-left: 3px solid var(--condition-row-nested-border-color);
+    margin-left: 25px;
+}
+.or-group-conditions-container {
+    border: 1px dashed var(--or-group-border-color);
+    box-shadow: 0 0 5px var(--or-group-border-color);
+    padding: 15px; margin: 15px 0; border-radius: var(--border-radius-default);
+    background-color: rgba(0,255,255,0.03);
+}
+
+/* --- Filetype UI in Modal --- */
+.filetype-options-container {
+    background-color: var(--filetype-container-bg-color);
+    padding: 15px; border-radius: var(--border-radius-default);
+    border: 1px solid var(--filetype-container-border-color);
+    box-shadow: 0 0 8px var(--filetype-container-border-color);
+    margin-top: 15px;
+}
+.filetype-category-header input[type="checkbox"] { /* Use custom checkbox style */
+    appearance: none; width: 16px; height: 16px;
+    border: 1px solid var(--neon-lime); border-radius: 2px;
+    position: relative; cursor: pointer; margin-right: 8px;
+}
+.filetype-category-header input[type="checkbox"]:checked {
+    background-color: var(--neon-lime); box-shadow: 0 0 5px var(--neon-lime);
+}
+.filetype-category-header input[type="checkbox"]:checked::before {
+    content: '✓'; font-family: sans-serif; position: absolute; top: -1px; left: 2px;
+    font-size: 12px; font-weight: bold; color: var(--body-bg-color);
+}
+.filetype-category-header label { color: var(--neon-lime); text-shadow: var(--text-glow-default); }
+.filetype-toggle-extensions {
+    color: var(--filetype-toggle-color); text-shadow: var(--text-glow-default); font-size: 1.5em;
+    transition: transform 0.3s ease, text-shadow 0.3s ease;
+}
+.filetype-toggle-extensions.expanded { transform: rotate(135deg); color: var(--neon-pink); text-shadow: 0 0 8px var(--neon-pink); }
+.filetype-extension-row input[type="checkbox"] { /* Copy custom checkbox style */
+    appearance: none; width: 14px; height: 14px;
+    border: 1px solid var(--neon-cyan); border-radius: 2px;
+    position: relative; cursor: pointer; margin-right: 8px;
+}
+.filetype-extension-row input[type="checkbox"]:checked {
+    background-color: var(--neon-cyan); box-shadow: 0 0 5px var(--neon-cyan);
+}
+.filetype-extension-row input[type="checkbox"]:checked::before {
+    content: '✓'; font-family: sans-serif; position: absolute; top: -1px; left: 1px;
+    font-size: 10px; font-weight: bold; color: var(--body-bg-color);
+}
+
+/* --- Flashed Messages --- */
+#flashes-container {
+    margin-bottom: 20px; position: fixed;
+    top: 80px; /* Below sticky header */
+    left: 50%; transform: translateX(-50%);
+    width: auto; max-width: 90%; z-index: 1100;
+}
+.flash-message {
+    padding: 12px 18px; margin: 0 auto 10px auto;
+    max-width: 600px; border-radius: var(--border-radius-default);
+    font-weight: 500; border-width: 1px; border-style: solid;
+    backdrop-filter: blur(3px);
+    box-shadow: 0 0 10px currentColor, 0 0 15px currentColor;
+    text-shadow: 0 0 5px currentColor;
+}
+.flash-success {
+    background-color: var(--flash-success-bg-color); color: var(--flash-success-text-color); border-color: var(--flash-success-border-color);
+}
+.flash-error {
+    background-color: var(--flash-error-bg-color); color: var(--flash-error-text-color); border-color: var(--flash-error-border-color);
+}
+.flash-info {
+    background-color: var(--flash-info-bg-color); color: var(--flash-info-text-color); border-color: var(--flash-info-border-color);
+}
+
+/* --- Note/Info Box --- */
+.note {
+     margin-top: 25px; padding: 15px;
+     background-color: var(--note-bg-color);
+     color: var(--note-text-color);
+     border: 1px solid var(--note-border-color);
+     border-left-width: 5px; /* Thicker left border */
+     border-radius: var(--border-radius-default);
+     box-shadow: 0 0 8px var(--note-border-color);
+}
+.note p { text-shadow: none; }
+.note ul li::before { color: var(--note-border-color); }
+
+
+/* --- Status Message (from settings.html inline style) --- */
+.status-message { /* Similar to flash messages */
+    margin-top: 20px; padding: 12px 18px;
+    border-radius: var(--border-radius-default); display: none;
+    font-weight: 500; border-width: 1px; border-style: solid;
+    backdrop-filter: blur(3px);
+    box-shadow: 0 0 10px currentColor, 0 0 15px currentColor;
+    text-shadow: 0 0 5px currentColor;
+}
+.status-message.success { background-color: var(--flash-success-bg-color); color: var(--flash-success-text-color); border-color: var(--flash-success-border-color); }
+.status-message.error { background-color: var(--flash-error-bg-color); color: var(--flash-error-text-color); border-color: var(--flash-error-border-color); }
+.status-message:not(.success):not(.error) { background-color: var(--flash-info-bg-color); color: var(--flash-info-text-color); border-color: var(--flash-info-border-color); }
+
+
+/* --- Utility Classes --- */
+.loading-cursor, .loading-cursor * {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32'%3E%3Cpath fill='%2300ffff' d='M16 0 A16 16 0 0 0 16 32 A16 16 0 0 0 16 0 M16 4 A12 12 0 0 1 16 28 A12 12 0 0 1 16 4Z'%3E%3CanimateTransform attributeName='transform' type='rotate' from='0 16 16' to='360 16 16' dur='1s' repeatCount='indefinite'/%3E%3C/path%3E%3C/svg%3E") 16 16, wait !important;
+}

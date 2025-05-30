@@ -1,0 +1,754 @@
+:root {
+    /* General */
+    --font-primary: sans-serif;
+    --body-bg-color: #2c3e50;
+    --body-text-color: #ecf0f1;
+    --border-radius-default: 4px;
+    --border-radius-round: 50%;
+    --box-shadow-default-color: rgba(0, 0, 0, 0.3);
+    --box-shadow-default: 0 2px 5px var(--box-shadow-default-color);
+    --box-shadow-modal-color: rgba(0, 0, 0, 0.5);
+    --box-shadow-modal: 0 5px 15px var(--box-shadow-modal-color);
+    --overlay-bg-color: rgba(0, 0, 0, 0.7);
+
+    /* Panel Colors (Header, Modal, Table Headers) */
+    --panel-bg-color: #34495e;
+    --panel-text-color: white;
+    --panel-secondary-bg-color: #3b546d; /* Table even rows, input bg, some container bgs */
+    --panel-tertiary-bg-color: #4a627a;   /* Table hover, condition row bg, input/container borders */
+
+    /* Text Colors */
+    --text-primary-color: #ecf0f1;    /* Main body text, headings */
+    --text-secondary-color: #bdc3c7; /* Footer, less important text */
+    --text-on-accent-color: white;   /* Text on colored buttons */
+    --text-placeholder-color: #95a5a6; /* For input placeholders, can be adjusted per theme */
+    --text-label-color: var(--text-primary-color);
+    --text-label-strong-color: var(--text-primary-color); /* For bold labels */
+
+    /* Input/Control Colors */
+    --input-bg-color: var(--panel-secondary-bg-color);
+    --input-text-color: var(--text-primary-color);
+    --input-border-color: var(--panel-tertiary-bg-color);
+    --input-focus-border-color: #5dade2; /* A slightly brighter blue for focus */
+    --input-disabled-bg-color: #2c3e50;
+    --input-disabled-text-color: #7f8c8d;
+    --input-disabled-border-color: #34495e;
+
+    /* Button Colors (Semantic) */
+    /* Primary (Save, main positive actions) */
+    --button-primary-bg-color: #2ecc71;
+    --button-primary-text-color: var(--text-on-accent-color);
+    --button-primary-hover-bg-color: #27ae60;
+    /* Secondary (Navigation, standard actions) */
+    --button-secondary-bg-color: #3498db;
+    --button-secondary-text-color: var(--text-on-accent-color);
+    --button-secondary-hover-bg-color: #2980b9;
+    /* Accent (Distinct actions, e.g., "Add Another") */
+    --button-accent-bg-color: #1abc9c;
+    --button-accent-text-color: var(--text-on-accent-color);
+    --button-accent-hover-bg-color: #16a085;
+    /* Edit/Warning */
+    --button-edit-bg-color: #f39c12;
+    --button-edit-text-color: var(--text-on-accent-color);
+    --button-edit-hover-bg-color: #e67e22;
+    /* Danger/Delete (Destructive actions) */
+    --button-danger-bg-color: #e74c3c;
+    --button-danger-text-color: var(--text-on-accent-color);
+    --button-danger-hover-bg-color: #c0392b;
+
+    /* Link Colors */
+    --link-color: #3498db;
+    --link-hover-color: #2980b9;
+
+    /* Table Colors */
+    --table-header-bg-color: var(--panel-bg-color);
+    --table-header-text-color: var(--panel-text-color);
+    --table-border-color: var(--panel-bg-color);
+    --table-row-odd-bg-color: transparent; /* Or var(--body-bg-color) if distinction needed */
+    --table-row-even-bg-color: var(--panel-secondary-bg-color);
+    --table-row-hover-bg-color: var(--panel-tertiary-bg-color);
+    --table-text-color: var(--text-primary-color);
+
+    /* Conditional UI Colors (Rule Editor) */
+    --condition-row-bg-color: var(--panel-tertiary-bg-color);
+    --condition-row-text-color: var(--text-primary-color);
+    --condition-row-nested-bg-color: #5a728a; /* Slightly lighter than tertiary, or derived */
+    --condition-row-nested-border-color: var(--button-secondary-bg-color);
+    --condition-options-area-bg-color: var(--condition-row-nested-bg-color);
+    --condition-options-area-border-color: var(--panel-tertiary-bg-color);
+    --or-group-border-color: var(--panel-tertiary-bg-color); /* Dashed */
+
+    /* Flash Message Colors */
+    --flash-success-bg-color: var(--button-primary-bg-color);
+    --flash-success-text-color: var(--button-primary-text-color);
+    --flash-success-border-color: var(--button-primary-hover-bg-color);
+    --flash-error-bg-color: var(--button-danger-bg-color);
+    --flash-error-text-color: var(--button-danger-text-color);
+    --flash-error-border-color: var(--button-danger-hover-bg-color);
+    --flash-info-bg-color: var(--button-secondary-bg-color);
+    --flash-info-text-color: var(--button-secondary-text-color);
+    --flash-info-border-color: var(--button-secondary-hover-bg-color);
+
+    /* Filetype UI Colors */
+    --filetype-container-bg-color: var(--input-bg-color);
+    --filetype-container-border-color: var(--input-border-color);
+    --filetype-separator-color: var(--input-border-color); /* Dashed */
+    --filetype-toggle-color: var(--text-primary-color);
+
+    /* Note/Info Box Colors (e.g., on Settings Page) */
+    --note-bg-color: var(--input-bg-color);
+    --note-text-color: var(--text-primary-color);
+    --note-border-color: var(--button-secondary-bg-color);
+    --hr-color: var(--input-border-color);
+}
+
+/* --- Global Resets & Base Styles --- */
+html {
+    height: 100%; /* ADDED: Ensure html element takes full viewport height for vh units */
+    box-sizing: border-box; /* ADDED: Apply border-box globally */
+}
+
+*, *::before, *::after { /* ADDED: Inherit box-sizing for all elements */
+    box-sizing: inherit;
+}
+
+body {
+    font-family: var(--font-primary);
+    margin: 0;
+    padding: 0;
+    background-color: var(--body-bg-color);
+    color: var(--body-text-color);
+    min-height: 100%; /* ADDED: Ensure body takes at least full viewport height */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-primary-color);
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+}
+
+p {
+    line-height: 1.6;
+}
+
+a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--link-hover-color);
+    text-decoration: underline;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid var(--hr-color);
+    margin: 20px 0;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    margin-bottom: 5px;
+}
+
+/* --- Layout Components --- */
+header {
+    background-color: var(--panel-bg-color);
+    color: var(--panel-text-color);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between; /* Corrected typo */
+    align-items: center;
+}
+
+header h1 {
+    color: var(--panel-text-color);
+    margin: 0;
+    font-size: 1.5em;
+}
+
+nav button {
+    padding: 8px 15px;
+    background-color: var(--button-secondary-bg-color);
+    color: var(--button-secondary-text-color);
+    border: none;
+    border-radius: var(--border-radius-default);
+    cursor: pointer;
+    font-size: 1em;
+}
+
+nav button:hover {
+    background-color: var(--button-secondary-hover-bg-color);
+}
+
+main {
+    padding: 20px;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+    color: var(--text-secondary-color);
+    font-size: 0.9em;
+}
+
+/* --- General Form Styles --- */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: var(--text-label-strong-color);
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="email"], /* Added for completeness */
+input[type="url"],   /* Added for completeness */
+select,
+textarea {
+    width: 100%; /* SIMPLIFIED from calc(100% - 18px) due to global box-sizing */
+    padding: 8px;
+    /* box-sizing: border-box; REMOVED as it's global now */
+    background-color: var(--input-bg-color);
+    border: 1px solid var(--input-border-color);
+    color: var(--input-text-color);
+    border-radius: var(--border-radius-default);
+    margin-bottom: 10px; /* Default margin for form elements */
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--input-focus-border-color);
+    box-shadow: 0 0 0 2px var(--input-focus-border-color_opacified, rgba(93, 173, 226, 0.3)); /* Optional focus ring */
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--text-placeholder-color);
+}
+
+/* --- Button Styles --- */
+button,
+input[type="button"],
+input[type="submit"] { /* General button styling */
+    padding: 10px 20px;
+    color: var(--button-primary-text-color); /* Default to primary, can be overridden */
+    border: none;
+    border-radius: var(--border-radius-default);
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.2s ease;
+}
+
+button[type="submit"] { /* Specifically for submit buttons */
+    background-color: var(--button-primary-bg-color);
+    color: var(--button-primary-text-color);
+}
+
+button[type="submit"]:hover {
+    background-color: var(--button-primary-hover-bg-color);
+}
+
+.add-button { /* Floating Action Button */
+    padding: 10px 15px;
+    font-size: 1.5em;
+    background-color: var(--button-primary-bg-color);
+    color: var(--button-primary-text-color);
+    border: none;
+    border-radius: var(--border-radius-round);
+    cursor: pointer;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    box-shadow: var(--box-shadow-default);
+    line-height: 1;
+    z-index: 500;
+}
+
+.add-button:hover {
+    background-color: var(--button-primary-hover-bg-color);
+}
+
+.secondary-button {
+    padding: 8px 15px;
+    background-color: var(--button-secondary-bg-color);
+    color: var(--button-secondary-text-color);
+    /* border, border-radius, cursor, font-size inherited or default */
+    margin-bottom: 10px; /* Space below the button */
+}
+
+.secondary-button:hover {
+    background-color: var(--button-secondary-hover-bg-color);
+}
+
+.add-destination-button {
+    padding: 8px 15px;
+    background-color: var(--button-accent-bg-color);
+    color: var(--button-accent-text-color);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.add-destination-button:hover {
+    background-color: var(--button-accent-hover-bg-color);
+}
+
+
+/* --- Settings Form Specific Styles (#settings-form) --- */
+/* These styles are from the original file, kept for specificity if needed,
+   but most should be covered by general form styles now. */
+#settings-form div {
+    margin-bottom: 15px;
+}
+
+#settings-form label {
+    /* display: block; (from general label) */
+    /* margin-bottom: 5px; (from general label) */
+    /* font-weight: bold; (from general label) */
+}
+
+#settings-form input[type="text"],
+#settings-form input[type="password"],
+#settings-form input[type="number"],
+#settings-form select {
+     /* width, padding, box-sizing, background-color, border, color, border-radius covered by general */
+}
+
+#settings-form input[type="number"] {
+    width: 100px; /* Make number inputs shorter */
+}
+
+#settings-form .checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+#settings-form .checkbox-row label {
+     margin-bottom: 0;
+     font-weight: normal; /* Override general bold label */
+     color: var(--text-label-color);
+     display: inline-block;
+ }
+#settings-form .checkbox-row input[type="checkbox"] {
+    width: auto; /* Prevent checkbox from trying to be 100% width */
+    margin: 0; /* Remove default margin */
+    flex-shrink: 0; /* Prevent the checkbox from shrinking */
+    /* Style checkboxes if desired, though they are tricky cross-browser */
+}
+
+/* --- Rules Table (#rules-table-container, #rules-table) --- */
+#rules-table-container {
+    margin-top: 20px;
+    overflow-x: auto; /* For responsiveness */
+}
+
+#rules-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+#rules-table th,
+#rules-table td {
+    border: 1px solid var(--table-border-color);
+    padding: 10px;
+    text-align: left;
+    color: var(--table-text-color);
+}
+
+#rules-table th {
+    background-color: var(--table-header-bg-color);
+    color: var(--table-header-text-color);
+    font-weight: bold;
+}
+
+#rules-table tbody tr {
+    background-color: var(--table-row-odd-bg-color);
+}
+#rules-table tbody tr:nth-child(even) {
+    background-color: var(--table-row-even-bg-color);
+}
+
+#rules-table tbody tr:hover {
+    background-color: var(--table-row-hover-bg-color);
+}
+
+/* Style for action buttons within the table cells */
+#rules-table td button {
+    padding: 5px 10px;
+    margin-right: 5px;
+    /* cursor, border, border-radius inherited or default */
+}
+
+#rules-table td button.run-button {
+    background-color: var(--button-secondary-bg-color);
+    color: var(--button-secondary-text-color);
+}
+#rules-table td button.run-button:hover { background-color: var(--button-secondary-hover-bg-color); }
+
+#rules-table td button.edit-button {
+    background-color: var(--button-edit-bg-color);
+    color: var(--button-edit-text-color);
+}
+#rules-table td button.edit-button:hover { background-color: var(--button-edit-hover-bg-color); }
+
+
+#rules-table td button.delete-button {
+    background-color: var(--button-danger-bg-color);
+    color: var(--button-danger-text-color);
+}
+#rules-table td button.delete-button:hover { background-color: var(--button-danger-hover-bg-color); }
+
+
+/* --- Modal Styles (.modal-overlay, .modal-content) --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--overlay-bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: var(--panel-bg-color);
+    padding: 20px;
+    border-radius: var(--border-radius-default);
+    width: 90%;
+    max-width: 700px;
+    max-height: 80vh;
+    overflow-y: auto;
+    color: var(--panel-text-color); /* Text color inside modal */
+    box-shadow: var(--box-shadow-modal);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-content form { /* Form inside modal */
+    padding-bottom: 20px; /* Ensure content above scrollbar is visible */
+    /* If the html/body changes are not enough, these might be needed: */
+    /* flex-grow: 1; */ /* Allows form to take up space in flex modal */
+    /* min-height: 0; */ /* Allows form (as flex item) to shrink below its content size, crucial for parent overflow */
+}
+
+.modal-content h3 { /* Modal title */
+    color: var(--panel-text-color);
+    margin-top: 0;
+}
+
+.close-button { /* Modal close button */
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--panel-text-color);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.close-button:hover {
+    color: var(--button-danger-bg-color); /* Use danger color for close hover */
+}
+
+/* --- Rule Form Styles (#rule-form) --- */
+#rule-form label {
+    /* display, margin-bottom, font-weight from general label */
+    /* color: var(--panel-text-color); if different from body text needed inside modal */
+}
+
+#rule-form input[type="text"],
+#rule-form input[type="number"],
+#rule-form select,
+#rule-form textarea { /* Added textarea for paste search */
+    /* width, padding, box-sizing, background-color, border, color, border-radius from general */
+    /* These are full-width elements within the modal form, unless in a .condition-row */
+    margin-bottom: 10px;
+}
+
+/* Buttons specific to rule form sections, like add/remove conditions */
+#rule-form .add-condition-button,
+#rule-form .remove-condition-button,
+#rule-form .remove-destination-button { /* Added remove-destination */
+    padding: 8px 15px;
+    margin-top: 10px;
+    /* border, border-radius, cursor from general button */
+}
+
+#rule-form .add-condition-button {
+    background-color: var(--button-secondary-bg-color);
+    color: var(--button-secondary-text-color);
+    margin-right: 10px;
+}
+#rule-form .add-condition-button:hover { background-color: var(--button-secondary-hover-bg-color); }
+
+#rule-form .remove-condition-button,
+#rule-form .remove-destination-button { /* Added remove-destination */
+    background-color: var(--button-danger-bg-color);
+    color: var(--button-danger-text-color);
+}
+#rule-form .remove-condition-button:hover,
+#rule-form .remove-destination-button:hover { background-color: var(--button-danger-hover-bg-color); }
+
+
+/* Styling for individual condition rows (.condition-row) */
+.condition-row {
+    background-color: var(--condition-row-bg-color);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: var(--border-radius-default);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.condition-row label {
+    color: var(--condition-row-text-color);
+    font-weight: normal; /* Override general bold label */
+}
+
+.condition-row.nested-condition-row {
+    background-color: var(--condition-row-nested-bg-color);
+    border-left: 4px solid var(--condition-row-nested-border-color);
+    margin-left: 20px; /* Indent nested rows */
+    gap: 8px; /* Slightly smaller gap for nested */
+}
+
+.condition-row .remove-condition-button {
+     flex-shrink: 0;
+     margin-bottom: 0; /* Reset bottom margin for alignment */
+     /* Already styled by #rule-form .remove-condition-button */
+}
+
+/* Inputs/Selects within a condition row should not be full width */
+.condition-row select,
+.condition-row input[type="text"],
+.condition-row input[type="number"],
+.condition-row textarea { /* Added textarea */
+     width: auto; /* Allow elements to size based on content */
+     flex-grow: 1; /* Allow these to grow to fill space */
+     margin-bottom: 0; /* Reset bottom margin for alignment */
+     /* General input styles (padding, bg, border, color, radius) already applied */
+}
+
+.condition-row label {
+    display: inline-block;
+    margin-bottom: 0;
+    flex-shrink: 0;
+}
+
+/* Style for the area holding dynamic options within a condition row */
+.condition-row .options-area {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    gap: 8px;
+    background-color: var(--condition-options-area-bg-color);
+    padding: 8px;
+    border-radius: var(--border-radius-default);
+    border: 1px solid var(--condition-options-area-border-color);
+}
+
+/* Styling for the container holding conditions within an OR group */
+.or-group-conditions-container {
+    border: 1px dashed var(--or-group-border-color);
+    padding: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: var(--border-radius-default);
+    /* width: calc(100% - 30px); /* Adjust width for padding */ /* Not needed with global box-sizing */
+    /* box-sizing: border-box; /* Global now */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.or-group-conditions-container .condition-row.nested-condition-row {
+    margin: 0; /* Reset margin if direct child of OR group using gap */
+    /* padding, border-left already set by .nested-condition-row */
+}
+
+
+/* --- Filetype UI in Modal --- */
+.filetype-options-container {
+    background-color: var(--filetype-container-bg-color);
+    padding: 10px;
+    border-radius: var(--border-radius-default);
+    border: 1px solid var(--filetype-container-border-color);
+    margin-top: 10px;
+    width: 100%;
+    /* box-sizing: border-box; /* Global now */
+}
+
+.filetype-category-row {
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    border-bottom: 1px dashed var(--filetype-separator-color);
+}
+.filetype-category-row:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.filetype-category-header {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 5px 0;
+}
+.filetype-category-header input[type="checkbox"] {
+    flex-shrink: 0;
+    margin-right: 5px;
+    width: auto;
+}
+.filetype-category-header label {
+    flex-grow: 1;
+    margin: 0;
+    font-weight: bold; /* Make category labels bold */
+    cursor: pointer;
+    color: var(--text-label-strong-color);
+}
+
+.filetype-toggle-extensions {
+    margin-left: auto;
+    background: none;
+    border: none;
+    color: var(--filetype-toggle-color);
+    cursor: pointer;
+    font-size: 0.9em;
+    padding: 0 5px;
+    transition: transform 0.2s ease;
+}
+
+.filetype-extensions-container {
+    padding-left: 20px; /* Indent extensions */
+    margin-top: 5px;
+    display: none; /* Ensure it's hidden by default CSS */
+}
+.filetype-extension-row {
+    margin-bottom: 3px;
+    display: flex;
+    align-items: center;
+}
+.filetype-extension-row input[type="checkbox"] {
+    flex-shrink: 0;
+    margin-right: 5px;
+    width: auto;
+}
+.filetype-extension-row label {
+    margin: 0;
+    font-weight: normal; /* Extensions labels are not bold */
+    color: var(--text-label-color);
+}
+
+/* --- Flashed Messages --- */
+#flashes-container {
+    margin-bottom: 20px;
+}
+
+.flash-message {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: var(--border-radius-default);
+    font-weight: bold;
+}
+
+.flash-success {
+    background-color: var(--flash-success-bg-color);
+    color: var(--flash-success-text-color);
+    border-left: 4px solid var(--flash-success-border-color);
+}
+
+.flash-error {
+    background-color: var(--flash-error-bg-color);
+    color: var(--flash-error-text-color);
+    border-left: 4px solid var(--flash-error-border-color); /* Corrected from 44px */
+}
+
+.flash-info {
+    background-color: var(--flash-info-bg-color);
+    color: var(--flash-info-text-color);
+    border-left: 4px solid var(--flash-info-border-color);
+}
+
+/* --- Note/Info Box (e.g., for Settings page) --- */
+.note {
+     margin-top: 20px;
+     padding: 10px;
+     background-color: var(--note-bg-color);
+     color: var(--note-text-color);
+     border-left: 4px solid var(--note-border-color);
+     border-radius: var(--border-radius-default);
+     font-size: 0.9em;
+}
+.note p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+.note p:first-child {
+    margin-top: 0;
+}
+.note p:last-child {
+    margin-bottom: 0;
+}
+.note ul {
+    margin-top: 0.5em;
+    margin-left: 20px; /* Indent list inside note */
+    list-style: disc;
+}
+.note hr {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-top: 1px solid var(--hr-color); /* Use theme HR color */
+}
+
+
+/* --- Status Message (from settings.html inline style) --- */
+.status-message {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: var(--border-radius-default);
+    display: none; /* JavaScript will toggle this */
+    /* Use flash message colors for consistency, e.g., info or success */
+    background-color: var(--flash-info-bg-color);
+    color: var(--flash-info-text-color);
+    border-left: 4px solid var(--flash-info-border-color);
+}
+.status-message.success {
+    background-color: var(--flash-success-bg-color);
+    color: var(--flash-success-text-color);
+    border-left-color: var(--flash-success-border-color);
+}
+.status-message.error {
+    background-color: var(--flash-error-bg-color);
+    color: var(--flash-error-text-color);
+    border-left-color: var(--flash-error-border-color);
+}
+
+
+/* --- Utility Classes --- */
+.loading-cursor, .loading-cursor * { /* Apply to element and its children */
+    cursor: wait !important;
+}

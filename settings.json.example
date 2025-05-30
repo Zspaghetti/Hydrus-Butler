@@ -1,0 +1,20 @@
+{
+    "api_address": "http://localhost:45869",
+    "api_key": "776d0482d2c74a222dd2b2b9g2g2rard2747b229cbb3da4zc84ag752296od642c",
+    "rule_intervel_seconds": 0,
+    "last_viewed_threshold_seconds": 0,
+    "secret_key": "39cacab2a2aac529b035a67af492adaaa62a352b09a48ca4",
+    "show_run_notifications": false,
+    "theme": "Neon",
+    "available_themes": [
+        "Neon",
+        "arctic",
+        "correctneon",
+        "correcttemplate",
+        "dark bloom",
+        "scribedesk",
+        "style",
+        "templatestyle",
+        "twilight"
+    ]
+}

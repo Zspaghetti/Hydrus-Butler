@@ -1,0 +1,297 @@
+[
+    {
+        "id": "9b12dbd2-7cab-455b-9bf4-ad35369b14aa",
+        "name": "Rule 2",
+        "priority": 1,
+        "conditions": [
+            {
+                "type": "tags",
+                "value": [
+                    "test2"
+                ],
+                "operator": "search_terms"
+            }
+        ],
+        "action": {
+            "type": "force_in",
+            "destination_service_keys": [
+                "aae647fe2b8a0454a870177822e2e130a7e1eeb958f89c7b7ea0a91616969cc3"
+            ]
+        }
+    },
+    {
+        "id": "f25a99c8-8fef-406d-9dcd-67ac24151532",
+        "name": "Rule 3",
+        "priority": 1,
+        "conditions": [
+            {
+                "type": "or_group",
+                "conditions": [
+                    {
+                        "type": "tags",
+                        "value": [
+                            "test1"
+                        ],
+                        "operator": "search_terms"
+                    },
+                    {
+                        "type": "tags",
+                        "value": [
+                            "test2"
+                        ],
+                        "operator": "search_terms"
+                    }
+                ]
+            }
+        ],
+        "action": {
+            "type": "modify_rating",
+            "rating_service_key": "99d658a6ab956a70ee630e6137e178945bcf4038b05956ef47d92fed76e73455",
+            "rating_value": 7
+        }
+    },
+    {
+        "id": "2091558c-1d4b-489b-b9c3-36ccb3543f71",
+        "name": "Rule 4",
+        "priority": 1,
+        "conditions": [
+            {
+                "type": "tags",
+                "value": [
+                    "test3"
+                ],
+                "operator": "search_terms"
+            }
+        ],
+        "action": {
+            "type": "modify_rating",
+            "rating_service_key": "a0cf3dde72a9e3d3e8785c24c04828684bd175033e7e48a6202433d39093e824",
+            "rating_value": false
+        }
+    },
+    {
+        "id": "4f9d757e-1886-4f4e-b42e-765380a77053",
+        "name": "Rule 5",
+        "priority": 1,
+        "conditions": [
+            {
+                "type": "tags",
+                "value": [
+                    "test4"
+                ],
+                "operator": "search_terms"
+            }
+        ],
+        "action": {
+            "type": "force_in",
+            "destination_service_keys": [
+                "aae647fe2b8a0454a870177822e2e130a7e1eeb958f89c7b7ea0a91616969cc3"
+            ]
+        }
+    },
+    {
+        "id": "9091652d-4278-4322-8388-52915c12dfa0",
+        "name": "testrule OR",
+        "priority": 1,
+        "conditions": [
+            {
+                "type": "or_group",
+                "conditions": [
+                    {
+                        "type": "tags",
+                        "value": [
+                            "tag1"
+                        ],
+                        "operator": "search_terms"
+                    },
+                    {
+                        "type": "tags",
+                        "value": [
+                            "tag2"
+                        ],
+                        "operator": "search_terms"
+                    }
+                ]
+            },
+            {
+                "type": "tags",
+                "value": [
+                    "tag1"
+                ],
+                "operator": "search_terms"
+            },
+            {
+                "type": "tags",
+                "value": [
+                    "tag2"
+                ],
+                "operator": "search_terms"
+            }
+        ],
+        "action": {
+            "type": "modify_rating",
+            "rating_service_key": "6661766f757269746573",
+            "rating_value": true
+        }
+    },
+    {
+        "id": "3910024c-fa42-4df0-9164-5c1062135724",
+        "name": "Absolutely new function for debug",
+        "priority": 1,
+        "conditions": [
+            {
+                "type": "tags",
+                "value": [
+                    "any1"
+                ],
+                "operator": "search_terms"
+            },
+            {
+                "type": "tags",
+                "value": [
+                    "any2"
+                ],
+                "operator": "search_terms"
+            }
+        ],
+        "action": {
+            "type": "modify_rating",
+            "rating_service_key": "6661766f757269746573",
+            "rating_value": false
+        }
+    },
+    {
+        "id": "753310f3-50be-4baa-ba6e-c3bdef2baf26",
+        "name": "Newnewnewfunction for debug",
+        "priority": 1,
+        "conditions": [
+            {
+                "type": "or_group",
+                "conditions": [
+                    {
+                        "type": "tags",
+                        "value": [
+                            "any1"
+                        ],
+                        "operator": "search_terms"
+                    },
+                    {
+                        "type": "tags",
+                        "value": [
+                            "any2"
+                        ],
+                        "operator": "search_terms"
+                    }
+                ]
+            }
+        ],
+        "action": {
+            "type": "modify_rating",
+            "rating_service_key": "6661766f757269746573",
+            "rating_value": true
+        }
+    },
+    {
+        "id": "63cd5b5d-1a36-4298-b88c-e5334eb8222e",
+        "name": "newrule",
+        "priority": 1,
+        "conditions": [
+            {
+                "type": "or_group",
+                "conditions": [
+                    {
+                        "type": "tags",
+                        "value": [
+                            "ttag1"
+                        ],
+                        "operator": "search_terms"
+                    },
+                    {
+                        "type": "tags",
+                        "value": [
+                            "ttag2"
+                        ],
+                        "operator": "search_terms"
+                    }
+                ]
+            }
+        ],
+        "action": {
+            "type": "modify_rating",
+            "rating_service_key": "99d658a6ab956a70ee630e6137e178945bcf4038b05956ef47d92fed76e73455",
+            "rating_value": 5
+        }
+    },
+    {
+        "id": "dbcbbd46-92b0-4dfe-a5c9-c96e7e6345d9",
+        "name": "Rule 6",
+        "priority": 1,
+        "conditions": [
+            {
+                "type": "tags",
+                "value": [
+                    "tag1",
+                    "tzg2"
+                ],
+                "operator": "search_terms"
+            }
+        ],
+        "action": {
+            "type": "modify_rating",
+            "rating_service_key": "99d658a6ab956a70ee630e6137e178945bcf4038b05956ef47d92fed76e73455",
+            "rating_value": 2
+        }
+    },
+    {
+        "id": "34b62ae9-e0f3-4844-901e-25dcb80c239f",
+        "name": "Rule 7",
+        "priority": 1,
+        "conditions": [
+            {
+                "type": "tags",
+                "value": [
+                    "test1"
+                ],
+                "operator": "search_terms"
+            }
+        ],
+        "action": {
+            "type": "add_tags",
+            "tag_service_key": "6c6f63616c2074616773",
+            "tags_to_process": [
+                "testdestination"
+            ]
+        }
+    },
+    {
+        "id": "32497519-27d4-476a-90a1-2ee9f29f9520",
+        "name": "rule OR test",
+        "priority": 3,
+        "conditions": [
+            {
+                "type": "or_group",
+                "conditions": [
+                    {
+                        "type": "tags",
+                        "value": [
+                            "test1"
+                        ],
+                        "operator": "search_terms"
+                    },
+                    {
+                        "type": "tags",
+                        "value": [
+                            "test2"
+                        ],
+                        "operator": "search_terms"
+                    }
+                ]
+            }
+        ],
+        "action": {
+            "type": "modify_rating",
+            "rating_service_key": "99d658a6ab956a70ee630e6137e178945bcf4038b05956ef47d92fed76e73455",
+            "rating_value": 5
+        }
+    }
+]
