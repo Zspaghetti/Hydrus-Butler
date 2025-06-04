@@ -521,11 +521,41 @@ def _translate_rule_to_hydrus_predicates(rule_conditions_list, rule_action_obj,
                 if s_line.lower().startswith('system:limit'):
                     translation_warnings.append(f"Note: Ignored 'system:limit' in paste_search (line {line_num + 1}).")
                     continue
-                or_parts = [p.strip() for p in s_line.split(' OR ') if p.strip()]
-                if len(or_parts) > 1: parsed_paste_preds.append(or_parts)
-                elif or_parts: parsed_paste_preds.append(or_parts[0])
-            if parsed_paste_preds: string_predicates.extend(parsed_paste_preds)
-            else: translation_warnings.append(f"Warning: 'paste_search' idx {condition_idx} yielded no predicates.")
+                
+                or_parts_raw = [p.strip() for p in s_line.split(' OR ') if p.strip()]
+                transformed_or_parts = []
+
+                malformed_is_in_prefix = "system:is currently in "
+                correct_is_in_prefix = "system:file service currently in "
+                malformed_is_not_in_prefix = "system:is not currently in "
+                correct_is_not_in_prefix = "system:file service is not currently in "
+
+                for part in or_parts_raw:
+                    original_part = part
+                    transformed_part = part
+                    
+                    if part.startswith(malformed_is_in_prefix):
+                        service_name_part = part[len(malformed_is_in_prefix):]
+                        transformed_part = correct_is_in_prefix + service_name_part
+                    elif part.startswith(malformed_is_not_in_prefix):
+                        service_name_part = part[len(malformed_is_not_in_prefix):]
+                        transformed_part = correct_is_not_in_prefix + service_name_part
+                    
+                    if transformed_part != original_part:
+                        translation_warnings.append(
+                            f"Note (PasteSearch, Line {line_num + 1}): Auto-corrected predicate '{original_part}' to '{transformed_part}'."
+                        )
+                    transformed_or_parts.append(transformed_part)
+
+                if len(transformed_or_parts) > 1: 
+                    parsed_paste_preds.append(transformed_or_parts)
+                elif transformed_or_parts: # At least one part exists
+                    parsed_paste_preds.append(transformed_or_parts[0])
+            
+            if parsed_paste_preds: 
+                string_predicates.extend(parsed_paste_preds)
+            elif raw_text.strip() and not all(l.strip().startswith('#') or not l.strip() for l in lines): # Check if raw_text had content beyond comments/empty lines
+                translation_warnings.append(f"Warning: 'paste_search' idx {condition_idx} with content yielded no usable predicates after processing.")
         else:
             res = translate_single_condition_inner(condition, translation_warnings)
             if res:
