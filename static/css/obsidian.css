@@ -1,0 +1,1296 @@
+html {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: var(--font-primary);
+    margin: 0;
+    padding: 0;
+    background-color: var(--body-bg-color);
+    color: var(--body-text-color);
+    min-height: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-primary-color);
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+}
+
+p {
+    line-height: 1.6;
+}
+
+a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--link-hover-color);
+    text-decoration: underline;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid var(--hr-color);
+    margin: 20px 0;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    margin-bottom: 5px;
+}
+
+/* --- Layout Components --- */
+header {
+    background-color: var(--panel-bg-color);
+    color: var(--panel-text-color);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    color: var(--panel-text-color);
+    margin: 0;
+    font-size: 1.5em;
+}
+
+nav button {
+    padding: 8px 15px;
+    background-color: var(--button-secondary-bg-color);
+    color: var(--button-secondary-text-color);
+    border: none;
+    border-radius: var(--border-radius-default);
+    cursor: pointer;
+    font-size: 1em;
+}
+
+nav button:hover {
+    background-color: var(--button-secondary-hover-bg-color);
+}
+
+main {
+    padding: 20px;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+    color: var(--text-secondary-color);
+    font-size: 0.9em;
+}
+
+/* --- General Form Styles --- */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: var(--text-label-strong-color);
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="date"], /* Added date for logs page */
+select,
+textarea {
+    width: 100%;
+    padding: 8px;
+    background-color: var(--input-bg-color);
+    border: 1px solid var(--input-border-color);
+    color: var(--input-text-color);
+    border-radius: var(--border-radius-default);
+    margin-bottom: 10px;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="date"]:focus, /* Added date for logs page */
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--input-focus-border-color);
+    box-shadow: 0 0 0 2px var(--input-focus-border-color_opacified, rgba(93, 173, 226, 0.3));
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--text-placeholder-color);
+}
+
+/* --- Button Styles --- */
+button,
+input[type="button"],
+input[type="submit"] {
+    padding: 10px 20px;
+    color: var(--button-primary-text-color); /* Base color, often overridden by specific button types */
+    border: none;
+    border-radius: var(--border-radius-default);
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.2s ease;
+}
+
+button[type="submit"],
+input[type="submit"] { /* Ensure input type submit is also covered here */
+    background-color: var(--button-primary-bg-color);
+    color: var(--button-primary-text-color);
+}
+
+button[type="submit"]:hover,
+input[type="submit"]:hover {
+    background-color: var(--button-primary-hover-bg-color);
+}
+
+.add-button {
+    padding: 10px 15px;
+    font-size: 1.5em;
+    background-color: var(--button-primary-bg-color);
+    color: var(--button-primary-text-color);
+    border: none;
+    border-radius: var(--border-radius-round);
+    cursor: pointer;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    box-shadow: var(--box-shadow-default);
+    line-height: 1;
+    z-index: 500;
+}
+
+.add-button:hover {
+    background-color: var(--button-primary-hover-bg-color);
+}
+
+.secondary-button {
+    padding: 8px 15px;
+    background-color: var(--button-secondary-bg-color);
+    color: var(--button-secondary-text-color);
+    margin-bottom: 10px; /* May not always be desired, use with care or override */
+}
+
+.secondary-button:hover {
+    background-color: var(--button-secondary-hover-bg-color);
+}
+
+.add-destination-button {
+    padding: 8px 15px;
+    background-color: var(--button-accent-bg-color);
+    color: var(--button-accent-text-color);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.add-destination-button:hover {
+    background-color: var(--button-accent-hover-bg-color);
+}
+
+/* --- Settings Form Specific Styles (#settings-form) --- */
+#settings-form div {
+    margin-bottom: 15px;
+}
+
+#settings-form input[type="number"] {
+    width: 100px;
+}
+
+#settings-form .checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+#settings-form .checkbox-row label {
+     margin-bottom: 0;
+     font-weight: normal;
+     color: var(--text-label-color);
+     display: inline-block;
+ }
+#settings-form .checkbox-row input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+/* --- Rules Table (#rules-table-container, #rules-table) --- */
+#rules-table-container {
+    margin-top: 20px;
+    overflow-x: auto;
+}
+
+#rules-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+#rules-table th,
+#rules-table td {
+    border: 1px solid var(--table-border-color);
+    padding: 10px;
+    text-align: left;
+    color: var(--table-text-color);
+}
+
+#rules-table th {
+    background-color: var(--table-header-bg-color);
+    color: var(--table-header-text-color);
+    font-weight: bold;
+}
+
+#rules-table tbody tr {
+    background-color: var(--table-row-odd-bg-color);
+}
+#rules-table tbody tr:nth-child(even) {
+    background-color: var(--table-row-even-bg-color);
+}
+
+#rules-table tbody tr:hover {
+    background-color: var(--table-row-hover-bg-color);
+}
+
+#rules-table td button {
+    padding: 5px 10px;
+    margin-right: 5px;
+}
+
+#rules-table td button.run-button {
+    background-color: var(--button-secondary-bg-color);
+    color: var(--button-secondary-text-color);
+}
+#rules-table td button.run-button:hover { background-color: var(--button-secondary-hover-bg-color); }
+
+#rules-table td button.edit-button {
+    background-color: var(--button-edit-bg-color);
+    color: var(--button-edit-text-color);
+}
+#rules-table td button.edit-button:hover { background-color: var(--button-edit-hover-bg-color); }
+
+
+#rules-table td button.delete-button {
+    background-color: var(--button-danger-bg-color);
+    color: var(--button-danger-text-color);
+}
+#rules-table td button.delete-button:hover { background-color: var(--button-danger-hover-bg-color); }
+
+
+/* --- Modal Styles (.modal-overlay, .modal-content) --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--overlay-bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: var(--panel-bg-color);
+    padding: 20px;
+    border-radius: var(--border-radius-default);
+    width: 90%;
+    max-width: 700px;
+    max-height: 80vh;
+    overflow-y: auto;
+    color: var(--panel-text-color);
+    box-shadow: var(--box-shadow-modal);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-content form {
+    padding-bottom: 20px;
+}
+
+.modal-content h3 {
+    color: var(--panel-text-color);
+    margin-top: 0;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--panel-text-color);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.close-button:hover {
+    color: var(--button-danger-bg-color);
+}
+
+/* --- Rule Form Styles (#rule-form) --- */
+#rule-form .add-condition-button,
+#rule-form .remove-condition-button,
+#rule-form .remove-destination-button {
+    padding: 8px 15px;
+    margin-top: 10px;
+}
+
+#rule-form .add-condition-button {
+    background-color: var(--button-secondary-bg-color);
+    color: var(--button-secondary-text-color);
+    margin-right: 10px;
+}
+#rule-form .add-condition-button:hover { background-color: var(--button-secondary-hover-bg-color); }
+
+#rule-form .remove-condition-button,
+#rule-form .remove-destination-button {
+    background-color: var(--button-danger-bg-color);
+    color: var(--button-danger-text-color);
+}
+#rule-form .remove-condition-button:hover,
+#rule-form .remove-destination-button:hover { background-color: var(--button-danger-hover-bg-color); }
+
+.condition-row {
+    background-color: var(--condition-row-bg-color);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: var(--border-radius-default);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.condition-row label {
+    color: var(--condition-row-text-color);
+    font-weight: normal;
+}
+
+.condition-row.nested-condition-row {
+    background-color: var(--condition-row-nested-bg-color);
+    border-left: 4px solid var(--condition-row-nested-border-color);
+    margin-left: 20px;
+    gap: 8px;
+}
+
+.condition-row .remove-condition-button {
+     flex-shrink: 0;
+     margin-bottom: 0;
+}
+
+.condition-row select,
+.condition-row input[type="text"],
+.condition-row input[type="number"],
+.condition-row textarea {
+     width: auto;
+     flex-grow: 1;
+     margin-bottom: 0;
+}
+
+.condition-row label {
+    display: inline-block;
+    margin-bottom: 0;
+    flex-shrink: 0;
+}
+
+.condition-row .options-area {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    gap: 8px;
+    background-color: var(--condition-options-area-bg-color);
+    padding: 8px;
+    border-radius: var(--border-radius-default);
+    border: 1px solid var(--condition-options-area-border-color);
+}
+
+.or-group-conditions-container {
+    border: 1px dashed var(--or-group-border-color);
+    padding: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: var(--border-radius-default);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.or-group-conditions-container .condition-row.nested-condition-row {
+    margin: 0;
+}
+
+/* --- Filetype UI in Modal --- */
+.filetype-options-container {
+    background-color: var(--filetype-container-bg-color);
+    padding: 10px;
+    border-radius: var(--border-radius-default);
+    border: 1px solid var(--filetype-container-border-color);
+    margin-top: 10px;
+    width: 100%;
+}
+
+.filetype-category-row {
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    border-bottom: 1px dashed var(--filetype-separator-color);
+}
+.filetype-category-row:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.filetype-category-header {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 5px 0;
+}
+.filetype-category-header input[type="checkbox"] {
+    flex-shrink: 0;
+    margin-right: 5px;
+    width: auto;
+}
+.filetype-category-header label {
+    flex-grow: 1;
+    margin: 0;
+    font-weight: bold;
+    cursor: pointer;
+    color: var(--text-label-strong-color);
+}
+
+.filetype-toggle-extensions {
+    margin-left: auto;
+    background: none;
+    border: none;
+    color: var(--filetype-toggle-color);
+    cursor: pointer;
+    font-size: 0.9em;
+    padding: 0 5px;
+    transition: transform 0.2s ease;
+}
+
+.filetype-extensions-container {
+    padding-left: 20px;
+    margin-top: 5px;
+    display: none;
+}
+.filetype-extension-row {
+    margin-bottom: 3px;
+    display: flex;
+    align-items: center;
+}
+.filetype-extension-row input[type="checkbox"] {
+    flex-shrink: 0;
+    margin-right: 5px;
+    width: auto;
+}
+.filetype-extension-row label {
+    margin: 0;
+    font-weight: normal;
+    color: var(--text-label-color);
+}
+
+/* --- Flashed Messages --- */
+#flashes-container {
+    margin-bottom: 20px;
+}
+
+.flash-message {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: var(--border-radius-default);
+    font-weight: bold;
+}
+
+.flash-success {
+    background-color: var(--flash-success-bg-color);
+    color: var(--flash-success-text-color);
+    border-left: 4px solid var(--flash-success-border-color);
+}
+
+.flash-error {
+    background-color: var(--flash-error-bg-color);
+    color: var(--flash-error-text-color);
+    border-left: 4px solid var(--flash-error-border-color);
+}
+
+.flash-info {
+    background-color: var(--flash-info-bg-color);
+    color: var(--flash-info-text-color);
+    border-left: 4px solid var(--flash-info-border-color);
+}
+
+/* --- Note/Info Box (e.g., for Settings page) --- */
+.note {
+     margin-top: 20px;
+     padding: 10px;
+     background-color: var(--note-bg-color);
+     color: var(--note-text-color);
+     border-left: 4px solid var(--note-border-color);
+     border-radius: var(--border-radius-default);
+     font-size: 0.9em;
+}
+.note p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+.note p:first-child {
+    margin-top: 0;
+}
+.note p:last-child {
+    margin-bottom: 0;
+}
+.note ul {
+    margin-top: 0.5em;
+    margin-left: 20px;
+    list-style: disc;
+}
+.note hr {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-top: 1px solid var(--hr-color);
+}
+
+/* --- Status Message (from settings.html inline style) --- */
+.status-message {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: var(--border-radius-default);
+    display: none;
+    background-color: var(--flash-info-bg-color);
+    color: var(--flash-info-text-color);
+    border-left: 4px solid var(--flash-info-border-color);
+}
+.status-message.success {
+    background-color: var(--flash-success-bg-color);
+    color: var(--flash-success-text-color);
+    border-left-color: var(--flash-success-border-color);
+}
+.status-message.error {
+    background-color: var(--flash-error-bg-color);
+    color: var(--flash-error-text-color);
+    border-left-color: var(--flash-error-border-color);
+}
+
+/* --- Utility Classes --- */
+.loading-cursor, .loading-cursor * {
+    cursor: wait !important;
+}
+/* --- END OF FILE templatestyle.css --- */
+
+
+/* --- START OF THEME: Obsidian Order --- */
+@import url('./fonts/google-fonts-1748599617601.css'); 
+
+:root {
+    /* General */
+    --font-primary: 'Roboto', sans-serif;
+    --font-headings: 'Orbitron', sans-serif; /* Techy, but using lighter weights */
+    --body-bg-color: #0D1117; /* Very dark, almost black (GitHub dark dim) */
+    --body-text-color: #C9D1D9; /* Light grey (GitHub dark dim) */
+    --border-radius-default: 3px; /* Sharper edges */
+    --border-radius-round: 50%;
+    --box-shadow-default-color: rgba(0, 0, 0, 0.4);
+    --box-shadow-default: 0 1px 4px var(--box-shadow-default-color);
+    --box-shadow-modal-color: rgba(0, 0, 0, 0.6);
+    --box-shadow-modal: 0 4px 20px var(--box-shadow-modal-color);
+    --overlay-bg-color: rgba(5, 7, 10, 0.8); /* Very dark overlay */
+
+    /* Panel Colors (Header, Modal, Table Headers) */
+    --panel-bg-color: #161B22; /* Dark grey (GitHub dark dim) */
+    --panel-text-color: #E6EDF3; /* Brighter text for panels */
+    --panel-secondary-bg-color: #0D1117; /* Match body bg for very subtle even rows, or #1C2128 for slight contrast */
+    --panel-tertiary-bg-color: #21262D;   /* Borders, hover states (GitHub dark dim border) */
+
+    /* Text Colors */
+    --text-primary-color: var(--body-text-color);
+    --text-secondary-color: #8B949E; /* Muted grey (GitHub dark dim) */
+    --text-on-accent-color: #FFFFFF;
+    --text-on-dark-accent-color: #0D1117; /* Text for light-ish accents */
+    --text-placeholder-color: #6E7681; /* (GitHub dark dim) */
+    --text-label-color: #ADBAC7;
+    --text-label-strong-color: #C9D1D9; /* Main text color for strong labels */
+
+    /* Input/Control Colors */
+    --input-bg-color: #010409; /* Almost black input background (GitHub dark default) */
+    --input-text-color: var(--text-primary-color);
+    --input-border-color: var(--panel-tertiary-bg-color); /* Use panel border color */
+    --input-focus-border-color: #388BFD; /* Bright blue (GitHub focus) */
+    --input-focus-border-color_opacified: rgba(56, 139, 253, 0.3);
+    --input-disabled-bg-color: #161B22; /* Panel bg for disabled */
+    --input-disabled-text-color: #484F58;
+    --input-disabled-border-color: #21262D;
+
+    /* Button Colors (Semantic) - Using GitHub-inspired palette */
+    /* Primary (Save, main positive actions) - Green */
+    --button-primary-bg-color: #238636;
+    --button-primary-text-color: #FFFFFF;
+    --button-primary-hover-bg-color: #2DA042;
+    /* Secondary (Navigation, standard actions) - Default Button Color */
+    --button-secondary-bg-color: #21262D; /* Dark Grey Button */
+    --button-secondary-text-color: #C9D1D9;
+    --button-secondary-hover-bg-color: #30363D;
+    /* Accent (Distinct actions, e.g., "Add Another") - Blue */
+    --button-accent-bg-color: #1F6FEB;
+    --button-accent-text-color: #FFFFFF;
+    --button-accent-hover-bg-color: #388BFD;
+    /* Edit/Warning - Outline/Subtle (or could be an amber if needed) */
+    --button-edit-bg-color: #30363D; /* Darker grey, more subtle */
+    --button-edit-text-color: #C9D1D9;
+    --button-edit-hover-bg-color: #404750;
+    /* Danger/Delete (Destructive actions) - Red */
+    --button-danger-bg-color: #DA3633;
+    --button-danger-text-color: #FFFFFF;
+    --button-danger-hover-bg-color: #F85149;
+
+    /* Link Colors */
+    --link-color: #58A6FF; /* Bright Blue (GitHub link) */
+    --link-hover-color: #79C0FF;
+
+    /* Table Colors */
+    --table-header-bg-color: #161B22; /* Panel BG */
+    --table-header-text-color: var(--panel-text-color);
+    --table-border-color: #30363D; /* Slightly darker border */
+    --table-row-odd-bg-color: transparent; /* Match body */
+    --table-row-even-bg-color: #10141A; /* Very subtle difference for even rows */
+    --table-row-hover-bg-color: #181E25; /* Subtle hover */
+    --table-text-color: var(--text-primary-color);
+
+    /* Conditional UI Colors (Rule Editor) */
+    --condition-row-bg-color: #161B22; /* Panel BG for condition rows */
+    --condition-row-text-color: var(--text-primary-color);
+    --condition-row-nested-bg-color: #0A0D12; /* Even darker for nested */
+    --condition-row-nested-border-color: var(--button-accent-bg-color); /* Blue border */
+    --condition-options-area-bg-color: var(--input-bg-color);
+    --condition-options-area-border-color: var(--input-border-color);
+    --or-group-border-color: var(--panel-tertiary-bg-color);
+
+    /* Flash Message Colors */
+    --flash-success-bg-color: rgba(35, 134, 54, 0.2); /* Greenish, transparent */
+    --flash-success-text-color: #56D364;
+    --flash-success-border-color: #238636;
+    --flash-error-bg-color: rgba(218, 54, 51, 0.2); /* Reddish, transparent */
+    --flash-error-text-color: #F85149;
+    --flash-error-border-color: #DA3633;
+    --flash-info-bg-color: rgba(31, 111, 235, 0.2); /* Bluish, transparent */
+    --flash-info-text-color: #58A6FF;
+    --flash-info-border-color: #1F6FEB;
+
+    /* Filetype UI Colors */
+    --filetype-container-bg-color: var(--input-bg-color);
+    --filetype-container-border-color: var(--input-border-color);
+    --filetype-separator-color: var(--input-border-color);
+    --filetype-toggle-color: var(--text-label-strong-color);
+
+    /* Note/Info Box Colors */
+    --note-bg-color: #161B22; /* Panel bg */
+    --note-text-color: var(--text-primary-color);
+    --note-border-color: var(--button-accent-bg-color); /* Blue accent */
+    --hr-color: #30363D; /* Darker hr */
+}
+
+/* --- Theme-Specific Style Overrides --- */
+body {
+    font-weight: 400; /* Roboto Regular */
+    font-size: 14px; /* Slightly smaller base for a denser feel */
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-headings); /* Orbitron */
+    font-weight: 500; /* Orbitron Medium */
+    color: var(--panel-text-color); /* Brighter headings */
+    letter-spacing: 0.5px;
+}
+h1 { font-size: 1.8em; font-weight: 700; margin-bottom: 0.6em;} /* Orbitron Bold */
+h2 { font-size: 1.5em; }
+h3 { font-size: 1.25em; }
+
+a {
+    font-weight: 500; /* Roboto Medium for links */
+    transition: color 0.1s ease-in-out, text-decoration-color 0.1s ease-in-out;
+}
+a:hover {
+    text-decoration-color: var(--link-hover-color); /* Underline matches hover color */
+}
+
+hr {
+    margin: 25px 0;
+    border-top: 1px solid var(--hr-color);
+}
+
+ul li { margin-bottom: 4px; }
+ul li::before {
+    content: "❯"; /* Techy chevron */
+    color: var(--link-color);
+    margin-right: 8px;
+    font-size: 0.8em;
+    opacity: 0.7;
+}
+
+header {
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--hr-color); /* Match HR for consistency */
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+header h1 { font-size: 1.4em; letter-spacing: 1px; }
+
+main { padding: 20px; }
+
+footer {
+    padding: 15px;
+    margin-top: 25px;
+    font-size: 0.8em;
+    border-top: 1px solid var(--hr-color);
+}
+
+label {
+    font-weight: 500; /* Roboto Medium */
+    font-size: 0.85em;
+    color: var(--text-label-color);
+    text-transform: uppercase; /* Uppercase labels for tech feel */
+    letter-spacing: 0.3px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="date"], /* Added date for logs page */
+select,
+textarea {
+    padding: 9px 10px;
+    font-family: var(--font-primary);
+    font-size: 0.9em;
+    border-width: 1px;
+    background-color: var(--input-bg-color); /* Explicitly set for overrides */
+}
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="date"]:focus, /* Added date for logs page */
+select:focus,
+textarea:focus {
+    box-shadow: 0 0 0 3px var(--input-focus-border-color_opacified), inset 0 0 0 1px var(--input-focus-border-color); /* GitHub like focus */
+    border-color: var(--input-focus-border-color); /* Ensure border color changes */
+}
+
+select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%238B949E'%3E%3Cpath d='M12.78 5.22a.75.75 0 010 1.06l-4.25 4.25a.75.75 0 01-1.06 0L3.22 6.28a.75.75 0 011.06-1.06L8 8.94l3.72-3.72a.75.75 0 011.06 0z'/%3E%3C/svg%3E"); /* GitHub chevron */
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 16px 16px;
+    padding-right: 30px;
+}
+select option {
+    background-color: var(--panel-bg-color); /* Darker options background */
+    color: var(--input-text-color);
+}
+
+/* Default Button Styling (e.g., for <button>, <input type="button">) */
+button,
+input[type="button"] {
+    padding: 8px 16px;
+    font-family: var(--font-primary);
+    font-weight: 500; /* Roboto Medium */
+    font-size: 0.9em;
+    letter-spacing: 0.2px;
+    background-color: var(--button-secondary-bg-color);
+    color: var(--button-secondary-text-color);
+    border: 1px solid var(--panel-tertiary-bg-color);
+    border-radius: var(--border-radius-default);
+    cursor: pointer;
+    transition: background-color 0.1s ease-in-out, border-color 0.1s ease-in-out, color 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+}
+
+button:hover,
+input[type="button"]:hover {
+    background-color: var(--button-secondary-hover-bg-color);
+    border-color: var(--button-secondary-hover-bg-color);
+    color: var(--button-secondary-text-color);
+}
+
+/* Submit Button Styling (for <button type="submit">, <input type="submit">) */
+button[type="submit"],
+input[type="submit"] {
+    padding: 8px 16px;
+    font-family: var(--font-primary);
+    font-weight: 500;
+    font-size: 0.9em;
+    letter-spacing: 0.2px;
+    background-color: var(--button-primary-bg-color);
+    color: var(--button-primary-text-color);
+    border: 1px solid var(--button-primary-bg-color); /* Matched border to BG */
+    border-radius: var(--border-radius-default);
+    cursor: pointer;
+    transition: background-color 0.1s ease-in-out, border-color 0.1s ease-in-out, color 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+}
+
+button[type="submit"]:hover,
+input[type="submit"]:hover {
+    background-color: var(--button-primary-hover-bg-color);
+    border-color: var(--button-primary-hover-bg-color); /* Matched border to BG */
+    color: var(--button-primary-text-color);
+}
+
+/* Focus style for all button types */
+button:focus, input[type="button"]:focus, input[type="submit"]:focus {
+    outline: none; /* Remove default outline */
+    box-shadow: 0 0 0 3px var(--input-focus-border-color_opacified), inset 0 0 0 1px var(--input-focus-border-color); /* Consistent focus shadow */
+}
+
+/* Navigation Buttons (in <nav>) */
+nav button {
+    font-family: var(--font-primary);
+    font-weight: 500;
+    font-size: 0.9em;
+    padding: 7px 14px;
+    /* Inherits background, color, border from default button styles */
+    /* Specific border for nav buttons */
+    border: 1px solid var(--panel-tertiary-bg-color);
+}
+nav button:hover {
+    /* Inherits background hover from default button styles */
+    /* Specific border hover for nav buttons */
+    border-color: var(--button-secondary-hover-bg-color);
+}
+
+
+.add-button { /* Floating Action Button */
+    padding: 10px;
+    width: 44px; height: 44px;
+    font-size: 1.4em;
+    background-color: var(--button-primary-bg-color); /* Use primary color */
+    color: var(--button-primary-text-color);
+    border: 1px solid var(--button-primary-bg-color);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+}
+.add-button:hover {
+    background-color: var(--button-primary-hover-bg-color);
+    border-color: var(--button-primary-hover-bg-color);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.6);
+}
+
+/* Specific button classes like .secondary-button, .add-destination-button */
+/* Base CSS for .secondary-button already sets bg/color. Theme can refine if needed. */
+.secondary-button {
+    /* Theme specific overrides for .secondary-button if any */
+    /* padding, margin-bottom from base. If theme needs different, specify here */
+    /* General button styling already provides most of it */
+     margin-bottom: 0; /* Removing default margin-bottom for more control */
+}
+.secondary-button:not(:last-child) {
+    margin-right: 10px; /* Add spacing if multiple secondary buttons are siblings */
+}
+
+
+#settings-form input[type="number"] { width: 90px; }
+#settings-form .checkbox-row {
+    gap: 8px;
+    padding: 6px 0;
+    border: none;
+}
+#settings-form .checkbox-row:hover {
+    background-color: transparent;
+}
+#settings-form .checkbox-row label {
+     font-weight: 400;
+     color: var(--text-label-color);
+     font-size: 0.9em;
+     text-transform: none;
+ }
+#settings-form .checkbox-row input[type="checkbox"] {
+    transform: scale(1);
+    appearance: none;
+    width: 16px; height: 16px;
+    border: 1px solid var(--input-border-color);
+    border-radius: 3px;
+    position: relative;
+    cursor: pointer;
+    vertical-align: middle;
+    background-color: var(--input-bg-color);
+}
+#settings-form .checkbox-row input[type="checkbox"]:hover {
+    border-color: var(--link-color);
+}
+#settings-form .checkbox-row input[type="checkbox"]:checked {
+    background-color: var(--button-primary-bg-color);
+    border-color: var(--button-primary-bg-color);
+}
+#settings-form .checkbox-row input[type="checkbox"]:checked::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 10px; height: 10px;
+    transform: translate(-50%, -50%);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='white'%3E%3Cpath d='M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+
+/* Combined Table Styles for Rules and Logs */
+#rules-table-container,
+.table-responsive { /* .table-responsive for logs page */
+    margin-top: 20px;
+    border: 1px solid var(--table-border-color);
+    border-radius: var(--border-radius-default);
+    background-color: var(--body-bg-color);
+    box-shadow: none;
+    overflow-x: auto;
+}
+
+#rules-table,
+#detailed-logs-table {
+    width: 100%; /* From base */
+    border-collapse: collapse; /* From base */
+    /* margin-top: 10px; From base, now handled by container */
+}
+
+#rules-table th, #rules-table td,
+#detailed-logs-table th, #detailed-logs-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--table-border-color);
+    border-left: none; border-right: none;
+    text-align: left;
+    color: var(--table-text-color);
+}
+
+#rules-table th:first-child, #rules-table td:first-child,
+#detailed-logs-table th:first-child, #detailed-logs-table td:first-child {
+    padding-left: 15px;
+}
+#rules-table th:last-child, #rules-table td:last-child,
+#detailed-logs-table th:last-child, #detailed-logs-table td:last-child {
+    padding-right: 15px;
+}
+
+#rules-table th,
+#detailed-logs-table th {
+    font-family: var(--font-headings); /* Use heading font for table headers */
+    font-weight: 500;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    border-bottom-width: 1px; /* Ensure this is 1px, not thicker */
+    background-color: #0A0D12; /* Slightly darker than panel-bg for distinction */
+    color: var(--table-header-text-color);
+}
+
+#rules-table tbody tr,
+#detailed-logs-table tbody tr {
+    background-color: var(--table-row-odd-bg-color);
+}
+#rules-table tbody tr:nth-child(even),
+#detailed-logs-table tbody tr:nth-child(even) {
+    background-color: var(--table-row-even-bg-color);
+}
+#rules-table tbody tr:hover,
+#detailed-logs-table tbody tr:hover {
+    background-color: var(--table-row-hover-bg-color);
+}
+
+#rules-table td button,
+#detailed-logs-table td button { /* Though detailed-logs-table might not have cell buttons */
+    padding: 5px 8px; font-size: 0.8em;
+    /* Specific button styles (.run-button, .edit-button, .delete-button) from base will apply */
+}
+
+
+.modal-content {
+    padding: 25px;
+    max-width: 650px;
+    border: 1px solid var(--hr-color);
+    box-shadow: var(--box-shadow-modal);
+}
+.modal-content h3 {
+    font-size: 1.3em;
+    border-bottom: 1px solid var(--hr-color);
+    padding-bottom: 12px; margin-bottom: 18px;
+}
+.close-button {
+    font-size: 1.4em; top: 12px; right: 12px;
+    color: var(--text-secondary-color);
+}
+.close-button:hover {
+    color: var(--button-danger-hover-bg-color);
+}
+
+.condition-row {
+    padding: 12px;
+    margin-bottom: 8px;
+    border: 1px solid var(--panel-tertiary-bg-color);
+}
+.condition-row.nested-condition-row { margin-left: 15px; }
+.condition-row .options-area { padding: 10px; }
+.or-group-conditions-container {
+    padding: 12px; margin-top: 8px; margin-bottom: 8px;
+    background-color: rgba(0,0,0,0.1);
+}
+
+.filetype-options-container { padding: 12px; margin-top: 12px; }
+.filetype-category-header label {
+    font-weight: 500;
+    font-size: 0.95em;
+    color: var(--text-label-strong-color);
+}
+.filetype-category-header input[type="checkbox"],
+.filetype-extension-row input[type="checkbox"] {
+    appearance: none; width: 15px; height: 15px;
+    border: 1px solid var(--input-border-color);
+    border-radius: 3px; position: relative; cursor: pointer;
+    vertical-align: middle; background-color: var(--input-bg-color);
+    margin-right: 6px;
+}
+.filetype-category-header input[type="checkbox"]:hover,
+.filetype-extension-row input[type="checkbox"]:hover {
+    border-color: var(--link-color);
+}
+.filetype-category-header input[type="checkbox"]:checked,
+.filetype-extension-row input[type="checkbox"]:checked {
+    background-color: var(--button-accent-bg-color);
+    border-color: var(--button-accent-bg-color);
+}
+.filetype-category-header input[type="checkbox"]:checked::before,
+.filetype-extension-row input[type="checkbox"]:checked::before {
+    content: ''; position: absolute; top: 50%; left: 50%;
+    width: 9px; height: 9px; transform: translate(-50%, -50%);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='white'%3E%3Cpath d='M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z'/%3E%3C/svg%3E");
+    background-size: contain; background-repeat: no-repeat;
+}
+.filetype-toggle-extensions { font-size: 0.85em; }
+.filetype-toggle-extensions.expanded { color: var(--button-accent-bg-color); }
+.filetype-extensions-container { padding-left: 18px; }
+
+.flash-message {
+    padding: 10px 15px;
+    font-weight: 400; /* Roboto Regular */
+    border-left-width: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    background-color: var(--panel-bg-color); /* Dark bg for flashes, specific types override */
+}
+/* Specific flash types (.flash-success, .flash-error, .flash-info) get their colors from base CSS variables */
+
+
+.note {
+     padding: 12px;
+     font-size: 0.9em;
+     border-left-width: 4px;
+     box-shadow: none;
+     background-color: var(--panel-secondary-bg-color);
+}
+
+
+/* --- Logs Page Specific Styles --- */
+#log-statistics-section,
+#detailed-logs-section {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: var(--panel-bg-color); /* Use panel background for sections */
+    border: 1px solid var(--panel-tertiary-bg-color); /* Consistent border */
+    border-radius: var(--border-radius-default);
+}
+
+#log-statistics-section h2, /* Section titles */
+#detailed-logs-section h2 {
+    margin-top: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--hr-color);
+    margin-bottom: 20px;
+}
+
+/* Filters for Statistics Chart */
+.filters-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px 20px; /* row and column gap */
+    align-items: flex-end; /* Align form elements nicely */
+    margin-bottom: 20px;
+}
+.filters-container > label { /* e.g. "Time Frame:" */
+    margin-bottom: 0; /* Align with select input */
+    align-self: center;
+}
+.filters-container > select {
+    min-width: 180px; /* Give select enough space */
+    flex: 1 1 180px; /* Grow and shrink */
+}
+.filters-container #stats-custom-date-range {
+    display: flex; /* Handled by JS, but good to confirm */
+    flex-basis: 100%; /* Take full row when visible */
+    gap: 10px;
+    align-items: flex-end;
+    /* margin-top: 10px; from inline style is fine */
+}
+.filters-container #stats-custom-date-range label {
+    margin-bottom: 0;
+    align-self: center;
+}
+.filters-container #stats-custom-date-range input[type="date"] {
+    flex: 1 1 auto; /* Grow and shrink */
+}
+.filters-container > button.secondary-button { /* Update Chart button */
+    flex-shrink: 0; /* Don't shrink button */
+    /* Default secondary button styles apply */
+    margin-left: auto; /* Push to the right if space allows */
+}
+
+
+/* Chart Container */
+.chart-container {
+    width: 100%;
+    margin: 20px 0;
+    padding: 15px;
+    background-color: var(--input-bg-color); /* Darker background for chart area */
+    border-radius: var(--border-radius-default);
+    border: 1px solid var(--input-border-color);
+}
+.chart-container canvas {
+    max-height: 400px; /* Prevent chart from being too tall */
+    width: 100% !important; /* Ensure Chart.js responsiveness */
+    height: auto !important; /* Ensure Chart.js responsiveness */
+}
+
+/* Detailed Log Search Form */
+#log-search-form {
+    margin-bottom: 25px;
+}
+.log-search-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* Responsive columns */
+    gap: 15px 20px; /* Row and column gap */
+    margin-bottom: 20px;
+}
+.log-search-grid > div { /* Each direct child is a grid item */
+    /* min-width: 0; /* Allow items to shrink below minmax if needed, usually not */
+}
+.log-search-grid label { /* Labels within grid items */
+    /* Standard label style applies */
+}
+/* Inputs and selects within grid items already styled globally */
+
+.log-search-grid .time-filter-group {
+    /* This class is on a div that's a grid item */
+}
+.log-search-grid #search-custom-date-range.time-filter-group {
+    grid-column: 1 / -1; /* Make custom date range span full width */
+    display: flex; /* For internal layout of start/end date */
+    gap: 10px 20px; /* Gap between start/end date groups */
+    align-items: flex-end;
+}
+.log-search-grid #search-custom-date-range.time-filter-group > div { /* Each child div (start date, end date) */
+    flex: 1; /* Distribute space between start and end date inputs */
+}
+
+
+.form-actions { /* Container for Search Logs / Reset buttons */
+    display: flex;
+    gap: 10px;
+    margin-top: 15px; /* Spacing from the grid */
+    flex-wrap: wrap; /* Allow buttons to wrap on small screens */
+}
+.form-actions button[type="submit"] { /* Search Logs button */
+    /* Uses primary submit button style */
+}
+.form-actions button.secondary-button { /* Reset Filters button */
+    /* Uses secondary button style */
+     margin-right: 0; /* Override the not(:last-child) margin if it was applied */
+}
+
+/* Loading and Error Messages on Logs Page */
+#stats-loading-message,
+#logs-loading-message {
+    padding: 15px;
+    text-align: center;
+    color: var(--text-secondary-color);
+    font-style: italic;
+    font-size: 0.95em;
+}
+
+.error-message { /* For specific error divs like #stats-error-message, #logs-error-message */
+    padding: 10px 15px;
+    margin: 15px 0;
+    border-radius: var(--border-radius-default);
+    background-color: var(--flash-error-bg-color);
+    color: var(--flash-error-text-color);
+    border: 1px solid var(--flash-error-border-color); /* Use full border for these standalone messages */
+    font-size: 0.9em;
+}
+.error-message:empty { /* Hide if JS clears the content */
+    display: none;
+}
+
+/* Results Summary (e.g., "Showing X to Y of Z logs") */
+.results-summary {
+    margin: 15px 0;
+    padding: 10px 15px;
+    background-color: var(--panel-secondary-bg-color); /* Subtle background */
+    border: 1px solid var(--input-border-color);
+    border-left: 4px solid var(--button-accent-bg-color); /* Accent color for informational */
+    color: var(--text-primary-color);
+    font-size: 0.9em;
+    border-radius: var(--border-radius-default);
+}
+.results-summary:empty {
+    display: none;
+}
+
+/* Pagination Controls */
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px; /* Smaller gap for pagination items */
+    margin-top: 25px;
+    padding: 10px 0;
+    flex-wrap: wrap; /* Allow pagination to wrap on small screens */
+}
+.pagination-controls button {
+    padding: 6px 10px;
+    font-size: 0.85em;
+    min-width: 30px; /* Ensure buttons have a decent tap target */
+    /* Default button style (secondary) applies */
+    border-color: var(--button-secondary-bg-color); /* Match border to bg for flatter look if desired */
+}
+.pagination-controls button.active {
+    background-color: var(--button-accent-bg-color);
+    color: var(--button-accent-text-color);
+    border-color: var(--button-accent-bg-color);
+    font-weight: bold;
+}
+.pagination-controls button:disabled {
+    background-color: var(--input-disabled-bg-color);
+    color: var(--input-disabled-text-color);
+    border-color: var(--input-disabled-border-color);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+.pagination-controls span { /* For "..." or "Page X of Y" text */
+    padding: 6px 8px;
+    color: var(--text-secondary-color);
+    font-size: 0.85em;
+}

@@ -1,0 +1,1067 @@
+@import url('./fonts/google-fonts-1748599547382.css');
+
+:root {
+    /* General */
+    --font-primary: 'Open Sans', sans-serif;
+    --font-headings: 'Lora', serif;
+    --body-bg-color: #2A201C; /* Aged Wood/Leather */
+    --body-text-color: #D4C8B4; /* Aged Parchment */
+    --border-radius-default: 3px; /* Sharper, more formal edges */
+    --border-radius-round: 50%;
+
+    --overlay-bg-color: rgba(20, 15, 12, 0.85); /* Very dark overlay */
+    --box-shadow-default-color: rgba(0, 0, 0, 0.45);
+    --box-shadow-default: 0 3px 7px var(--box-shadow-default-color);
+    --box-shadow-modal-color: rgba(0, 0, 0, 0.6);
+    --box-shadow-modal: 0 5px 20px var(--box-shadow-modal-color);
+
+    /* Panel Colors (Header, Modal, Table Headers) */
+    --panel-bg-color: #3F302A; /* Dark Wood/Burgundy */
+    --panel-text-color: var(--body-text-color);
+    --panel-secondary-bg-color: #352822; /* For table even rows, some container bgs */
+    --panel-tertiary-bg-color: #4A3F35;   /* Table hover, condition row bg, input/container borders */
+
+    /* Text Colors */
+    --text-primary-color: var(--body-text-color);
+    --text-secondary-color: #A89F8D; /* Muted parchment */
+    --text-on-accent-color: #1E1714;   /* Darkest brown for text on gold buttons */
+    --text-on-dark-bg-accent-color: #FDFBF7; /* Off-white text for danger ruby red buttons */
+    --text-placeholder-color: #7A7060;
+    --text-label-color: #B8AC9A;
+    --text-label-strong-color: #A98B4F; /* Gold for important labels */
+
+    /* Input/Control Colors */
+    --input-bg-color: #EAE0D1; /* Parchment input bg */
+    --input-text-color: #3A2D27; /* Dark Ink for input text */
+    --input-border-color: #5A4A42; /* Dark brown frame for inputs */
+    --input-focus-border-color: #A98B4F; /* Gold focus */
+    --input-focus-box-shadow-color: rgba(169,139,79,0.3);
+    --input-disabled-bg-color: #40352F;
+    --input-disabled-text-color: #7A7060;
+    --input-disabled-border-color: #50453E;
+
+    /* Button Colors (Semantic) */
+    /* Primary (Save, main positive actions) */
+    --button-primary-bg-color: #A98B4F; /* Tarnished Gold */
+    --button-primary-text-color: var(--text-on-accent-color);
+    --button-primary-hover-bg-color: #C4A56A; /* Lighter Gold */
+    /* Secondary (Navigation, standard actions - Emerald Outline) */
+    --button-secondary-bg-color: transparent;
+    --button-secondary-text-color: #38761D; /* Emerald Green */
+    --button-secondary-border-color: #38761D;
+    --button-secondary-hover-bg-color: rgba(56, 118, 29, 0.1);
+    --button-secondary-hover-text-color: #4E8D3A; /* Brighter Emerald */
+    --button-secondary-hover-border-color: #4E8D3A;
+    /* Accent (Distinct actions, e.g., "Add Another" - Amethyst) */
+    --button-accent-bg-color: #6A5ACD; /* Mystic Blue/Purple - Amethyst */
+    --button-accent-text-color: #F0E8FF; /* Light lavender text */
+    --button-accent-hover-bg-color: #7F6EE3; /* Brighter Amethyst */
+    /* Edit/Warning - Muted Bronze */
+    --button-edit-bg-color: #8A744D;
+    --button-edit-text-color: var(--text-on-accent-color);
+    --button-edit-hover-bg-color: #A98B4F;
+    /* Danger/Delete (Destructive actions - Ruby Red) */
+    --button-danger-bg-color: #8C1B1B;
+    --button-danger-text-color: var(--text-on-dark-bg-accent-color);
+    --button-danger-hover-bg-color: #A22B2B;
+
+    /* Link Colors */
+    --link-color: #A98B4F; /* Gold */
+    --link-hover-color: #C4A56A; /* Lighter Gold */
+    --link-text-decoration: underline;
+    --link-hover-text-decoration: none;
+
+    /* Table Colors */
+    --table-header-bg-color: #211A16; /* Darker than panel, like an old table top */
+    --table-header-text-color: #A98B4F; /* Gold text for headers */
+    --table-border-color: #4A3F35;
+    --table-row-odd-bg-color: transparent;
+    --table-row-even-bg-color: var(--panel-secondary-bg-color);
+    --table-row-hover-bg-color: #41322C; /* Slightly warmer brown hover */
+    --table-text-color: var(--text-primary-color);
+
+    /* Conditional UI Colors (Rule Editor) */
+    --condition-row-bg-color: #3A2F29;
+    --condition-row-text-color: var(--text-primary-color);
+    --condition-row-nested-bg-color: #453A33;
+    --condition-row-nested-border-color: var(--button-secondary-border-color); /* Emerald Green */
+    --condition-options-area-bg-color: var(--input-bg-color); /* Parchment */
+    --condition-options-area-border-color: var(--input-border-color); /* Dark brown frame */
+    --or-group-border-color: #A98B4F; /* Gold dashed border */
+
+    /* Flash Message Colors (Scrolls) */
+    --flash-parchment-bg: #EFE6D8;
+    --flash-ink-text: #3A2D27;
+    --scroll-edge-darker: #C8BBA8;
+    --flash-success-border-color: #38761D; /* Emerald Green */
+    --flash-error-border-color: #8C1B1B; /* Ruby Red */
+    --flash-info-border-color: #6A5ACD; /* Mystic Blue/Purple */
+
+    /* Filetype UI Colors */
+    --filetype-container-bg-color: var(--panel-secondary-bg-color);
+    --filetype-container-border-color: var(--panel-tertiary-bg-color);
+    --filetype-separator-color: var(--panel-tertiary-bg-color);
+    --filetype-toggle-color: var(--text-label-strong-color); /* Gold */
+
+    /* Note/Info Box Colors (e.g., on Settings Page) */
+    --note-bg-color: rgba(63, 48, 42, 0.75); /* Semi-transparent panel */
+    --note-text-color: var(--text-primary-color);
+    --note-border-color: var(--button-accent-bg-color); /* Mystic Blue/Purple */
+    --hr-color: #5A4A42; /* Dark brown for default HR before ornament */
+    --hr-ornament-color: var(--link-color); /* Gold for the HR ornament */
+
+    /* Alchemist Seal Button Specifics */
+    --ruby-red-seal: #8C1B1B;
+    --parchment-light-text-seal: #F5F0E8;
+    --dark-gold-seal-edge: #8A744D;
+
+    /* Arcanist's Mark Checkbox Specifics */
+    --ruby-red-mark: #8C1B1B;
+
+    /* SVG Icon Variables for Add Button */
+    --closed-book-svg: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cfilter id='glow-gold-css' x='-50%25' y='-50%25' width='200%25' height='200%25'%3E%3CfeGaussianBlur stdDeviation='0.5' result='coloredBlur'/%3E%3CfeMerge%3E%3CfeMergeNode in='coloredBlur'/%3E%3CfeMergeNode in='SourceGraphic'/%3E%3C/feMerge%3E%3C/filter%3E%3C/defs%3E%3Cpath d='M6.5 3 H5 C4.44772 3 4 3.44772 4 4 V20 C4 20.5523 4.44772 21 5 21 H6.5 V3Z' fill='%238A744D'/%3E%3Cpath d='M6.5 3 H19 C19.5523 3 20 3.44772 20 4 V20 C20 20.5523 19.5523 21 19 21 H6.5 V3Z' fill='%238C1B1B'/%3E%3Ccircle cx='13.25' cy='12' r='2.5' fill='none' stroke='%238A744D' stroke-width='1' filter='url(%23glow-gold-css)'/%3E%3Cpath d='M13.25 10.5 L13.25 13.5 M12 12 L14.5 12' stroke='%238A744D' stroke-width='0.7' filter='url(%23glow-gold-css)'/%3E%3C/svg%3E");
+    --open-book-svg: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cfilter id='glow-gold-css-open' x='-50%25' y='-50%25' width='200%25' height='200%25'%3E%3CfeGaussianBlur stdDeviation='0.5' result='coloredBlur'/%3E%3CfeMerge%3E%3CfeMergeNode in='coloredBlur'/%3E%3CfeMergeNode in='SourceGraphic'/%3E%3C/feMerge%3E%3C/filter%3E%3C/defs%3E%3Cpath d='M4 4 C4 3.44772 4.44772 3 5 3 H10 L8 21 H5 C4.44772 21 4 20.5523 4 20 V4Z' fill='%238C1B1B'/%3E%3Cpath d='M10 3 L8 21' stroke='%238A744D' stroke-width='1'/%3E%3Cpath d='M10 3 H19 C19.5523 3 20 3.44772 20 4 V20 C20 20.5523 19.5523 21 19 21 H8 Z' fill='%238C1B1B'/%3E%3Cpath d='M10 5 Q10.5 4.5 12 5 L12 19 Q10.5 19.5 10 19 Z' fill='%23EFE6D8' opacity='0.7'/%3E%3Cpath d='M12 5 Q13.5 4.5 14 5 L14 19 Q13.5 19.5 12 19 Z' fill='%23EFE6D8' opacity='0.8'/%3E%3Cpath d='M14 5 Q15.5 5.5 16 5 L16 19 Q15.5 18.5 14 19 Z' fill='%23EFE6D8' opacity='0.7'/%3E%3Ccircle cx='15' cy='12' r='1.8' fill='none' stroke='%238A744D' stroke-width='0.8' filter='url(%23glow-gold-css-open)'/%3E%3Cpath d='M15 10.8 L15 13.2 M14.1 12 L15.9 12' stroke='%238A744D' stroke-width='0.5' filter='url(%23glow-gold-css-open)'/%3E%3C/svg%3E");
+}
+
+/* --- Global Resets & Base Styles --- */
+html {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: var(--font-primary);
+    font-weight: 400;
+    font-size: 15px; /* Slightly smaller base for a more "dense text" feel */
+    margin: 0;
+    padding: 0;
+    background-color: var(--body-bg-color);
+    color: var(--body-text-color);
+    min-height: 100%;
+    line-height: 1.65;
+    /* Optional: Subtle texture for the body background */
+    /* background-image: url('path/to/subtle_leather_texture.png'); */
+    letter-spacing: 0.1px;
+}
+
+/* Custom Scrollbars */
+body::-webkit-scrollbar { width: 10px; }
+body::-webkit-scrollbar-track { background: #211A16; border-radius: 5px;}
+body::-webkit-scrollbar-thumb { background-color: #5A4A42; border-radius: 5px; border: 2px solid #211A16; }
+body::-webkit-scrollbar-thumb:hover { background-color: var(--link-color); }
+body { scrollbar-width: thin; scrollbar-color: #5A4A42 #211A16; }
+
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-headings);
+    color: var(--text-label-strong-color); /* Gold for headings */
+    margin-top: 1.4em;
+    margin-bottom: 0.6em;
+    font-weight: 600; /* Lora SemiBold */
+    letter-spacing: 0.3px;
+}
+h1 { font-size: 2.4em; font-weight: 700; color: var(--link-hover-color); } /* Lora Bold, lighter gold */
+h2 { font-size: 1.9em; font-style: italic; color: var(--text-label-strong-color); }
+h3 { font-size: 1.6em; }
+h4 { font-size: 1.3em; color: var(--text-secondary-color); }
+
+
+p {
+    line-height: 1.7;
+    margin-bottom: 1.2em;
+}
+
+a {
+    color: var(--link-color);
+    text-decoration: var(--link-text-decoration);
+    font-weight: 600; /* Open Sans SemiBold for links */
+    transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+a:hover {
+    color: var(--link-hover-color);
+    text-decoration: var(--link-hover-text-decoration);
+    text-decoration-color: var(--link-hover-color);
+}
+
+hr { /* Ornamental Divider */
+    border: 0;
+    height: 25px; /* Make space for the ornament */
+    background: none;
+    margin: 40px auto; /* More spacing around it */
+    text-align: center;
+    width: 70%;
+    opacity: 0.8;
+}
+hr::before {
+    content: "❦ § ❦"; /* Fleuron - Section - Fleuron */
+    font-size: 1.2em;
+    font-family: 'Georgia', serif;
+    color: var(--hr-ornament-color);
+    letter-spacing: 8px;
+}
+
+ul {
+    list-style: none;
+    padding-left: 5px; /* Slight indent for alignment with bullet */
+}
+ul li {
+    margin-bottom: 8px;
+    padding-left: 20px; /* Space for custom bullet */
+    position: relative;
+}
+ul li::before {
+    content: "•"; /* Simple, classic dot */
+    color: var(--link-color); /* Gold bullet */
+    font-size: 1.4em; /* Larger, more pronounced bullet */
+    position: absolute;
+    left: 0;
+    top: -1px; /* Fine-tune vertical alignment */
+    line-height: 1;
+}
+
+/* --- Layout Components --- */
+header {
+    background-color: var(--panel-bg-color);
+    color: var(--panel-text-color);
+    padding: 12px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #1E1714; /* Darker border for definition */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+
+header h1 { /* App Title */
+    color: var(--link-hover-color); /* Lighter Gold for main title */
+    margin: 0;
+    font-size: 1.7em; /* Slightly smaller for header context */
+    font-family: var(--font-headings);
+    font-weight: 700; /* Lora Bold */
+    font-style: normal;
+    letter-spacing: 0.5px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+nav button { /* Settings button etc. */
+    padding: 7px 14px;
+    background-color: var(--button-secondary-bg-color);
+    color: var(--button-secondary-text-color);
+    border: 1px solid var(--button-secondary-border-color);
+    border-radius: var(--border-radius-default);
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 600; /* Open Sans SemiBold */
+    letter-spacing: 0.2px;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+nav button:hover {
+    background-color: var(--button-secondary-hover-bg-color);
+    color: var(--button-secondary-hover-text-color);
+    border-color: var(--button-secondary-hover-border-color);
+    box-shadow: 0 0 5px var(--button-secondary-hover-border-color_opacified, rgba(56,118,29,0.3)), 0 2px 3px rgba(0,0,0,0.3);
+}
+
+main {
+    padding: 25px;
+}
+
+/* Style for the "View Activity Logs" button on index.html */
+main > div > a > button {
+    padding: 7px 14px;
+    background-color: var(--button-secondary-bg-color);
+    color: var(--button-secondary-text-color);
+    border: 1px solid var(--button-secondary-border-color);
+    border-radius: var(--border-radius-default);
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 600; /* Open Sans SemiBold */
+    letter-spacing: 0.2px;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+main > div > a > button:hover {
+    background-color: var(--button-secondary-hover-bg-color);
+    color: var(--button-secondary-hover-text-color);
+    border-color: var(--button-secondary-hover-border-color);
+    box-shadow: 0 0 5px var(--button-secondary-hover-border-color_opacified, rgba(56,118,29,0.3)), 0 2px 3px rgba(0,0,0,0.3);
+}
+
+
+footer {
+    text-align: center;
+    padding: 20px 15px;
+    margin-top: 35px;
+    color: var(--text-secondary-color);
+    font-size: 0.85em;
+    border-top: 1px solid #1E1714; /* Darker border */
+    background-color: #211A16; /* Slightly darker footer background */
+}
+footer p {
+    margin: 0;
+    letter-spacing: 0.3px;
+}
+
+/* --- General Form Styles --- */
+label {
+    display: block;
+    margin-bottom: 7px;
+    font-weight: 600; /* Open Sans SemiBold */
+    color: var(--text-label-color);
+    font-size: 0.9em;
+    letter-spacing: 0.2px;
+}
+#settings-form label, #rule-form label { /* Stronger labels in forms */
+    color: var(--text-label-strong-color); /* Gold */
+    font-family: var(--font-headings);
+    font-size: 1em;
+    font-weight: 500; /* Lora Regular/Medium */
+}
+
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="date"], /* Added date input type */
+select,
+textarea {
+    width: 100%;
+    padding: 9px 12px;
+    background-color: var(--input-bg-color);
+    border: 1px solid var(--input-border-color);
+    color: var(--input-text-color);
+    border-radius: var(--border-radius-default);
+    margin-bottom: 12px; /* Default margin for form elements */
+    font-family: var(--font-primary);
+    font-size: 0.95em;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.2); /* Inner shadow for depth */
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="date"]:focus, /* Added date input type */
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--input-focus-border-color);
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1), 0 0 0 2px var(--input-focus-box-shadow-color);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--text-placeholder-color);
+    opacity: 0.8;
+    font-style: italic;
+}
+
+select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%235A4A42'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'/%3E%3C/svg%3E"); /* Dark brown chevron */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 18px 18px;
+    padding-right: 35px;
+}
+select option {
+    background-color: var(--input-bg-color);
+    color: var(--input-text-color);
+    font-family: var(--font-primary);
+}
+
+/* Disabled state for form elements */
+input:disabled, select:disabled, textarea:disabled, button:disabled {
+    background-color: var(--input-disabled-bg-color) !important;
+    color: var(--input-disabled-text-color) !important;
+    border-color: var(--input-disabled-border-color) !important;
+    cursor: not-allowed !important;
+    box-shadow: none !important;
+    opacity: 0.7;
+}
+input[type="checkbox"]:disabled + label {
+    color: var(--input-disabled-text-color) !important;
+    cursor: not-allowed !important;
+    opacity: 0.7;
+}
+input[type="checkbox"]:disabled::before {
+    color: var(--input-disabled-text-color) !important;
+    opacity: 0.5 !important;
+}
+
+/* --- Button Styles --- */
+button,
+input[type="button"],
+input[type="submit"] {
+    padding: 9px 18px;
+    border-radius: var(--border-radius-default);
+    cursor: pointer;
+    font-size: 0.95em;
+    font-weight: 700; /* Open Sans Bold */
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    transition: all 0.2s ease-out;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    border-style: solid;
+    border-width: 1px;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.1); /* Subtle text shadow for depth */
+}
+button:hover, input[type="button"]:hover, input[type="submit"]:hover {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.4);
+    transform: translateY(-1px);
+}
+button:active, input[type="button"]:active, input[type="submit"]:active {
+    box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    transform: translateY(0px);
+}
+
+button[type="submit"], input[type="submit"] { /* Primary action button */
+    background-color: var(--button-primary-bg-color);
+    color: var(--button-primary-text-color);
+    border-color: var(--dark-gold-seal-edge, #8A744D); /* Darker gold border for primary */
+}
+button[type="submit"]:hover, input[type="submit"]:hover {
+    background-color: var(--button-primary-hover-bg-color);
+    border-color: var(--button-primary-bg-color);
+}
+
+/* MODIFIED .add-button and related styles START */
+.add-button { /* Alchemist's Seal (Floating Action Button) */
+    background-color: var(--ruby-red-seal);
+    /* Text content styling removed/overridden */
+    font-size: 0; /* Hides the original text content (e.g., '+') */
+    color: transparent; /* Fallback for hiding text */
+
+    width: 55px; height: 55px;
+    border-radius: var(--border-radius-round);
+    border: 2px solid var(--dark-gold-seal-edge);
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.5),
+                inset 0 0 4px rgba(0,0,0,0.3),
+                inset 0 0 2px rgba(255,223,186,0.1);
+    text-align: center; /* Still useful for background position, though center is default */
+    position: fixed;
+    bottom: 25px; right: 25px;
+    z-index: 500;
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.2s ease,
+                background-color 0.2s ease; /* Added background-color to transition */
+    
+    /* SVG Icon as background */
+    background-image: var(--closed-book-svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 60% 60%; /* Adjust size of icon within the button */
+    line-height: normal; /* Reset from original text-based line-height */
+    overflow: hidden; /* Good practice with pseudo-elements */
+}
+
+.add-button::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border-radius: inherit; /* Match parent's border-radius */
+
+    background-image: var(--open-book-svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 60% 60%; /* Match base icon size */
+
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 1; /* Ensure it's above the parent's background but below content if any */
+}
+
+.add-button:hover {
+    transform: scale(1.1) rotate(7deg);
+    background-color: var(--button-danger-hover-bg-color, #A22B2B); /* Button itself glows/changes */
+    box-shadow: 3px 4px 8px rgba(0,0,0,0.6),
+                inset 0 0 5px rgba(0,0,0,0.4),
+                inset 0 0 3px rgba(255,223,186,0.2);
+}
+
+.add-button:hover::before {
+    opacity: 1; /* Reveal the open book icon */
+}
+/* MODIFIED .add-button and related styles END */
+
+.secondary-button { /* General secondary actions, e.g., Update Services, Run All Rules */
+    background-color: var(--button-secondary-bg-color);
+    color: var(--button-secondary-text-color);
+    border-color: var(--button-secondary-border-color);
+    margin-bottom: 10px; /* Retained from original, adjust if needed per instance */
+}
+.secondary-button:hover {
+    background-color: var(--button-secondary-hover-bg-color);
+    color: var(--button-secondary-hover-text-color);
+    border-color: var(--button-secondary-hover-border-color);
+}
+
+.add-destination-button { /* Accent: Add Another Destination */
+    padding: 8px 15px;
+    background-color: var(--button-accent-bg-color);
+    color: var(--button-accent-text-color);
+    border-color: var(--button-accent-bg-color); /* Border matches bg */
+    margin-top: 10px; margin-bottom: 10px;
+}
+.add-destination-button:hover {
+    background-color: var(--button-accent-hover-bg-color);
+    border-color: var(--button-accent-hover-bg-color);
+}
+
+
+/* --- Settings Form Specific Styles (#settings-form) --- */
+#settings-form div:not(.checkbox-row) { margin-bottom: 20px; }
+
+#settings-form input[type="number"] {
+    width: 100px;
+    text-align: center;
+}
+
+#settings-form .checkbox-row {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 10px;
+    padding: 8px 5px;
+    border: 1px solid transparent; /* For hover/focus indication if needed */
+    border-radius: var(--border-radius-default);
+}
+#settings-form .checkbox-row:hover {
+    background-color: rgba(169,139,79,0.05); /* Faint gold hover */
+}
+#settings-form .checkbox-row label {
+     margin-bottom: 0; font-weight: 400; /* Open Sans Regular */
+     color: var(--text-label-color); /* Regular label color, not gold */
+     font-family: var(--font-primary); /* Ensure Open Sans */
+     font-size: 0.95em;
+     display: inline-block; flex-grow: 1;
+ }
+/* Arcanist's Mark Checkbox */
+#settings-form .checkbox-row input[type="checkbox"],
+.filetype-category-header input[type="checkbox"],
+.filetype-extension-row input[type="checkbox"] {
+    appearance: none;
+    width: 17px; height: 17px;
+    border: 1px solid var(--input-border-color);
+    background-color: var(--input-bg-color);
+    border-radius: 1px; /* Sharp square */
+    position: relative; cursor: pointer;
+    vertical-align: -3px; margin: 0 7px 0 0; flex-shrink: 0;
+    transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+#settings-form .checkbox-row input[type="checkbox"]:checked::before,
+.filetype-category-header input[type="checkbox"]:checked::before,
+.filetype-extension-row input[type="checkbox"]:checked::before {
+    content: "X";
+    font-family: 'Courier New', Courier, monospace;
+    position: absolute;
+    top: 48%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 13px; font-weight: 900;
+    color: var(--ruby-red-mark);
+}
+#settings-form .checkbox-row input[type="checkbox"]:focus,
+.filetype-category-header input[type="checkbox"]:focus,
+.filetype-extension-row input[type="checkbox"]:focus {
+    outline: none;
+    border-color: var(--input-focus-border-color);
+    box-shadow: 0 0 0 2px var(--input-focus-box-shadow-color);
+}
+
+
+/* --- Rules Table & Detailed Logs Table --- */
+#rules-table-container, .table-responsive /* Added .table-responsive here */ {
+    margin-top: 25px; overflow-x: auto;
+    border: 1px solid #1E1714; /* Darkest border for table container */
+    border-radius: var(--border-radius-default);
+    background-color: var(--panel-bg-color); /* Panel bg for the container */
+    box-shadow: var(--box-shadow-default);
+}
+.table-responsive { /* Specific for logs page table wrapper */
+    background-color: transparent; /* Or match panel-bg-color if preferred */
+    border: 1px solid var(--table-border-color);
+}
+.table-responsive > table {
+    min-width: 900px; /* Example: Force horizontal scroll if content is wide */
+}
+
+
+#rules-table, #detailed-logs-table {
+    width: 100%; border-collapse: collapse; margin-top: 0; /* No top margin as container has it */
+}
+#rules-table th, #rules-table td,
+#detailed-logs-table th, #detailed-logs-table td {
+    border: 1px solid var(--table-border-color);
+    padding: 10px 14px; text-align: left;
+    color: var(--table-text-color);
+    vertical-align: middle;
+    font-size: 0.9em; /* Slightly smaller table text */
+}
+#rules-table th, #detailed-logs-table th {
+    background-color: var(--table-header-bg-color);
+    color: var(--table-header-text-color); /* Gold */
+    font-family: var(--font-headings); /* Lora */
+    font-weight: 600; font-size: 0.9em; /* Unified header font size */
+    text-transform: uppercase; letter-spacing: 0.5px;
+    border-bottom-width: 2px; border-bottom-color: #1E1714;
+    white-space: nowrap; /* Prevent headers from wrapping */
+}
+#rules-table tbody tr, #detailed-logs-table tbody tr {
+    background-color: var(--table-row-odd-bg-color);
+    transition: background-color 0.15s ease;
+}
+#rules-table tbody tr:nth-child(even), #detailed-logs-table tbody tr:nth-child(even) {
+    background-color: var(--table-row-even-bg-color);
+}
+#rules-table tbody tr:hover, #detailed-logs-table tbody tr:hover {
+    background-color: var(--table-row-hover-bg-color);
+    color: var(--link-hover-color); /* Lighter gold text on row hover */
+}
+#rules-table tbody tr:hover td, #detailed-logs-table tbody tr:hover td {
+    border-color: var(--link-color);
+}
+
+/* Buttons within the table cells */
+#rules-table td button {
+    padding: 5px 10px; margin-right: 6px; font-size: 0.85em;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
+#rules-table td button.run-button {
+    background-color: var(--button-secondary-bg-color); color: var(--button-secondary-text-color); border-color: var(--button-secondary-border-color);
+}
+#rules-table td button.run-button:hover { background-color: var(--button-secondary-hover-bg-color); color: var(--button-secondary-hover-text-color); border-color: var(--button-secondary-hover-border-color); }
+#rules-table td button.edit-button {
+    background-color: var(--button-edit-bg-color); color: var(--button-edit-text-color); border-color: var(--button-edit-bg-color);
+}
+#rules-table td button.edit-button:hover { background-color: var(--button-edit-hover-bg-color); border-color: var(--button-edit-hover-bg-color); }
+#rules-table td button.delete-button {
+    background-color: var(--button-danger-bg-color); color: var(--button-danger-text-color); border-color: var(--button-danger-bg-color);
+}
+#rules-table td button.delete-button:hover { background-color: var(--button-danger-hover-bg-color); border-color: var(--button-danger-hover-bg-color); }
+
+
+/* --- Modal Styles (.modal-overlay, .modal-content) --- */
+.modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: var(--overlay-bg-color);
+    backdrop-filter: blur(2px) brightness(0.6); /* Subtle blur and darken */
+    display: flex; justify-content: center; align-items: center;
+    z-index: 1000; padding: 20px; box-sizing: border-box;
+    opacity: 0; transition: opacity 0.3s ease-in-out;
+}
+.modal-overlay:not([style*="display: none"]) { opacity: 1; } /* Fade in */
+
+.modal-content {
+    background-color: var(--panel-bg-color);
+    padding: 0; /* Padding will be on header/body/footer sections if used */
+    border-radius: var(--border-radius-default);
+    border: 1px solid #1E1714; /* Darkest border for modal */
+    width: 100%; max-width: 750px;
+    max-height: calc(100vh - 40px);
+    color: var(--panel-text-color);
+    box-shadow: var(--box-shadow-modal);
+    position: relative; display: flex; flex-direction: column;
+    transform: scale(0.95); opacity: 0;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.3s ease-in-out;
+}
+.modal-overlay:not([style*="display: none"]) .modal-content {
+    transform: scale(1); opacity: 1;
+}
+
+/* Custom scrollbar for modal content itself */
+.modal-content {
+    scrollbar-width: thin;
+    scrollbar-color: #5A4A42 #3F302A; /* Scrollbar thumb and track */
+}
+.modal-content::-webkit-scrollbar { width: 8px; }
+.modal-content::-webkit-scrollbar-track { background: #322620; }
+.modal-content::-webkit-scrollbar-thumb { background-color: #5A4A42; border-radius: 4px; border: 2px solid #322620; }
+.modal-content::-webkit-scrollbar-thumb:hover { background-color: var(--link-color); }
+
+.modal-content form { /* Main form inside modal */
+    padding: 20px 25px 25px 25px; /* Padding around the form content */
+    overflow-y: auto; /* Scroll for form content if it exceeds modal height */
+    flex-grow: 1; /* Allows form to take available space */
+}
+
+.modal-content h3 { /* Chapter Heading Style for Modal Title */
+    font-family: var(--font-headings);
+    color: var(--link-color); /* Tarnished Gold */
+    font-size: 1.9em;
+    font-weight: 600;
+    text-align: center;
+    padding: 20px 25px 15px 25px; /* Padding for the title area */
+    margin: 0; /* Reset margin as padding handles spacing */
+    border-bottom: 1px solid var(--panel-tertiary-bg-color);
+    position: relative;
+    letter-spacing: 0.5px;
+    background-color: var(--panel-secondary-bg-color); /* Slightly different bg for header */
+    border-top-left-radius: var(--border-radius-default);
+    border-top-right-radius: var(--border-radius-default);
+}
+.modal-content h3::after { /* Optional: Small decorative flourish */
+    content: "❦";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1em;
+    color: var(--hr-ornament-color);
+    opacity: 0.7;
+    line-height: 1;
+}
+
+.close-button {
+    position: absolute; top: 18px; right: 22px;
+    font-size: 1.7em; font-weight: normal; /* Less aggressive close button */
+    color: var(--text-secondary-color);
+    background: none; border: none; cursor: pointer;
+    line-height: 1; padding: 5px;
+    transition: color 0.2s ease, transform 0.2s ease;
+    z-index: 10; /* Ensure it's above the h3 background */
+}
+.close-button:hover {
+    color: var(--button-danger-hover-bg-color); /* Brighter Ruby on hover */
+    transform: rotate(90deg) scale(1.1);
+}
+
+/* --- Rule Form Styles (#rule-form) --- */
+#rule-form h4 { /* "Conditions (IF):", "Action (THEN):" */
+    font-family: var(--font-headings);
+    font-size: 1.2em;
+    color: var(--text-label-strong-color); /* Gold */
+    margin-top: 20px; margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px dashed var(--panel-tertiary-bg-color);
+    font-weight: 500;
+}
+
+#rule-form .add-condition-button, #rule-form .remove-condition-button,
+#rule-form .remove-destination-button {
+    padding: 7px 14px; margin: 8px 5px 8px 0; font-size: 0.9em;
+}
+#rule-form .add-condition-button { /* Secondary Style (Emerald) */
+    background-color: var(--button-secondary-bg-color); color: var(--button-secondary-text-color); border-color: var(--button-secondary-border-color);
+}
+#rule-form .add-condition-button:hover { background-color: var(--button-secondary-hover-bg-color); color: var(--button-secondary-hover-text-color); border-color: var(--button-secondary-hover-border-color); }
+#rule-form .remove-condition-button, #rule-form .remove-destination-button { /* Danger Style (Ruby) */
+    background-color: var(--button-danger-bg-color); color: var(--button-danger-text-color); border-color: var(--button-danger-bg-color);
+}
+#rule-form .remove-condition-button:hover, #rule-form .remove-destination-button:hover { background-color: var(--button-danger-hover-bg-color); border-color: var(--button-danger-hover-bg-color); }
+
+/* Condition Rows */
+.condition-row {
+    background-color: var(--condition-row-bg-color);
+    padding: 12px 15px; margin-bottom: 10px;
+    border-radius: var(--border-radius-default);
+    border: 1px solid var(--panel-tertiary-bg-color);
+    display: flex; align-items: center; flex-wrap: wrap; gap: 10px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.condition-row:hover {
+    border-color: var(--link-color); /* Gold border on hover */
+    box-shadow: 0 0 5px rgba(169,139,79,0.2);
+}
+.condition-row.nested-condition-row {
+    background-color: var(--condition-row-nested-bg-color);
+    border-left: 3px solid var(--condition-row-nested-border-color); /* Emerald */
+    margin-left: 20px;
+}
+.condition-row label { /* Labels within condition rows (e.g., "Tag", "is") */
+    font-family: var(--font-primary);
+    font-size: 0.9em;
+    color: var(--text-label-color); /* Regular label, not gold */
+    font-weight: 400;
+}
+.condition-row .options-area { /* Area for specific condition inputs */
+    background-color: var(--condition-options-area-bg-color); /* Parchment */
+    border: 1px solid var(--condition-options-area-border-color); /* Dark Brown Frame */
+}
+.or-group-conditions-container {
+    border: 1px dashed var(--or-group-border-color); /* Gold dashed */
+    box-shadow: 0 0 7px rgba(169,139,79,0.15);
+    padding: 15px; margin: 15px 0; border-radius: var(--border-radius-default);
+    background-color: rgba(42,32,28,0.3); /* Slightly darker, transparent version of body bg */
+}
+
+/* --- Filetype UI in Modal --- */
+.filetype-options-container {
+    background-color: var(--filetype-container-bg-color);
+    padding: 15px; border-radius: var(--border-radius-default);
+    border: 1px solid var(--filetype-container-border-color);
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.3);
+    margin-top: 15px;
+}
+.filetype-category-header label { /* Category labels: Audio, Image etc. */
+    font-family: var(--font-headings); /* Lora */
+    font-weight: 500; font-size: 1.1em;
+    color: var(--filetype-toggle-color); /* Gold */
+}
+.filetype-toggle-extensions { /* The expand/collapse arrow */
+    color: var(--filetype-toggle-color); font-size: 1.6em; /* Larger, more visible */
+    transition: transform 0.3s ease, color 0.3s ease;
+    opacity: 0.7;
+}
+.filetype-toggle-extensions.expanded { transform: rotate(180deg); opacity: 1; }
+.filetype-extension-row label { /* Individual extension labels */
+    font-family: var(--font-primary);
+    color: var(--text-label-color);
+    font-size: 0.9em;
+}
+
+/* --- Flashed Messages (Enchanted Scrolls) --- */
+#flashes-container {
+    position: fixed;
+    top: 15px; left: 50%; transform: translateX(-50%);
+    z-index: 1200; width: auto; max-width: 90%;
+}
+.flash-message {
+    background-color: var(--flash-parchment-bg);
+    color: var(--flash-ink-text);
+    border: 1px solid var(--scroll-edge-darker);
+    border-left-width: 6px; /* Prominent colored left border for type */
+    border-radius: 2px 6px 6px 2px; /* "Rolled edge" feel */
+    padding: 10px 15px;
+    margin: 0 auto 12px auto;
+    max-width: 480px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.4);
+    font-family: 'Georgia', serif; /* Classic scroll font */
+    font-size: 0.95em;
+    font-weight: 500;
+    display: flex; align-items: center;
+}
+.flash-message::before { /* Optional icon */
+    font-family: 'Times New Roman', Times, serif; /* Or an icon font */
+    font-size: 1.4em;
+    margin-right: 10px;
+    line-height: 1;
+}
+.flash-success { border-left-color: var(--flash-success-border-color); }
+.flash-success::before { content: "✓"; color: var(--flash-success-border-color); } /* Simple check */
+.flash-error { border-left-color: var(--flash-error-border-color); }
+.flash-error::before { content: "!"; color: var(--flash-error-border-color); font-weight: bold; } /* Simple exclamation */
+.flash-info { border-left-color: var(--flash-info-border-color); }
+.flash-info::before { content: "i"; color: var(--flash-info-border-color); font-style: italic; font-weight: bold;} /* Simple info */
+
+/* --- Note/Info Box (e.g., for Settings page) --- */
+.note {
+     margin-top: 25px; padding: 15px;
+     background-color: var(--note-bg-color);
+     color: var(--note-text-color);
+     border: 1px solid var(--panel-tertiary-bg-color);
+     border-left: 4px solid var(--note-border-color); /* Amethyst accent */
+     border-radius: var(--border-radius-default);
+     box-shadow: var(--box-shadow-default);
+     font-size: 0.9em;
+}
+.note p { font-size: 1.05em; line-height: 1.6; }
+.note ul li::before { color: var(--note-border-color); } /* Match border color */
+.note hr { width: 100%; opacity: 0.5; margin: 15px auto; } /* Simpler HR inside notes */
+.note hr::before { font-size: 1em; letter-spacing: 3px; color: var(--note-border-color); }
+
+
+/* --- Status Message (from settings.html inline style) --- */
+.status-message { /* Similar to flash messages but typically inline */
+    margin-top: 20px; padding: 10px 15px;
+    border-radius: var(--border-radius-default); display: none;
+    font-family: 'Georgia', serif; font-size: 0.95em;
+    background-color: var(--flash-parchment-bg);
+    color: var(--flash-ink-text);
+    border: 1px solid var(--scroll-edge-darker);
+    border-left-width: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+.status-message.success { border-left-color: var(--flash-success-border-color); }
+.status-message.error { border-left-color: var(--flash-error-border-color); }
+.status-message:not(.success):not(.error) { border-left-color: var(--flash-info-border-color); }
+
+
+/* --- Utility Classes --- */
+.loading-cursor, .loading-cursor * {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='24' height='24'%3E%3Cpath fill='%23A98B4F' d='M16 0 A16 16 0 0 0 16 32 A16 16 0 0 0 16 0 M16 3 A13 13 0 0 1 16 29 A13 13 0 0 1 16 3Z'%3E%3CanimateTransform attributeName='transform' type='rotate' from='0 16 16' to='360 16 16' dur='1.2s' repeatCount='indefinite'/%3E%3C/path%3E%3Cpath fill='%23A98B4F' d='M16 0 A16 16 0 0 1 32 16 L29 16 A13 13 0 0 0 16 3Z'%3E%3CanimateTransform attributeName='transform' type='rotate' from='0 16 16' to='360 16 16' dur='1.2s' repeatCount='indefinite'/%3E%3C/path%3E%3C/svg%3E") 12 12, wait !important; /* Gold spinning cursor */
+}
+
+/* --- Logs Page Specific Styles --- */
+#log-statistics-section, #detailed-logs-section {
+    margin-bottom: 35px;
+    padding: 20px 25px;
+    background-color: var(--panel-secondary-bg-color);
+    border: 1px solid var(--panel-tertiary-bg-color);
+    border-radius: var(--border-radius-default);
+    box-shadow: var(--box-shadow-default);
+}
+
+.filters-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px 20px;
+    align-items: flex-end;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--panel-tertiary-bg-color);
+}
+.filters-container > div, .filters-container > label {
+    flex: 1 1 auto; /* Allow shrinking but prefer auto width */
+}
+.filters-container label { /* Make labels align nicely with inputs */
+    margin-bottom: 0; /* Remove default label margin if input is on same line */
+    margin-right: 5px;
+    flex-shrink: 0; /* Prevent label from shrinking too much */
+}
+.filters-container select, .filters-container input[type="date"] {
+    min-width: 150px; /* Ensure inputs have some minimum width */
+}
+#stats-custom-date-range, #search-custom-date-range {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+    width: 100%; /* Take full width if shown */
+}
+#stats-custom-date-range label, #search-custom-date-range label {
+    white-space: nowrap;
+}
+
+
+#log-search-form {
+    margin-bottom: 25px;
+}
+.log-search-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive columns */
+    gap: 15px 20px; /* Row and column gap */
+    align-items: flex-start; /* Align items at the start of their grid cell */
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--panel-tertiary-bg-color);
+}
+.log-search-grid > div { /* Each grid item */
+    display: flex;
+    flex-direction: column; /* Stack label on top of input */
+}
+.log-search-grid label {
+    margin-bottom: 5px; /* Space between label and input */
+}
+.log-search-grid .time-filter-group {
+    grid-column: 1 / -1; /* Span full width */
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping if space is tight */
+    gap: 15px 20px;
+    align-items: flex-end;
+}
+.log-search-grid .time-filter-group > div {
+    flex: 1 1 auto;
+}
+.log-search-grid .form-actions {
+    grid-column: 1 / -1; /* Span all columns */
+    text-align: right;
+    margin-top: 15px;
+}
+.log-search-grid .form-actions button {
+    margin-left: 10px;
+}
+.log-search-grid .form-actions button:first-child {
+    margin-left: 0;
+}
+
+.error-message { /* Used on logs page for API errors */
+    color: var(--button-danger-text-color);
+    background-color: rgba(140, 27, 27, 0.2); /* Slightly more visible red background */
+    border: 1px solid var(--button-danger-bg-color);
+    padding: 10px 15px;
+    margin: 15px 0;
+    border-radius: var(--border-radius-default);
+    font-family: var(--font-primary);
+    font-size: 0.9em;
+}
+#stats-loading-message, #logs-loading-message {
+    color: var(--text-secondary-color);
+    font-style: italic;
+    padding: 15px;
+    text-align: center;
+    font-size: 1.1em;
+}
+
+.chart-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 25px auto;
+    padding: 20px;
+    background-color: var(--body-bg-color);
+    border: 1px solid var(--panel-tertiary-bg-color);
+    border-radius: var(--border-radius-default);
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+}
+
+.results-summary { /* For detailed-logs-results-summary */
+    margin: 20px 0;
+    padding: 12px 18px;
+    background-color: var(--panel-bg-color); /* Slightly darker than panel-secondary */
+    border: 1px solid var(--panel-tertiary-bg-color);
+    border-left: 5px solid var(--link-color); /* Gold accent */
+    border-radius: var(--border-radius-default);
+    font-size: 1em;
+    color: var(--text-primary-color);
+    box-shadow: var(--box-shadow-default);
+}
+
+.pagination-controls {
+    text-align: center;
+    margin-top: 25px;
+    padding: 15px 0;
+    border-top: 1px solid var(--panel-tertiary-bg-color);
+}
+.pagination-controls button,
+.pagination-controls span {
+    margin: 0 4px;
+    padding: 7px 14px;
+    border-radius: var(--border-radius-default);
+    font-size: 0.9em;
+    font-weight: 600;
+    display: inline-block; /* Ensures proper padding and margin */
+    vertical-align: middle;
+}
+.pagination-controls button {
+    background-color: var(--button-secondary-bg-color);
+    color: var(--button-secondary-text-color);
+    border: 1px solid var(--button-secondary-border-color);
+    text-transform: none; /* Pagination buttons usually not uppercase */
+}
+.pagination-controls button:hover:not(:disabled) {
+    background-color: var(--button-secondary-hover-bg-color);
+    color: var(--button-secondary-hover-text-color);
+    border-color: var(--button-secondary-hover-border-color);
+}
+.pagination-controls button.active, /* For current page button, if it's a button */
+.pagination-controls button:disabled {
+    background-color: var(--input-disabled-bg-color);
+    color: var(--input-disabled-text-color);
+    border-color: var(--input-disabled-border-color);
+    cursor: not-allowed;
+}
+.pagination-controls span.current-page { /* If using a span for current page indicator */
+    font-weight: bold;
+    color: var(--link-color); /* Gold */
+    border: 1px solid var(--link-color);
+    background-color: rgba(169,139,79,0.1); /* Faint gold bg */
+}
+.pagination-controls span.ellipsis {
+    color: var(--text-secondary-color);
+    border: none;
+    background: none;
+}
+
+#detailed-logs-table td {
+    word-break: break-word; /* Allow long strings like hashes to break */
+}
+#detailed-logs-table td:nth-child(1), /* Timestamp */
+#detailed-logs-table td:nth-child(4), /* Action Type */
+#detailed-logs-table td:nth-child(5)  /* Status */ {
+    white-space: nowrap; /* Prevent these columns from wrapping if possible */
+}

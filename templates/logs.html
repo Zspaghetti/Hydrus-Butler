@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity Logs - {{ current_settings.get('butler_name', 'Hydrus Butler') }}</title>
+    <!-- The ID "main-stylesheet" helps logs_page.js reliably update the theme -->
+    {# MODIFIED LINE BELOW #}
+    <link id="main-stylesheet" rel="stylesheet" href="{{ url_for('static', filename='css/' + current_settings.get('theme', 'default') + '.css') }}">
+    <!-- Link to your new logs_page.css if you create one, or rely on the main theme CSS -->
+    {# MODIFIED LINE BELOW #}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/logs_page.css') }}">
+    <!-- Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1 id="butler-name-header">{{ current_settings.get('butler_name', 'Hydrus Butler') }} - Activity Logs</h1>
+        <nav>
+            {# MODIFIED LINE BELOW #}
+            <a href="{{ url_for('views.index') }}">
+                <button>Back to Rules</button>
+            </a>
+            {# MODIFIED LINE BELOW #}
+            <a href="{{ url_for('views.settings_page') }}">
+                <button>Settings</button>
+            </a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="log-statistics-section">
+            <h2>Rule Activity Statistics</h2>
+            <div class="filters-container">
+                <label for="stats-time-frame">Time Frame:</label>
+                <select id="stats-time-frame">
+                    <option value="24h">Last 24 Hours</option>
+                    <option value="3d">Last 3 Days</option>
+                    <option value="1w" selected>Last 1 Week</option>
+                    <option value="1m">Last 1 Month</option>
+                    <option value="6m">Last 6 Months</option>
+                    <option value="1y">Last 1 Year</option>
+                    <option value="all">All Time</option>
+                    <option value="custom">Custom Range</option>
+                </select>
+                <div id="stats-custom-date-range" style="display:none; margin-top: 10px;">
+                    <label for="stats-start-date">Start Date:</label>
+                    <input type="date" id="stats-start-date">
+                    <label for="stats-end-date">End Date:</label>
+                    <input type="date" id="stats-end-date">
+                </div>
+                <button id="update-stats-chart-button" class="secondary-button">Update Chart</button>
+            </div>
+            <div id="stats-loading-message" style="display: none;">Loading statistics...</div>
+            <div id="stats-error-message" class="error-message" style="display: none;"></div>
+            <div class="chart-container">
+                <canvas id="filesProcessedChart"></canvas>
+            </div>
+        </section>
+
+        <hr>
+
+        <section id="detailed-logs-section">
+            <h2>Detailed Event Logs</h2>
+            <form id="log-search-form">
+                <div class="log-search-grid">
+                    <div>
+                        <label for="search-file-hash">File Hash:</label>
+                        <input type="text" id="search-file-hash" placeholder="Search by file SHA256 hash">
+                    </div>
+                    <div>
+                        <label for="search-rule-id">Rule ID:</label>
+                        <input type="text" id="search-rule-id" placeholder="Search by rule UUID">
+                    </div>
+                    <div>
+                        <label for="search-run-id">Run ID:</label>
+                        <input type="text" id="search-run-id" placeholder="Search by run UUID">
+                    </div>
+                    <div>
+                        <label for="search-rule-execution-id">Rule Execution ID:</label>
+                        <input type="text" id="search-rule-execution-id" placeholder="Search by rule execution UUID">
+                    </div>
+                    <div>
+                        <label for="search-status-filter">Status Filter:</label>
+                        <input type="text" id="search-status-filter" placeholder="e.g., success, failure, skipped_override (comma-sep)">
+                    </div>
+                    <div>
+                        <label for="search-sort-by">Sort By:</label>
+                        <select id="search-sort-by">
+                            <option value="timestamp_desc" selected>Timestamp (Newest First)</option>
+                            <option value="timestamp_asc">Timestamp (Oldest First)</option>
+                            <option value="rule_name_asc">Rule Name (A-Z)</option>
+                            <option value="rule_name_desc">Rule Name (Z-A)</option>
+                            <option value="status_asc">Status (A-Z)</option>
+                            <option value="status_desc">Status (Z-A)</option>
+                        </select>
+                    </div>
+                    <div class="time-filter-group">
+                        <label for="search-time-frame">Time Frame:</label>
+                        <select id="search-time-frame">
+                            <option value="24h">Last 24 Hours</option>
+                            <option value="3d">Last 3 Days</option>
+                            <option value="1w" selected>Last 1 Week</option>
+                            <option value="1m">Last 1 Month</option>
+                            <option value="6m">Last 6 Months</option>
+                            <option value="1y">Last 1 Year</option>
+                            <option value="all">All Time</option>
+                            <option value="custom">Custom Range</option>
+                        </select>
+                    </div>
+                     <div id="search-custom-date-range" class="time-filter-group" style="display:none;">
+                        <div>
+                            <label for="search-start-date">Start Date:</label>
+                            <input type="date" id="search-start-date">
+                        </div>
+                        <div>
+                            <label for="search-end-date">End Date:</label>
+                            <input type="date" id="search-end-date">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" id="search-logs-button">Search Logs</button>
+                    <button type="button" id="reset-search-logs-button" class="secondary-button">Reset Filters</button>
+                </div>
+            </form>
+
+            <div id="logs-loading-message" style="display: none;">Loading logs...</div>
+            <div id="logs-error-message" class="error-message" style="display: none;"></div>
+            <div id="detailed-logs-results-summary" class="results-summary"></div>
+
+            <div class="table-responsive">
+                <table id="detailed-logs-table">
+                    <thead>
+                        <tr>
+                            <th>Timestamp</th>
+                            <th>Rule Name/Context</th>
+                            <th>File Hash/Summary</th>
+                            <th>Action Type</th>
+                            <th>Status</th>
+                            <th>Details/Parameters</th>
+                            <th>Run ID</th>
+                            <th>Log/Exec ID</th>
+                        </tr>
+                    </thead>
+                    <tbody id="detailed-logs-table-body">
+                        <!-- Log entries will be populated here by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+            <div id="logs-pagination-controls" class="pagination-controls">
+                <!-- Pagination buttons will be added here -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Kept in order by {{ current_settings.get('butler_name', 'Hydrus Butler') }} © 2025</p>
+    </footer>
+
+    <!-- Ensure this uses current_settings for the butler name or it's passed separately -->
+    <script>
+        // Pass settings to JavaScript if needed, especially for butler_name if not fetched by api.js
+        window.HYDRUS_BUTLER_SETTINGS = {
+            butler_name: "{{ current_settings.get('butler_name', 'Hydrus Butler') | e }}",
+            theme: "{{ current_settings.get('theme', 'default') | e }}"
+            // Add other client-side relevant settings here if they aren't fetched via /get_client_settings
+        };
+    </script>
+    {# MODIFIED SCRIPT TAGS BELOW #}
+    <script type="module" src="{{ url_for('static', filename='js/api.js') }}"></script>
+    <!-- Include utils.js if you add helper functions there relevant to logs page -->
+    <script type="module" src="{{ url_for('static', filename='js/utils.js') }}"></script> 
+    <script type="module" src="{{ url_for('static', filename='js/logs_page.js') }}"></script>
+</body>
+</html>

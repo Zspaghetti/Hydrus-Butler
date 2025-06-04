@@ -1,0 +1,1009 @@
+/* --- START OF FILE DefaultLight.css --- */
+
+:root {
+    /* General */
+    --font-primary: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --body-bg-color: #f8f9fa; /* Very light gray */
+    --body-text-color: #212529; /* Dark gray / Almost black */
+    --border-radius-default: 0.25rem; /* 4px */
+    --border-radius-round: 50%;
+    --box-shadow-default-color: rgba(0, 0, 0, 0.1);
+    --box-shadow-default: 0 0.125rem 0.25rem var(--box-shadow-default-color);
+    --box-shadow-modal-color: rgba(0, 0, 0, 0.15);
+    --box-shadow-modal: 0 0.5rem 1rem var(--box-shadow-modal-color);
+    --overlay-bg-color: rgba(0, 0, 0, 0.5); /* Kept dark for contrast */
+
+    /* Panel Colors */
+    /* Header is styled separately for a distinct look */
+    --header-bg-color: #343a40; /* Dark gray for header */
+    --header-text-color: #ffffff;
+    /* Modal, Table Headers, other "panel" like elements */
+    --panel-bg-color: #ffffff; /* White for modal content area */
+    --panel-text-color: var(--body-text-color);
+    --panel-secondary-bg-color: #e9ecef; /* Light gray for accents like table even rows */
+    --panel-tertiary-bg-color: #dee2e6;   /* Slightly darker gray for borders, hovers */
+
+    /* Text Colors */
+    --text-primary-color: #212529;
+    --text-secondary-color: #6c757d; /* Medium gray for less important text, setting descriptions */
+    --text-on-accent-color: #ffffff;
+    --text-placeholder-color: #adb5bd; /* Light gray for placeholders */
+    --text-label-color: #495057; /* Darker than secondary for normal labels */
+    --text-label-strong-color: var(--text-primary-color); /* For bold labels */
+
+    /* Input/Control Colors */
+    --input-bg-color: #ffffff;
+    --input-text-color: #495057;
+    --input-border-color: #ced4da;
+    --input-focus-border-color: #80bdff; /* Standard Bootstrap focus blue */
+    --input-focus-box-shadow-color: rgba(0, 123, 255, 0.25); /* For focus ring */
+    --input-disabled-bg-color: #e9ecef;
+    --input-disabled-text-color: #6c757d;
+    --input-disabled-border-color: #ced4da;
+
+    /* Button Colors (Semantic) */
+    /* Primary (Save, main positive actions) */
+    --button-primary-bg-color: #28a745; /* Green */
+    --button-primary-text-color: var(--text-on-accent-color);
+    --button-primary-hover-bg-color: #218838;
+    /* Secondary (Navigation, standard actions, DEFAULT for unstyled buttons) */
+    --button-secondary-bg-color: #007bff; /* Blue */
+    --button-secondary-text-color: var(--text-on-accent-color);
+    --button-secondary-hover-bg-color: #0056b3;
+    /* Accent (Distinct actions, e.g., "Add Another") */
+    --button-accent-bg-color: #17a2b8; /* Teal/Cyan */
+    --button-accent-text-color: var(--text-on-accent-color);
+    --button-accent-hover-bg-color: #138496;
+    /* Edit/Warning */
+    --button-edit-bg-color: #ffc107; /* Yellow/Amber */
+    --button-edit-text-color: #212529; /* Dark text on yellow for accessibility */
+    --button-edit-hover-bg-color: #e0a800;
+    /* Danger/Delete (Destructive actions) */
+    --button-danger-bg-color: #dc3545; /* Red */
+    --button-danger-text-color: var(--text-on-accent-color);
+    --button-danger-hover-bg-color: #c82333;
+
+    /* Link Colors */
+    --link-color: #007bff;
+    --link-hover-color: #0056b3;
+
+    /* Table Colors */
+    --table-header-bg-color: #e9ecef; /* Light gray */
+    --table-header-text-color: #495057; /* Dark gray */
+    --table-border-color: #dee2e6;
+    --table-row-odd-bg-color: transparent; /* Body background will show through */
+    --table-row-even-bg-color: rgba(0,0,0,0.03); /* Very subtle striping */
+    --table-row-hover-bg-color: rgba(0,0,0,0.06);
+    --table-text-color: var(--text-primary-color);
+
+    /* Conditional UI Colors (Rule Editor) */
+    --condition-row-bg-color: #e9ecef; /* Light gray */
+    --condition-row-text-color: var(--text-primary-color);
+    --condition-row-nested-bg-color: #f8f9fa; /* Very light gray, like body */
+    --condition-row-nested-border-color: var(--button-secondary-bg-color); /* Blue accent */
+    --condition-options-area-bg-color: var(--condition-row-nested-bg-color);
+    --condition-options-area-border-color: var(--input-border-color);
+    --or-group-border-color: var(--input-border-color); /* Dashed */
+
+    /* Flash Message Colors */
+    --flash-success-bg-color: #d4edda;
+    --flash-success-text-color: #155724;
+    --flash-success-border-color: #c3e6cb;
+    --flash-error-bg-color: #f8d7da;
+    --flash-error-text-color: #721c24;
+    --flash-error-border-color: #f5c6cb;
+    --flash-info-bg-color: #cce5ff;
+    --flash-info-text-color: #004085;
+    --flash-info-border-color: #b8daff;
+
+    /* Filetype UI Colors */
+    --filetype-container-bg-color: #ffffff; /* White background */
+    --filetype-container-border-color: var(--input-border-color);
+    --filetype-separator-color: var(--input-border-color); /* Dashed */
+    --filetype-toggle-color: var(--link-color);
+
+    /* Note/Info Box Colors (e.g., on Settings Page) */
+    --note-bg-color: #fff3cd; /* Light yellow */
+    --note-text-color: #856404; /* Dark yellow/brown text */
+    --note-border-color: #ffeeba; /* Matching border color */
+    --hr-color: #dee2e6; /* Light gray for HR */
+}
+
+/* --- Global Resets & Base Styles --- */
+html {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: var(--font-primary);
+    margin: 0;
+    padding: 0;
+    background-color: var(--body-bg-color);
+    color: var(--body-text-color);
+    min-height: 100%;
+    line-height: 1.5; /* Default line height */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-primary-color);
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    font-weight: 500; /* Slightly less bold than default browser bold */
+}
+
+h1 { font-size: 2rem; }
+h2 { font-size: 1.75rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.25rem; }
+
+
+p {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--link-hover-color);
+    text-decoration: underline;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid var(--hr-color);
+    margin: 1.5rem 0;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    margin-bottom: 0.25rem;
+}
+
+/* --- Layout Components --- */
+header {
+    background-color: var(--header-bg-color);
+    color: var(--header-text-color);
+    padding: 0.75rem 1.25rem; /* 12px 20px */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--box-shadow-default);
+}
+
+header h1 {
+    color: var(--header-text-color);
+    margin: 0;
+    font-size: 1.5em;
+    font-weight: 500;
+}
+
+/* nav button styling will be handled by general button styles */
+
+main {
+    padding: 1.25rem; /* 20px */
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    margin-top: 1.5rem;
+    color: var(--text-secondary-color);
+    font-size: 0.9em;
+    border-top: 1px solid var(--hr-color);
+}
+
+/* --- General Form Styles --- */
+label {
+    display: block;
+    margin-bottom: 0.375rem; /* 6px */
+    font-weight: bold;
+    color: var(--text-label-strong-color);
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+select,
+textarea {
+    width: 100%;
+    padding: 0.5rem 0.75rem; /* 8px 12px */
+    background-color: var(--input-bg-color);
+    border: 1px solid var(--input-border-color);
+    color: var(--input-text-color);
+    border-radius: var(--border-radius-default);
+    margin-bottom: 0.75rem; /* 12px */
+    font-size: 1rem;
+    line-height: 1.5;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--input-focus-border-color);
+    box-shadow: 0 0 0 0.2rem var(--input-focus-box-shadow-color);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--text-placeholder-color);
+    opacity: 1; /* Firefox has a lower default opacity */
+}
+
+input[type="checkbox"] {
+    width: auto;
+    margin-right: 0.5rem;
+}
+
+/* --- Button Styles --- */
+button,
+input[type="button"],
+input[type="submit"] {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+    background-color: var(--button-secondary-bg-color); /* Default: Secondary Blue */
+    color: var(--button-secondary-text-color);
+    border: 1px solid var(--button-secondary-bg-color);
+    padding: 0.5rem 1rem; /* 8px 16px */
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: var(--border-radius-default);
+    cursor: pointer;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+button:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover { /* Default hover */
+    background-color: var(--button-secondary-hover-bg-color);
+    border-color: var(--button-secondary-hover-bg-color);
+    color: var(--button-secondary-text-color); /* Ensure text color remains consistent if not changing */
+}
+
+button:focus,
+input[type="button"]:focus,
+input[type="submit"]:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem var(--input-focus-box-shadow-color); /* Use consistent focus ring */
+}
+
+
+button[type="submit"] { /* Specifically for submit buttons - Primary Green */
+    background-color: var(--button-primary-bg-color);
+    color: var(--button-primary-text-color);
+    border-color: var(--button-primary-bg-color);
+}
+button[type="submit"]:hover {
+    background-color: var(--button-primary-hover-bg-color);
+    border-color: var(--button-primary-hover-bg-color);
+}
+
+.add-button { /* Floating Action Button */
+    padding: 0.75rem 1rem; /* 12px 16px */
+    font-size: 1.5em;
+    background-color: var(--button-primary-bg-color);
+    color: var(--button-primary-text-color);
+    border-color: var(--button-primary-bg-color);
+    border-radius: var(--border-radius-round);
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    box-shadow: var(--box-shadow-default);
+    line-height: 1; /* Keep for icon-like buttons */
+    z-index: 500;
+}
+.add-button:hover {
+    background-color: var(--button-primary-hover-bg-color);
+    border-color: var(--button-primary-hover-bg-color);
+}
+
+.secondary-button { /* Specifically for .secondary-button class - Uses secondary blue (already default) */
+    background-color: var(--button-secondary-bg-color);
+    color: var(--button-secondary-text-color);
+    border-color: var(--button-secondary-bg-color);
+    margin-bottom: 0.75rem;
+}
+.secondary-button:hover {
+    background-color: var(--button-secondary-hover-bg-color);
+    border-color: var(--button-secondary-hover-bg-color);
+}
+
+.add-destination-button { /* Accent Teal/Cyan */
+    background-color: var(--button-accent-bg-color);
+    color: var(--button-accent-text-color);
+    border-color: var(--button-accent-bg-color);
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+    padding: 0.5rem 1rem; /* Consistent padding */
+}
+.add-destination-button:hover {
+    background-color: var(--button-accent-hover-bg-color);
+    border-color: var(--button-accent-hover-bg-color);
+}
+
+
+/* --- Settings Form Specific Styles (#settings-form) --- */
+#settings-form div { /* Keep this generic div for spacing if desired */
+    /* margin-bottom: 15px;  Replaced by .setting-row */
+}
+
+/* .setting-row class is used in settings.html now for better structure */
+.setting-row {
+    margin-bottom: 1.25rem; /* More spacing for settings */
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--hr-color);
+}
+.setting-row:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+#settings-form label { /* General label style applies */ }
+
+#settings-form input[type="text"],
+#settings-form input[type="password"],
+#settings-form input[type="number"],
+#settings-form select {
+     /* General input styles apply */
+}
+
+#settings-form input[type="number"] {
+    width: 120px; /* Slightly wider for numbers */
+    display: inline-block; /* To allow text/description next to it if needed */
+}
+
+#settings-form .checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* 8px */
+    /* margin-bottom: 15px; Handled by .setting-row */
+}
+#settings-form .checkbox-row label {
+     margin-bottom: 0;
+     font-weight: normal;
+     color: var(--text-label-color);
+     display: inline-block;
+}
+#settings-form .checkbox-row input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+.setting-description { /* Used in settings.html for helper text */
+    font-size: 0.875em;
+    color: var(--text-secondary-color);
+    margin-top: 0.375rem; /* Space from input/control */
+}
+.setting-description small { /* Already covered by parent, but can specify if needed */
+    line-height: 1.4;
+}
+.setting-description strong {
+    font-weight: bold;
+    color: var(--text-label-strong-color); /* Use strong label color */
+}
+
+
+/* --- Toggle Switch (from settings.html inline, now themed) --- */
+.toggle-switch-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 0.5rem; /* Space from previous element or label */
+}
+.toggle-switch-label { /* Label before the switch itself */
+    margin-right: 0.75rem;
+    font-weight: bold; /* Match general label */
+    color: var(--text-label-strong-color);
+    flex-shrink: 0;
+}
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px; /* Matches slider height */
+    margin-right: 0.75rem;
+    flex-shrink: 0;
+}
+.toggle-switch input[type="checkbox"] {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.toggle-switch .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--input-border-color); /* Off state - was #ccc */
+    transition: .4s;
+    border-radius: 24px; /* Rounded ends */
+}
+.toggle-switch .slider:before { /* The knob */
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+.toggle-switch input[type="checkbox"]:checked + .slider {
+    background-color: var(--button-primary-bg-color); /* On state - Green */
+}
+.toggle-switch input[type="checkbox"]:focus + .slider {
+    box-shadow: 0 0 0 0.2rem var(--input-focus-box-shadow-color); /* Focus ring */
+}
+.toggle-switch input[type="checkbox"]:checked + .slider:before {
+    transform: translateX(26px); /* Width of switch - knob width - 2*padding */
+}
+.toggle-switch-text { /* Text next to switch (e.g., "Standard Logging") */
+    font-style: italic;
+    color: var(--text-secondary-color);
+    margin-right: 0.75rem;
+    flex-shrink: 0;
+}
+
+/* --- Rules Table (#rules-table-container, #rules-table) --- */
+#rules-table-container {
+    margin-top: 1.25rem;
+    overflow-x: auto;
+}
+
+#rules-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.75rem;
+    background-color: #fff; /* Ensure table has a background if rows are transparent */
+    border: 1px solid var(--table-border-color); /* Add outer border to table */
+}
+
+#rules-table th,
+#rules-table td {
+    border: 1px solid var(--table-border-color);
+    padding: 0.75rem; /* 12px */
+    text-align: left;
+    color: var(--table-text-color);
+    vertical-align: middle;
+}
+
+#rules-table th {
+    background-color: var(--table-header-bg-color);
+    color: var(--table-header-text-color);
+    font-weight: bold;
+}
+
+#rules-table tbody tr {
+    background-color: var(--table-row-odd-bg-color);
+}
+#rules-table tbody tr:nth-child(even) {
+    background-color: var(--table-row-even-bg-color);
+}
+#rules-table tbody tr:hover {
+    background-color: var(--table-row-hover-bg-color);
+}
+
+#rules-table td button {
+    padding: 0.375rem 0.75rem; /* Smaller padding for table buttons */
+    font-size: 0.875em; /* Smaller font size */
+    margin-right: 0.25rem;
+    /* border, border-radius, cursor inherited or default */
+}
+/* Ensure table button borders match their background */
+#rules-table td button.run-button {
+    background-color: var(--button-secondary-bg-color);
+    color: var(--button-secondary-text-color);
+    border-color: var(--button-secondary-bg-color);
+}
+#rules-table td button.run-button:hover { background-color: var(--button-secondary-hover-bg-color); border-color: var(--button-secondary-hover-bg-color); }
+
+#rules-table td button.edit-button {
+    background-color: var(--button-edit-bg-color);
+    color: var(--button-edit-text-color);
+    border-color: var(--button-edit-bg-color);
+}
+#rules-table td button.edit-button:hover { background-color: var(--button-edit-hover-bg-color); border-color: var(--button-edit-hover-bg-color); }
+
+#rules-table td button.delete-button {
+    background-color: var(--button-danger-bg-color);
+    color: var(--button-danger-text-color);
+    border-color: var(--button-danger-bg-color);
+}
+#rules-table td button.delete-button:hover { background-color: var(--button-danger-hover-bg-color); border-color: var(--button-danger-hover-bg-color); }
+
+
+/* --- Modal Styles (.modal-overlay, .modal-content) --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--overlay-bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 1rem; /* Allow some space if modal is very large */
+}
+
+.modal-content {
+    background-color: var(--panel-bg-color); /* White */
+    padding: 1.5rem; /* 24px */
+    border-radius: var(--border-radius-default);
+    width: 90%;
+    max-width: 700px;
+    max-height: 90vh; /* Increased slightly from 80vh */
+    overflow-y: auto;
+    color: var(--panel-text-color); /* Dark text on white modal */
+    box-shadow: var(--box-shadow-modal);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-content form {
+    flex-grow: 1; /* Allows form to take up space */
+    min-height: 0; /* Allows form to shrink, crucial for parent overflow */
+    /* padding-bottom: 20px; No longer needed if modal content handles scroll properly */
+}
+
+.modal-content h3 { /* Modal title */
+    color: var(--text-primary-color); /* Dark title on white modal */
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.close-button { /* Modal close button */
+    position: absolute;
+    top: 0.75rem; /* 12px */
+    right: 0.75rem; /* 12px */
+    font-size: 1.75em;
+    font-weight: bold;
+    color: var(--text-secondary-color); /* Lighter gray for close X */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem; /* Add some padding for easier clicking */
+    line-height: 1;
+}
+.close-button:hover {
+    color: var(--button-danger-bg-color); /* Red on hover */
+}
+
+/* --- Rule Form Styles (#rule-form within modal) --- */
+#rule-form label {
+    /* General label styles apply */
+    /* color: var(--panel-text-color); /* Not needed, uses general label color which is dark */
+}
+
+#rule-form input[type="text"],
+#rule-form input[type="number"],
+#rule-form select,
+#rule-form textarea {
+    /* General input styles apply */
+    margin-bottom: 1rem; /* Consistent margin */
+}
+
+#rule-form .add-condition-button,
+#rule-form .remove-condition-button,
+#rule-form .remove-destination-button {
+    padding: 0.5rem 1rem; /* Consistent padding */
+    margin-top: 0.5rem;
+    /* border, border-radius, cursor from general button */
+}
+
+#rule-form .add-condition-button {
+    background-color: var(--button-secondary-bg-color);
+    color: var(--button-secondary-text-color);
+    border-color: var(--button-secondary-bg-color);
+    margin-right: 0.5rem;
+}
+#rule-form .add-condition-button:hover { background-color: var(--button-secondary-hover-bg-color); border-color: var(--button-secondary-hover-bg-color); }
+
+#rule-form .remove-condition-button,
+#rule-form .remove-destination-button {
+    background-color: var(--button-danger-bg-color);
+    color: var(--button-danger-text-color);
+    border-color: var(--button-danger-bg-color);
+}
+#rule-form .remove-condition-button:hover,
+#rule-form .remove-destination-button:hover { background-color: var(--button-danger-hover-bg-color); border-color: var(--button-danger-hover-bg-color); }
+
+/* Styling for individual condition rows (.condition-row) */
+.condition-row {
+    background-color: var(--condition-row-bg-color);
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+    border-radius: var(--border-radius-default);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+.condition-row label {
+    color: var(--condition-row-text-color);
+    font-weight: normal; /* Override general bold label */
+    margin-bottom: 0; /* Reset for flex alignment */
+}
+
+.condition-row.nested-condition-row {
+    background-color: var(--condition-row-nested-bg-color);
+    border-left: 4px solid var(--condition-row-nested-border-color);
+    margin-left: 1.25rem; /* 20px Indent nested rows */
+    gap: 0.5rem;
+}
+
+.condition-row .remove-condition-button {
+     flex-shrink: 0;
+     margin-bottom: 0;
+     margin-top: 0; /* Reset for alignment */
+}
+
+.condition-row select,
+.condition-row input[type="text"],
+.condition-row input[type="number"],
+.condition-row textarea {
+     width: auto;
+     flex-grow: 1;
+     margin-bottom: 0;
+}
+
+/* Style for the area holding dynamic options within a condition row */
+.condition-row .options-area {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    background-color: var(--condition-options-area-bg-color);
+    padding: 0.5rem;
+    border-radius: var(--border-radius-default);
+    border: 1px solid var(--condition-options-area-border-color);
+}
+
+/* Styling for the container holding conditions within an OR group */
+.or-group-conditions-container {
+    border: 1px dashed var(--or-group-border-color);
+    padding: 1rem;
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+    border-radius: var(--border-radius-default);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+.or-group-conditions-container .condition-row.nested-condition-row {
+    margin: 0; /* Reset margin if direct child */
+}
+
+
+/* --- Filetype UI in Modal --- */
+.filetype-options-container {
+    background-color: var(--filetype-container-bg-color);
+    padding: 0.75rem;
+    border-radius: var(--border-radius-default);
+    border: 1px solid var(--filetype-container-border-color);
+    margin-top: 0.75rem;
+    width: 100%;
+}
+
+.filetype-category-row {
+    margin-bottom: 0.375rem;
+    padding-bottom: 0.375rem;
+    border-bottom: 1px dashed var(--filetype-separator-color);
+}
+.filetype-category-row:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.filetype-category-header {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 0.375rem 0;
+}
+.filetype-category-header input[type="checkbox"] {
+    flex-shrink: 0;
+    margin-right: 0.375rem;
+    width: auto;
+}
+.filetype-category-header label {
+    flex-grow: 1;
+    margin: 0;
+    font-weight: bold;
+    cursor: pointer;
+    color: var(--text-label-strong-color);
+}
+
+.filetype-toggle-extensions {
+    margin-left: auto;
+    background: none;
+    border: none;
+    color: var(--filetype-toggle-color);
+    cursor: pointer;
+    font-size: 0.9em;
+    padding: 0 0.25rem;
+    transition: transform 0.2s ease;
+}
+
+.filetype-extensions-container {
+    padding-left: 1.25rem; /* Indent extensions */
+    margin-top: 0.375rem;
+    display: none;
+}
+.filetype-extension-row {
+    margin-bottom: 0.125rem;
+    display: flex;
+    align-items: center;
+}
+.filetype-extension-row input[type="checkbox"] {
+    flex-shrink: 0;
+    margin-right: 0.375rem;
+    width: auto;
+}
+.filetype-extension-row label {
+    margin: 0;
+    font-weight: normal;
+    color: var(--text-label-color);
+}
+
+/* --- Flashed Messages --- */
+#flashes-container {
+    margin-bottom: 1.25rem;
+    margin-top: 1.25rem; /* Add some top margin too */
+}
+
+.flash-message {
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0.75rem;
+    border-radius: var(--border-radius-default);
+    font-weight: 500; /* Slightly bolder than normal text */
+    border: 1px solid transparent; /* Base border for structure */
+}
+
+.flash-success {
+    color: var(--flash-success-text-color);
+    background-color: var(--flash-success-bg-color);
+    border-color: var(--flash-success-border-color); /* Use full border */
+}
+
+.flash-error {
+    color: var(--flash-error-text-color);
+    background-color: var(--flash-error-bg-color);
+    border-color: var(--flash-error-border-color); /* Use full border */
+}
+
+.flash-info {
+    color: var(--flash-info-text-color);
+    background-color: var(--flash-info-bg-color);
+    border-color: var(--flash-info-border-color); /* Use full border */
+}
+
+/* --- Note/Info Box (e.g., for Settings page) --- */
+.note {
+     margin-top: 1rem;
+     margin-bottom: 1rem; /* Add bottom margin for consistency */
+     padding: 1rem;
+     background-color: var(--note-bg-color);
+     color: var(--note-text-color);
+     border: 1px solid var(--note-border-color); /* Use full border */
+     border-left: 4px solid var(--note-border-color); /* Keep prominent left border */
+     border-radius: var(--border-radius-default);
+     font-size: 0.9em;
+}
+.note p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    color: var(--note-text-color); /* Ensure p inside note inherits correctly */
+}
+.note p:first-child { margin-top: 0; }
+.note p:last-child { margin-bottom: 0; }
+
+.note ul {
+    margin-top: 0.5em;
+    margin-left: 1.25rem;
+    list-style: disc;
+    color: var(--note-text-color); /* Ensure ul inside note inherits correctly */
+}
+.note hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border-top: 1px solid var(--note-border-color); /* Use a border consistent with the note's theme */
+}
+
+
+/* --- Status Message (from settings.html inline style, themed like flash) --- */
+.status-message {
+    margin-top: 1rem;
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--border-radius-default);
+    border: 1px solid transparent;
+    display: none; /* JavaScript will toggle this */
+
+    /* Default to info style */
+    color: var(--flash-info-text-color);
+    background-color: var(--flash-info-bg-color);
+    border-color: var(--flash-info-border-color);
+}
+.status-message.success {
+    color: var(--flash-success-text-color);
+    background-color: var(--flash-success-bg-color);
+    border-color: var(--flash-success-border-color);
+}
+.status-message.error {
+    color: var(--flash-error-text-color);
+    background-color: var(--flash-error-bg-color);
+    border-color: var(--flash-error-border-color);
+}
+
+/* --- Logs Page Specific (Minimal, mainly for layout if logs_page.css is not extensive) --- */
+/* Example for search grid layout, if not in logs_page.css */
+.log-search-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+.log-search-grid > div { /* Direct children of the grid */
+    display: flex;
+    flex-direction: column;
+}
+.log-search-grid label {
+    margin-bottom: 0.25rem; /* Smaller margin for grid labels */
+}
+.log-search-grid input[type="text"],
+.log-search-grid input[type="date"],
+.log-search-grid select {
+    margin-bottom: 0; /* Remove bottom margin as gap handles spacing */
+}
+.time-filter-group {
+    display: flex;
+    flex-direction: column; /* Stack label and select/inputs */
+    gap: 0.5rem; /* Spacing within the group */
+}
+.time-filter-group > div { /* For custom date range inputs */
+    display: flex;
+    flex-direction: column;
+}
+#search-custom-date-range.time-filter-group,
+#stats-custom-date-range {
+    grid-column: 1 / -1; /* Make custom date range span full width if needed */
+    flex-direction: row; /* Custom date range elements side-by-side */
+    align-items: flex-end;
+    gap: 1rem;
+}
+#search-custom-date-range label,
+#stats-custom-date-range label {
+    margin-bottom: 0.25rem;
+}
+#search-custom-date-range input[type="date"],
+#stats-custom-date-range input[type="date"] {
+    flex-grow: 1; /* Allow date inputs to grow */
+}
+
+.form-actions {
+    margin-top: 1rem;
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap; /* Allow buttons to wrap on small screens */
+}
+
+.results-summary {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    font-style: italic;
+    color: var(--text-secondary-color);
+}
+
+.table-responsive {
+    overflow-x: auto;
+    margin-bottom: 1rem;
+}
+#detailed-logs-table { /* Same as rules-table styling by default */
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.75rem;
+    background-color: #fff;
+    border: 1px solid var(--table-border-color);
+}
+#detailed-logs-table th,
+#detailed-logs-table td {
+    border: 1px solid var(--table-border-color);
+    padding: 0.75rem;
+    text-align: left;
+    color: var(--table-text-color);
+    vertical-align: middle;
+    white-space: nowrap; /* Prevent ugly wrapping in log table cells */
+}
+#detailed-logs-table td {
+    white-space: normal; /* Allow details/parameters to wrap */
+}
+#detailed-logs-table th {
+    background-color: var(--table-header-bg-color);
+    color: var(--table-header-text-color);
+    font-weight: bold;
+}
+#detailed-logs-table tbody tr:nth-child(even) {
+    background-color: var(--table-row-even-bg-color);
+}
+#detailed-logs-table tbody tr:hover {
+    background-color: var(--table-row-hover-bg-color);
+}
+
+.pagination-controls {
+    margin-top: 1rem;
+    text-align: center;
+}
+.pagination-controls button {
+    margin: 0 0.25rem;
+}
+
+.chart-container {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #ffffff;
+    border-radius: var(--border-radius-default);
+    box-shadow: var(--box-shadow-default);
+}
+
+.filters-container {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background-color: var(--panel-secondary-bg-color); /* Light gray background for filter area */
+    border-radius: var(--border-radius-default);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+}
+.filters-container label {
+    margin-bottom: 0; /* Align with inputs in flex */
+}
+.filters-container select,
+.filters-container input[type="date"] {
+    margin-bottom: 0; /* Align with inputs in flex */
+    width: auto; /* Allow them to size naturally */
+    flex-grow: 1; /* Allow to take available space */
+}
+.filters-container button {
+    margin-left: auto; /* Push update button to the right if space allows */
+}
+
+
+/* --- Utility Classes --- */
+.loading-cursor, .loading-cursor * {
+    cursor: wait !important;
+}
+
+/* --- END OF FILE DefaultLight.css --- */

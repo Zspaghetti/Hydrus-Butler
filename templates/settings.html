@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - {{ current_settings.get('butler_name', 'Hydrus Butler') }}</title>
+    <link rel="stylesheet" id="main-stylesheet" href="{{ url_for('static', filename='css/' + current_settings.get('theme', 'default') + '.css') }}">
+    <style>
+        /* Basic Toggle Switch Styling - For demonstration if not in main CSS yet */
+        /* Consider moving this to your main CSS file (e.g., Themes.css or a shared utility.css) */
+        .setting-row { /* General class for a setting row */
+            margin-bottom: 1em;
+            padding-bottom: 1em;
+            border-bottom: 1px dashed var(--border-color, #ccc); /* Use theme variable if available */
+        }
+        .setting-row:last-child {
+            border-bottom: none;
+        }
+
+        .toggle-switch-container {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap; /* Allow wrapping for description */
+            margin-top: 10px; /* Space from previous element */
+        }
+
+        .toggle-switch-label {
+            margin-right: 10px;
+            font-weight: bold;
+            flex-shrink: 0; /* Prevent label from shrinking */
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px; 
+            height: 24px;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+
+        .toggle-switch input[type="checkbox"] {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc; /* Off state */
+            transition: .4s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px; 
+            width: 18px;  
+            left: 3px;    
+            bottom: 3px;  
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input[type="checkbox"]:checked + .slider {
+            background-color: #2196F3; /* On state - theme color */
+        }
+
+        input[type="checkbox"]:focus + .slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+
+        input[type="checkbox"]:checked + .slider:before {
+            transform: translateX(26px); 
+        }
+
+        .toggle-switch-text {
+            font-style: italic;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+
+        .setting-description {
+            flex-basis: 100%; /* Allow description to take full width for wrapping */
+            margin-top: 5px; /* Space between toggle and description */
+            padding-left: 0; /* Align with other setting descriptions if they have padding */
+            color: var(--text-muted-color, #555);
+        }
+        .setting-description small {
+            font-size: 0.85em;
+            line-height: 1.4;
+        }
+        .setting-description strong {
+            font-weight: bold;
+            color: var(--text-color, #333); /* Use theme variable */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Settings - {{ current_settings.get('butler_name', 'Hydrus Butler') }}</h1>
+        <nav>
+            <a href="{{ url_for('views.index') }}">
+                <button>Back to Main</button>
+            </a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Application Settings</h2>
+        <p>Configure connections and automation parameters for your Hydrus Client.</p>
+        <form id="settings-form" method="post" action="{{ url_for('views.handle_save_settings') }}">
+            
+            <section id="hydrus-api-settings">
+                <h3>Hydrus Client API Details</h3>
+                <div class="setting-row">
+                    <label for="api-address">API Address:</label>
+                    <input type="text" id="api-address" name="api_address" value="{{ current_settings.get('api_address', 'http://localhost:45869') }}" required>
+                </div>
+                <div class="setting-row">
+                    <label for="api-key">API Access Key:</label>
+                    <input type="password" id="api-key" name="api_key" value="" placeholder="Enter API Key" autocomplete="new-password">
+                    <p class="setting-description"><small>Leave blank to keep the existing key.</small></p>
+                </div>
+                <div class="setting-row">
+                     <h4>Required API Permissions:</h4>
+                     <div class="note">
+                         <p>To use all features of this application, the API key needs the following permissions from your Hydrus client:</p>
+                         <ul>
+                             <li><b>Import and Delete Files</b></li>
+                             <li><b>Edit File Tags</b></li>
+                             <li><b>Search for and Fetch Files</b></li>
+                             <li><b>Edit File Ratings</b></li>
+                         </ul>
+                         <p class="setting-description"><small>When setting your API key's permissions in Hydrus, ensure these are selected, or grant "permits everything".</small></p>
+                         <hr style="margin-top: 15px; margin-bottom: 15px; border: 0; border-top: 1px solid var(--border-color, #4a627a);">
+                         <p><strong>Important:</strong> For this web application to communicate correctly with the Hydrus API from your browser (especially for fetching service lists on the Rules page), you must enable "support CORS headers" in your Hydrus Client settings. This is usually found under <code>services</code> → <code>manage services</code> → <code>client API</code>.</p>
+                     </div>
+                 </div>
+            </section>
+
+            <hr>
+
+            <section id="automation-settings">
+                 <h3>Automation Parameters</h3>
+                  <div class="setting-row">
+                      <label for="rule-interval-seconds">Rule Execution Interval (seconds):</label>
+                      <input type="number" id="rule-interval-seconds" name="rule_interval_seconds" value="{{ current_settings.get('rule_interval_seconds', 0) }}" min="0" step="10" required>
+                      <p class="setting-description"><small>Set to 0 to disable automatic rule execution. Rules can still be run manually.</small></p>
+                  </div>
+
+                  <div class="setting-row">
+                       <label for="last-viewed-threshold-seconds">Exclude Recently Viewed Files (seconds):</label>
+                       <input type="number" id="last-viewed-threshold-seconds" name="last_viewed_threshold_seconds" value="{{ current_settings.get('last_viewed_threshold_seconds', 3600) }}" min="0" step="10" required>
+                       <p class="setting-description"><small>Files viewed within this many seconds will be excluded from rule searches. This helps prevent moving files you may currently be viewing or interacting with. Set to 0 to disable this filter.</small></p>
+                  </div>
+
+                  <div class="checkbox-row setting-row">
+                       <input type="checkbox" id="show-run-notifications" name="show_run_notifications" {% if current_settings.get('show_run_notifications', True) %}checked{% endif %}>
+                       <label for="show-run-notifications">Show confirmation and result notifications when manually running a single rule.</label>
+                  </div>
+                  <div class="checkbox-row setting-row">
+                    <input type="checkbox" id="show-run-all-notifications" name="show_run_all_notifications" {% if current_settings.get('show_run_all_notifications', True) %}checked{% endif %}>
+                    <label for="show-run-all-notifications">Show confirmation and result notifications when manually running all rules.</label>
+                  </div>
+
+               <div class="setting-row toggle-switch-container">
+                    <label for="log-overridden-actions-toggle" class="toggle-switch-label">Logging Level:</label>
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="log-overridden-actions-toggle" name="log_overridden_actions" {% if current_settings.get('log_overridden_actions', False) %}checked{% endif %}>
+                        <label for="log-overridden-actions-toggle" class="slider"></label>
+                    </div>
+                    <span id="logging-level-text" class="toggle-switch-text">
+                        {% if current_settings.get('log_overridden_actions', False) %}Extended Logging{% else %}Standard Logging{% endif %}
+                    </span>
+                    <p class="setting-description">
+                        <small>
+                            <strong>Standard Logging:</strong> Only logs successful actions and critical errors. Reduces database size. <br>
+                            <strong>Extended Logging:</strong> Logs all actions, including those skipped due to overrides or other reasons. Useful for detailed debugging, but increases database size significantly.
+                        </small>
+                    </p>
+               </div>
+            </section>
+            
+            <hr>
+            <section id="personalization-settings">
+                <h3>Personalization</h3>
+                <div class="setting-row">
+                    <label for="butler-name">Rename your butler:</label>
+                    <input type="text" id="butler-name" name="butler_name" value="{{ current_settings.get('butler_name', 'Hydrus Butler') }}" required>
+                </div>
+            </section>
+
+            <hr>
+            <section id="appearance-settings">
+                <h3>Appearance</h3>
+                <div class="setting-row">
+                    <label for="theme-select">Application Theme:</label>
+                    <select id="theme-select" name="theme">
+                        {% for theme_name in current_settings.get('available_themes', ['default']) %}
+                            <option value="{{ theme_name }}" {% if current_settings.get('theme') == theme_name %}selected{% endif %}>
+                                {{ theme_name|capitalize }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                    <p class="setting-description"><small>Select the visual theme for the application. New themes can be added by placing .css files in the <code>static/css</code> directory.</small></p>
+                </div>
+            </section>
+
+            <button type="submit" class="save-settings-button">Save Settings</button>
+        </form>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div id="flashes-container">
+                    {% for category, message in messages %}
+                        <div class="flash-message flash-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <div id="status-message" class="status-message" style="display: none;"></div>
+
+    </main>
+
+    <footer>
+        <p>Kept in order by {{ current_settings.get('butler_name', 'Hydrus Butler') }} © <span id="current-year">2024</span></p>
+    </footer>
+    <script>
+        // Ensure correct theme stylesheet is linked (Flask might cache url_for sometimes)
+        const themeName = "{{ current_settings.get('theme', 'default') }}";
+        const themeLink = document.getElementById('main-stylesheet');
+        if (themeLink && themeName) {
+            const expectedHref = `/static/css/${themeName}.css`;
+            if (!themeLink.href.endsWith(expectedHref)) {
+                 // themeLink.href = expectedHref; // This line might cause issues if JS runs before CSS fully applied
+            }
+        }
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+    <script type="module" src="{{ url_for('static', filename='js/settings.js') }}"></script>
+</body>
+</html>

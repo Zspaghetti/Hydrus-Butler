@@ -1,0 +1,1341 @@
+@import url('./fonts/google-fonts-1748599595942.css'); 
+
+/* --- START OF FILE Mocha.css --- */
+
+html {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: var(--font-primary);
+    margin: 0;
+    padding: 0;
+    background-color: var(--body-bg-color);
+    color: var(--body-text-color);
+    min-height: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-primary-color);
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+}
+
+p {
+    line-height: 1.6;
+}
+
+a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--link-hover-color);
+    text-decoration: underline;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid var(--hr-color);
+    margin: 20px 0;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    margin-bottom: 5px;
+}
+
+/* --- Layout Components --- */
+header {
+    background-color: var(--panel-bg-color);
+    color: var(--panel-text-color);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    color: var(--panel-text-color);
+    margin: 0;
+    font-size: 1.5em;
+}
+
+nav button {
+    padding: 8px 15px;
+    background-color: var(--button-secondary-bg-color);
+    color: var(--button-secondary-text-color);
+    border: none;
+    border-radius: var(--border-radius-default);
+    cursor: pointer;
+    font-size: 1em;
+}
+
+nav button:hover {
+    background-color: var(--button-secondary-hover-bg-color);
+}
+
+main {
+    padding: 20px;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+    color: var(--text-secondary-color);
+    font-size: 0.9em;
+}
+
+/* --- General Form Styles --- */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: var(--text-label-strong-color);
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+select,
+textarea {
+    width: 100%;
+    padding: 8px;
+    background-color: var(--input-bg-color);
+    border: 1px solid var(--input-border-color);
+    color: var(--input-text-color);
+    border-radius: var(--border-radius-default);
+    margin-bottom: 10px;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--input-focus-border-color);
+    box-shadow: 0 0 0 2px var(--input-focus-border-color_opacified, rgba(111, 78, 55, 0.3)); /* Adjusted default to match theme */
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--text-placeholder-color);
+}
+
+/* --- Button Styles --- */
+button,
+input[type="button"],
+input[type="submit"] {
+    padding: 10px 20px;
+    color: var(--button-primary-text-color);
+    border: none;
+    border-radius: var(--border-radius-default);
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+}
+
+button[type="submit"] {
+    background-color: var(--button-primary-bg-color);
+    color: var(--button-primary-text-color);
+}
+
+button[type="submit"]:hover {
+    background-color: var(--button-primary-hover-bg-color);
+}
+
+/* --- MODIFICATION FOR SVG BUTTON ICON --- */
+.add-button {
+    padding: 0;
+    background-color: var(--button-primary-bg-color);
+    color: var(--button-primary-text-color);
+    border-radius: var(--border-radius-round);
+    cursor: pointer;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    box-shadow: var(--box-shadow-default);
+    line-height: 1;
+    z-index: 500;
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    border: 2px solid var(--text-on-accent-color); /* Cream border on FAB from theme */
+}
+
+.add-button .icon-placeholder { /* Hides the "+" if present in HTML for this theme */
+    display: none;
+}
+
+.add-button::before { /* Coffee Cup Icon */
+    content: "";
+    display: block;
+    /* Adjust size to make the new SVG fit well, it's a bit squarer */
+    width: 60%;
+    height: 60%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the icon */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    /* New Coffee cup SVG (cup/handle: %23FFF8E7, coffee: %236F4E37) */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 50 Q32 60 52 50 L48 18 Q32 10 16 18 Z' fill='%23FFF8E7'/%3E%3Cellipse cx='32' cy='19' rx='15' ry='4' fill='%236F4E37'/%3E%3Cpath d='M48 28 C58 30 58 42 48 44' stroke='%23FFF8E7' stroke-width='6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    transition: transform 0.2s ease-out;
+}
+
+.add-button::after { /* Steam Effect */
+    content: "";
+    display: block;
+    width: 30%; /* Adjust size for new steam SVG */
+    height: 25%;
+    position: absolute;
+    /*
+     * Position steam carefully:
+     * The cup ::before is 60% height, centered. So its top edge is at 50% - 30% = 20% from button top.
+     * The coffee liquid inside the cup is a bit lower.
+     * Let's aim for the steam to start visually just above the coffee.
+     * The steam element itself is centered horizontally with left: 50% and transform: translateX(-50%) in the animation.
+     * top: 22% might be a good starting point relative to the button top.
+    */
+    top: 22%; /* Position the steam's anchor point higher */
+    left: 50%; /* Horizontal centering will be done by transform in animation */
+    /* transform: translateX(-50%); -- This will be part of the animation */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    /* New Steam SVG (stroke %23FFF8E7) */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cg%3E%3Cpath d='M6 18 Q8 14 10 18 T14 18' stroke='%23FFF8E7' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3Cpath d='M9 14 Q11 10 13 14 T17 14' stroke='%23FFF8E7' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3Cpath d='M7 10 Q9 6 11 10 T15 10' stroke='%23FFF8E7' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    /* The animation will handle the initial transform, so no need for transform: translate(-50%, -50%) here */
+}
+
+.add-button:hover {
+    background-color: var(--button-primary-hover-bg-color);
+    transform: scale(1.08);
+    box-shadow: 0 6px 14px var(--box-shadow-default-color);
+}
+
+.add-button:hover::before { /* Coffee cup icon scales a bit on hover */
+    /* transform: translate(-50%, -50%) scale(1.1); */ /* Already centered, just scale */
+    transform: translate(-50%, -50%) scale(1.05); /* Slightly less aggressive scale */
+}
+
+.add-button:hover::after { /* Steam appears and animates on hover */
+    opacity: 1; /* Make steam visible */
+    animation: steam-rise-fade 1.8s ease-out infinite;
+}
+
+@keyframes steam-rise-fade {
+    0% {
+        opacity: 0;
+        /* Starts slightly lower relative to its 'top' position and smaller */
+        /* translate(-50%, Y) - Y is relative to steam element height. Positive Y moves it down. */
+        transform: translate(-50%, 20%) scale(0.7);
+    }
+    20% { /* Fade in quicker */
+        opacity: 0.8;
+        transform: translate(-50%, -50%) scale(0.9); /* Rise to initial full position */
+    }
+    75% {
+        opacity: 0.8;
+        transform: translate(-52%, -130%) scale(1); /* Continue rising, slight drift, full size */
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-55%, -200%) scale(1.1); /* Rise further, larger, fade out */
+    }
+}
+/* --- END MODIFICATION FOR SVG BUTTON ICON --- */
+
+
+.secondary-button {
+    padding: 8px 15px;
+    background-color: var(--button-secondary-bg-color);
+    color: var(--button-secondary-text-color);
+    margin-bottom: 10px;
+}
+
+.secondary-button:hover {
+    background-color: var(--button-secondary-hover-bg-color);
+}
+
+.add-destination-button {
+    padding: 8px 15px;
+    background-color: var(--button-accent-bg-color);
+    color: var(--button-accent-text-color);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.add-destination-button:hover {
+    background-color: var(--button-accent-hover-bg-color);
+}
+
+
+/* --- Settings Form Specific Styles (#settings-form) --- */
+#settings-form div {
+    margin-bottom: 15px;
+}
+
+#settings-form input[type="number"] {
+    width: 100px;
+}
+
+#settings-form .checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+#settings-form .checkbox-row label {
+     margin-bottom: 0;
+     font-weight: normal;
+     color: var(--text-label-color);
+     display: inline-block;
+ }
+#settings-form .checkbox-row input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+/* --- Rules Table (#rules-table-container, #rules-table) --- */
+#rules-table-container {
+    margin-top: 20px;
+    overflow-x: auto;
+}
+
+#rules-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+#rules-table th,
+#rules-table td {
+    border: 1px solid var(--table-border-color);
+    padding: 10px;
+    text-align: left;
+    color: var(--table-text-color);
+}
+
+#rules-table th {
+    background-color: var(--table-header-bg-color);
+    color: var(--table-header-text-color);
+    font-weight: bold;
+}
+
+#rules-table tbody tr {
+    background-color: var(--table-row-odd-bg-color);
+    transition: background-color 0.15s ease;
+}
+#rules-table tbody tr:nth-child(even) {
+    background-color: var(--table-row-even-bg-color);
+}
+
+#rules-table tbody tr:hover {
+    background-color: var(--table-row-hover-bg-color);
+}
+
+#rules-table td button {
+    padding: 5px 10px;
+    margin-right: 5px;
+}
+
+#rules-table td button.run-button {
+    background-color: var(--button-secondary-bg-color);
+    color: var(--button-secondary-text-color);
+}
+#rules-table td button.run-button:hover { background-color: var(--button-secondary-hover-bg-color); }
+
+#rules-table td button.edit-button {
+    background-color: var(--button-edit-bg-color);
+    color: var(--button-edit-text-color);
+}
+#rules-table td button.edit-button:hover { background-color: var(--button-edit-hover-bg-color); }
+
+
+#rules-table td button.delete-button {
+    background-color: var(--button-danger-bg-color);
+    color: var(--button-danger-text-color);
+}
+#rules-table td button.delete-button:hover { background-color: var(--button-danger-hover-bg-color); }
+
+
+/* --- Modal Styles (.modal-overlay, .modal-content) --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--overlay-bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: opacity 0.3s ease;
+}
+
+.modal-content {
+    background-color: var(--panel-bg-color);
+    padding: 20px;
+    border-radius: var(--border-radius-default);
+    width: 90%;
+    max-width: 700px;
+    max-height: 80vh;
+    overflow-y: auto;
+    color: var(--panel-text-color);
+    box-shadow: var(--box-shadow-modal);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    transform: scale(0.95);
+    opacity: 0;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.3s ease;
+}
+.modal-overlay:not([style*="display: none"]) .modal-content {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.modal-content form {
+    padding-bottom: 20px;
+}
+
+.modal-content h3 {
+    color: var(--panel-text-color);
+    margin-top: 0;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--panel-text-color);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.close-button:hover {
+    color: var(--button-danger-bg-color);
+}
+
+/* --- Rule Form Styles (#rule-form) --- */
+#rule-form .add-condition-button,
+#rule-form .remove-condition-button,
+#rule-form .remove-destination-button {
+    padding: 8px 15px;
+    margin-top: 10px;
+}
+
+#rule-form .add-condition-button {
+    background-color: var(--button-secondary-bg-color);
+    color: var(--button-secondary-text-color);
+    margin-right: 10px;
+}
+#rule-form .add-condition-button:hover { background-color: var(--button-secondary-hover-bg-color); }
+
+#rule-form .remove-condition-button,
+#rule-form .remove-destination-button {
+    background-color: var(--button-danger-bg-color);
+    color: var(--button-danger-text-color);
+}
+#rule-form .remove-condition-button:hover,
+#rule-form .remove-destination-button:hover { background-color: var(--button-danger-hover-bg-color); }
+
+.condition-row {
+    background-color: var(--condition-row-bg-color);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: var(--border-radius-default);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.condition-row label {
+    color: var(--condition-row-text-color);
+    font-weight: normal;
+}
+
+.condition-row.nested-condition-row {
+    background-color: var(--condition-row-nested-bg-color);
+    border-left: 4px solid var(--condition-row-nested-border-color);
+    margin-left: 20px;
+    gap: 8px;
+}
+
+.condition-row .remove-condition-button {
+     flex-shrink: 0;
+     margin-bottom: 0;
+}
+
+.condition-row select,
+.condition-row input[type="text"],
+.condition-row input[type="number"],
+.condition-row textarea {
+     width: auto;
+     flex-grow: 1;
+     margin-bottom: 0;
+}
+
+.condition-row label {
+    display: inline-block;
+    margin-bottom: 0;
+    flex-shrink: 0;
+}
+
+.condition-row .options-area {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    gap: 8px;
+    background-color: var(--condition-options-area-bg-color);
+    padding: 8px;
+    border-radius: var(--border-radius-default);
+    border: 1px solid var(--condition-options-area-border-color);
+}
+
+.or-group-conditions-container {
+    border: 1px dashed var(--or-group-border-color);
+    padding: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: var(--border-radius-default);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.or-group-conditions-container .condition-row.nested-condition-row {
+    margin: 0;
+}
+
+/* --- Filetype UI in Modal --- */
+.filetype-options-container {
+    background-color: var(--filetype-container-bg-color);
+    padding: 10px;
+    border-radius: var(--border-radius-default);
+    border: 1px solid var(--filetype-container-border-color);
+    margin-top: 10px;
+    width: 100%;
+}
+
+.filetype-category-row {
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    border-bottom: 1px dashed var(--filetype-separator-color);
+}
+.filetype-category-row:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.filetype-category-header {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 5px 0;
+}
+.filetype-category-header input[type="checkbox"] {
+    flex-shrink: 0;
+    margin-right: 5px;
+    width: auto;
+}
+.filetype-category-header label {
+    flex-grow: 1;
+    margin: 0;
+    font-weight: bold;
+    cursor: pointer;
+    color: var(--text-label-strong-color);
+}
+
+.filetype-toggle-extensions {
+    margin-left: auto;
+    background: none;
+    border: none;
+    color: var(--filetype-toggle-color);
+    cursor: pointer;
+    font-size: 0.9em;
+    padding: 0 5px;
+    transition: transform 0.2s ease;
+}
+
+.filetype-extensions-container {
+    padding-left: 20px;
+    margin-top: 5px;
+    display: none;
+}
+.filetype-extension-row {
+    margin-bottom: 3px;
+    display: flex;
+    align-items: center;
+}
+.filetype-extension-row input[type="checkbox"] {
+    flex-shrink: 0;
+    margin-right: 5px;
+    width: auto;
+}
+.filetype-extension-row label {
+    margin: 0;
+    font-weight: normal;
+    color: var(--text-label-color);
+}
+
+/* --- Flashed Messages --- */
+#flashes-container {
+    margin-bottom: 20px;
+}
+
+.flash-message {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: var(--border-radius-default);
+    font-weight: bold;
+}
+
+.flash-success {
+    background-color: var(--flash-success-bg-color);
+    color: var(--flash-success-text-color);
+    border-left: 4px solid var(--flash-success-border-color);
+}
+
+.flash-error {
+    background-color: var(--flash-error-bg-color);
+    color: var(--flash-error-text-color);
+    border-left: 4px solid var(--flash-error-border-color);
+}
+
+.flash-info {
+    background-color: var(--flash-info-bg-color);
+    color: var(--flash-info-text-color);
+    border-left: 4px solid var(--flash-info-border-color);
+}
+
+/* --- Note/Info Box (e.g., for Settings page) --- */
+.note {
+     margin-top: 20px;
+     padding: 10px;
+     background-color: var(--note-bg-color);
+     color: var(--note-text-color);
+     border-left: 4px solid var(--note-border-color);
+     border-radius: var(--border-radius-default);
+     font-size: 0.9em;
+}
+.note p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+.note p:first-child {
+    margin-top: 0;
+}
+.note p:last-child {
+    margin-bottom: 0;
+}
+.note ul {
+    margin-top: 0.5em;
+    margin-left: 20px;
+    list-style: disc;
+}
+.note hr {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-top: 1px solid var(--hr-color);
+}
+
+/* --- Status Message (from settings.html inline style) --- */
+.status-message {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: var(--border-radius-default);
+    display: none;
+    background-color: var(--flash-info-bg-color);
+    color: var(--flash-info-text-color);
+    border-left: 4px solid var(--flash-info-border-color);
+}
+.status-message.success {
+    background-color: var(--flash-success-bg-color);
+    color: var(--flash-success-text-color);
+    border-left-color: var(--flash-success-border-color);
+}
+.status-message.error {
+    background-color: var(--flash-error-bg-color);
+    color: var(--flash-error-text-color);
+    border-left-color: var(--flash-error-border-color);
+}
+
+/* --- Utility Classes --- */
+.loading-cursor, .loading-cursor * {
+    cursor: wait !important;
+}
+
+/* Visually Hidden class for accessibility (used with SVG button) */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+
+/* --- START OF THEME: Mocha Musings --- */
+@import url('./fonts/google-fonts-1748599595942.css'); 
+
+:root {
+    /* General */
+    --font-primary: 'PT Sans', sans-serif;
+    --font-headings: 'Bree Serif', serif;
+    --body-bg-color: #FAF0E6; /* Linen - warm off-white */
+    --body-text-color: #4A3B31; /* Dark Coffee Brown */
+    --border-radius-default: 4px; /* Classic rounded rectangle */
+    --border-radius-retro: 4px; /* Specific for buttons */
+    --border-radius-round: 50%;
+    --box-shadow-default-color: rgba(74, 59, 49, 0.15); /* Brownish shadow */
+    --box-shadow-default: 0 2px 5px var(--box-shadow-default-color);
+    --box-shadow-modal-color: rgba(74, 59, 49, 0.25);
+    --box-shadow-modal: 0 4px 15px var(--box-shadow-modal-color);
+    --overlay-bg-color: rgba(240, 230, 220, 0.85); /* Light, warm overlay */
+
+    /* Panel Colors */
+    --panel-bg-color: #E0D8CC; /* Soft, desaturated light brown/tan */
+    --panel-text-color: #3E2E23; /* Darker brown for panels */
+    --panel-secondary-bg-color: #EDE4D9; /* Lighter tan for even rows, inputs */
+    --panel-tertiary-bg-color: #C8BBAE;   /* Borders, hover states for panels */
+
+    /* Text Colors */
+    --text-primary-color: var(--body-text-color);
+    --text-secondary-color: #705F53; /* Muted brown */
+    --text-on-accent-color: #FFF8E7; /* Warm Cream text on dark accents */
+    --text-on-dark-accent-color: #4A3B31; /* Dark coffee text for light accents */
+    --text-placeholder-color: #9E8C80;
+    --text-label-color: #604E42;
+    --text-label-strong-color: #5A3F2E; /* Dark Coffee for strong labels */
+
+    /* Input/Control Colors */
+    --input-bg-color: #FFFAF0; /* FloralWhite - a very light cream */
+    --input-text-color: var(--body-text-color);
+    --input-border-color: #B08D57; /* Softer, more golden brown border */
+    --input-focus-border-color: #6F4E37; /* Coffee Brown */
+    --input-focus-border-color_opacified: rgba(111, 78, 55, 0.3);
+    --input-disabled-bg-color: #F0EAE0;
+    --input-disabled-text-color: #A09084;
+    --input-disabled-border-color: #D0C0B0;
+
+    /* Button Colors */
+    --button-primary-bg-color: #6F4E37; /* Coffee Brown */
+    --button-primary-text-color: var(--text-on-accent-color);
+    --button-primary-hover-bg-color: #5A3F2E; /* Darker Coffee */
+
+    --button-secondary-bg-color: #8B0000; /* DarkRed/Maroon */
+    --button-secondary-text-color: var(--text-on-accent-color);
+    --button-secondary-hover-bg-color: #7A0000; /* Darker Maroon */
+
+    --button-accent-bg-color: #FFF8DC; /* Cornsilk - a light vanilla */
+    --button-accent-text-color: var(--text-on-dark-accent-color); /* Coffee text */
+    --button-accent-border-color: #D2B48C; /* Tan border for accent - if outlined */
+    --button-accent-hover-bg-color: #FFFDF5; /* Brighter Cornsilk */
+
+    --button-edit-bg-color: #DAA520; /* Goldenrod */
+    --button-edit-text-color: #FFFFFF; /* White for better contrast on gold */
+    --button-edit-hover-bg-color: #B8860B; /* DarkGoldenrod */
+
+    --button-danger-bg-color: #A0522D; /* Sienna - a reddish brown */
+    --button-danger-text-color: var(--text-on-accent-color);
+    --button-danger-hover-bg-color: #8B4513; /* SaddleBrown */
+
+    /* Link Colors */
+    --link-color: #8B4513; /* SaddleBrown for links */
+    --link-hover-color: #A0522D; /* Sienna */
+
+    /* Table Colors */
+    --table-header-bg-color: var(--panel-secondary-bg-color); /* Lighter tan header */
+    --table-header-text-color: var(--panel-text-color);
+    --table-border-color: #D8C8B8; /* Light tan border */
+    --table-row-odd-bg-color: transparent; /* Uses body bg */
+    --table-row-even-bg-color: #F7F2EC; /* Very slightly off body for even rows */
+    --table-row-hover-bg-color: #F5EDE0; /* Warmer cream hover */
+    --table-text-color: var(--text-primary-color);
+
+    /* Conditional UI Colors (Rule Editor) */
+    --condition-row-bg-color: var(--panel-secondary-bg-color); /* Lighter tan */
+    --condition-row-text-color: var(--text-primary-color);
+    --condition-row-nested-bg-color: #FDF8F0; /* Even lighter for nested */
+    --condition-row-nested-border-color: var(--button-secondary-bg-color); /* Maroon border */
+    --condition-options-area-bg-color: #FFFFFF; /* White for options clarity */
+    --condition-options-area-border-color: var(--input-border-color);
+    --or-group-border-color: var(--panel-tertiary-bg-color);
+
+    /* Flash Message Colors */
+    --flash-success-bg-color: #F0FFF0; /* Honeydew - very pale green */
+    --flash-success-text-color: #2E8B57; /* SeaGreen */
+    --flash-success-border-color: #8FBC8F; /* DarkSeaGreen */
+    --flash-error-bg-color: #FFF0F0; /* Pale Rose/Linen */
+    --flash-error-text-color: #8B0000; /* DarkRed */
+    --flash-error-border-color: #CD5C5C; /* IndianRed */
+    --flash-info-bg-color: #F5F5DC; /* Beige */
+    --flash-info-text-color: #8B4513; /* SaddleBrown */
+    --flash-info-border-color: #D2B48C; /* Tan */
+
+    /* Filetype UI Colors */
+    --filetype-container-bg-color: var(--input-bg-color); /* Creamy */
+    --filetype-container-border-color: var(--input-border-color);
+    --filetype-separator-color: var(--input-border-color);
+    --filetype-toggle-color: var(--text-label-strong-color);
+
+    /* Note/Info Box Colors */
+    --note-bg-color: var(--panel-secondary-bg-color); /* Lighter tan */
+    --note-text-color: var(--text-primary-color);
+    --note-border-color: var(--button-primary-bg-color); /* Coffee Brown */
+    --hr-color: #A0522D; /* Sienna for HR */
+}
+
+/* --- Theme-Specific Style Overrides & Flourishes --- */
+body {
+    font-weight: 400; /* PT Sans Regular */
+    font-size: 15.5px; /* Slightly larger for readability on light bg */
+    line-height: 1.7;
+    /* Optional: Subtle linen texture */
+    /* background-image: url('path/to/subtle-linen-texture.png'); */
+    /* background-repeat: repeat; */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-headings); /* Bree Serif */
+    font-weight: 400; /* Bree Serif Regular */
+    color: #5A3F2E; /* Dark Coffee for headings */
+    letter-spacing: 0.1px;
+}
+h1 { font-size: 2.4em; margin-bottom: 0.6em; color: var(--button-primary-bg-color);}
+h2 { font-size: 1.9em; }
+h3 { font-size: 1.6em; }
+
+p { letter-spacing: 0.05px; }
+
+a {
+    font-weight: 700; /* PT Sans Bold for links */
+    transition: color 0.15s ease-in-out, text-decoration-color 0.15s ease-in-out;
+}
+a:hover {
+    text-decoration-color: var(--link-hover-color);
+}
+
+hr { /* Double line HR */
+    border: 0;
+    height: 3px;
+    border-top: 1px solid var(--hr-color);
+    border-bottom: 1px solid var(--hr-color);
+    margin: 30px 0;
+    opacity: 0.6;
+}
+
+ul li { margin-bottom: 7px; }
+ul li::before {
+    content: "☕"; /* Coffee bean emoji (replace with SVG for production) */
+    color: var(--button-primary-bg-color);
+    margin-right: 9px;
+    font-size: 0.9em;
+    opacity: 0.9;
+    vertical-align: middle;
+}
+
+header {
+    padding: 15px 25px;
+    border-bottom: 2px solid var(--button-primary-bg-color); /* Thicker coffee border */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+}
+header h1 {
+    font-size: 1.8em; letter-spacing: 0.5px;
+    color: var(--button-primary-bg-color); /* Coffee title */
+}
+
+/* General Button Styling */
+button, input[type="button"], input[type="submit"] {
+    border-radius: var(--border-radius-retro);
+    font-family: var(--font-primary);
+    font-weight: 700; /* PT Sans Bold */
+    padding: 10px 22px;
+    letter-spacing: 0.3px;
+    text-shadow: 0 1px 0px rgba(0,0,0,0.1); /* Subtle depth for text */
+    box-shadow: 0 2px 3px rgba(0,0,0,0.1), inset 0 -1px 1px rgba(0,0,0,0.05); /* Bakelite feel */
+    
+    /* Default appearance for plain buttons */
+    background-color: var(--button-accent-bg-color); /* Default: Cornsilk */
+    color: var(--button-accent-text-color);       /* Default: Coffee text */
+    border: 1px solid var(--button-accent-border-color); /* Default: Tan border */
+}
+button:hover, input[type="button"]:hover, input[type="submit"]:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 5px rgba(0,0,0,0.12), inset 0 -1px 1px rgba(0,0,0,0.05);
+}
+button:active, input[type="button"]:active, input[type="submit"]:active {
+    transform: translateY(1px);
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.15);
+    text-shadow: none;
+}
+
+/* Primary Submit Buttons: Variables handle colors */
+button[type="submit"] {
+     background-color: var(--button-primary-bg-color);
+     color: var(--button-primary-text-color);
+     border-color: var(--button-primary-hover-bg-color); /* Darker border for primary */
+}
+button[type="submit"]:hover { /* Hover already defined in variables, this ensures it applies */
+    background-color: var(--button-primary-hover-bg-color);
+}
+
+
+/* Secondary Buttons (e.g., Nav, Run Rule) use Maroon */
+nav button, .secondary-button,
+#rules-table td button.run-button,
+#rule-form .add-condition-button {
+    background-color: var(--button-secondary-bg-color);
+    color: var(--button-secondary-text-color);
+    border-color: var(--button-secondary-hover-bg-color); /* Darker border for maroon */
+}
+nav button:hover, .secondary-button:hover, /* Hover already defined in variables, this ensures it applies */
+#rules-table td button.run-button:hover,
+#rule-form .add-condition-button:hover {
+    background-color: var(--button-secondary-hover-bg-color);
+}
+
+
+/* Accent Buttons (Vanilla with Coffee text) */
+.add-destination-button {
+    background-color: var(--button-accent-bg-color);
+    color: var(--button-accent-text-color);
+    border: 1px solid var(--button-accent-border-color);
+}
+.add-destination-button:hover {
+    background-color: var(--button-accent-hover-bg-color);
+    border-color: var(--button-primary-bg-color); /* Coffee border on hover */
+}
+
+
+/* .add-button styling moved to base CSS section for icon implementation */
+
+main { padding: 25px; }
+
+footer {
+    padding: 20px;
+    margin-top: 35px;
+    font-size: 0.9em;
+    border-top: 1px solid var(--hr-color);
+}
+
+label {
+    font-weight: 700; /* PT Sans Bold */
+    font-size: 0.9em;
+    color: var(--text-label-color);
+    margin-bottom: 7px;
+}
+
+input[type="text"], input[type="password"], input[type="number"],
+input[type="email"], input[type="url"], select, textarea {
+    padding: 11px 13px;
+    font-family: var(--font-primary);
+    font-size: 1em;
+    border-radius: var(--border-radius-default);
+    border-style: solid; /* Use solid, not dashed */
+    border-width: 1px;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+input[type="text"]:focus, input[type="password"]:focus, input[type="number"]:focus,
+input[type="email"]:focus, input[type="url"]:focus, select:focus, textarea:focus {
+    border-color: var(--input-focus-border-color);
+    box-shadow: 0 0 0 3px var(--input-focus-border-color_opacified),
+                0 0 5px var(--input-focus-border-color_opacified);
+}
+
+select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%236F4E37'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'/%3E%3C/svg%3E"); /* Coffee chevron */
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 18px 18px;
+    padding-right: 40px;
+}
+select option {
+    background-color: var(--input-bg-color);
+    color: var(--input-text-color);
+}
+
+#settings-form input[type="number"] { width: 110px; }
+#settings-form .checkbox-row { gap: 12px; padding: 8px 5px; }
+#settings-form .checkbox-row label { font-size: 1em; color: var(--text-primary-color); }
+#settings-form .checkbox-row input[type="checkbox"],
+.filetype-category-header input[type="checkbox"],
+.filetype-extension-row input[type="checkbox"] {
+    appearance: none;
+    width: 17px; height: 17px;
+    border: 1.5px solid var(--input-border-color); /* Golden brown border */
+    border-radius: 3px;
+    position: relative; cursor: pointer; vertical-align: middle;
+    background-color: var(--input-bg-color);
+    transition: all 0.2s ease;
+    margin-right: 8px;
+}
+#settings-form .checkbox-row input[type="checkbox"]:hover,
+.filetype-category-header input[type="checkbox"]:hover,
+.filetype-extension-row input[type="checkbox"]:hover {
+    border-color: var(--input-focus-border-color); /* Coffee */
+}
+#settings-form .checkbox-row input[type="checkbox"]:checked,
+.filetype-category-header input[type="checkbox"]:checked,
+.filetype-extension-row input[type="checkbox"]:checked {
+    background-color: var(--button-primary-bg-color); /* Coffee */
+    border-color: var(--button-primary-bg-color);
+}
+#settings-form .checkbox-row input[type="checkbox"]:checked::before,
+.filetype-category-header input[type="checkbox"]:checked::before,
+.filetype-extension-row input[type="checkbox"]:checked::before {
+    content: '✓';
+    display: block;
+    color: var(--text-on-accent-color); /* Cream check */
+    font-size: 13px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 15px; /* Adjust for 17px box */
+}
+
+#rules-table-container {
+    margin-top: 25px;
+    border: 1px solid var(--table-border-color);
+    border-radius: var(--border-radius-default);
+    background-color: var(--body-bg-color); /* Table area uses body bg */
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+#rules-table th, #rules-table td { padding: 12px 15px; }
+#rules-table th {
+    font-family: var(--font-headings); /* Bree Serif for table headers */
+    font-weight: 400; /* Regular */
+    font-size: 1em; /* Slightly larger for Bree Serif */
+    text-transform: none; /* No uppercase for Bree Serif header */
+    letter-spacing: 0.2px;
+    background-color: var(--table-header-bg-color); /* Lighter tan */
+    color: var(--text-label-strong-color); /* Coffee */
+    border-bottom: 2px solid var(--button-primary-bg-color); /* Coffee underline */
+}
+#rules-table td button { padding: 7px 11px; font-size: 0.9em; }
+
+.modal-content {
+    padding: 30px;
+    max-width: 720px;
+    border: 2px solid var(--button-primary-bg-color); /* Coffee border for modal */
+    border-radius: var(--border-radius-default);
+    background-color: var(--body-bg-color); /* Linen background for modal content */
+}
+.modal-content h3 { /* Modal title */
+    font-size: 1.9em; /* Bree Serif */
+    color: var(--button-primary-bg-color); /* Coffee */
+    border-bottom: 1px solid var(--hr-color);
+    padding-bottom: 15px; margin-bottom: 25px;
+    text-align: center;
+}
+.close-button {
+    font-size: 1.8em; top: 15px; right: 18px;
+    color: var(--text-secondary-color);
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+.close-button:hover {
+    color: var(--button-danger-hover-bg-color); /* SaddleBrown */
+    transform: rotate(90deg) scale(1.1);
+}
+
+.condition-row {
+    padding: 15px; margin-bottom: 12px;
+    border: 1px solid var(--panel-tertiary-bg-color);
+    background-color: #FFFDFB; /* Very slightly off-white */
+    border-radius: var(--border-radius-default);
+}
+.condition-row.nested-condition-row {
+    margin-left: 20px;
+    border-left: 4px solid var(--condition-row-nested-border-color); /* Maroon */
+    background-color: var(--condition-row-nested-bg-color); /* Even lighter */
+}
+.condition-row .options-area { padding: 12px; background-color: var(--body-bg-color); border-radius: var(--border-radius-default); }
+.or-group-conditions-container {
+    padding: 15px; margin-top: 15px; margin-bottom: 15px;
+    background-color: rgba(224, 216, 204, 0.3); /* Faint panel-bg-color */
+    border-style: dashed;
+    border-width: 1.5px;
+    border-color: var(--panel-tertiary-bg-color);
+    border-radius: var(--border-radius-default);
+}
+
+.filetype-options-container { padding: 15px; margin-top: 15px; background-color: #FFFDFB; border-radius: var(--border-radius-default); }
+.filetype-category-header label {
+    font-family: var(--font-headings); /* Bree Serif */
+    font-weight: 400;
+    font-size: 1.1em;
+    color: var(--text-label-strong-color); /* Coffee */
+}
+.filetype-toggle-extensions { font-size: 1em; transition: transform 0.3s ease; }
+.filetype-toggle-extensions.expanded { color: var(--button-primary-bg-color); transform: rotate(45deg); }
+.filetype-extensions-container { padding-left: 25px; margin-top: 8px; }
+
+.flash-message {
+    padding: 12px 18px;
+    font-weight: 700; /* PT Sans Bold */
+    border-left-width: 5px;
+    box-shadow: var(--box-shadow-default);
+    border-radius: var(--border-radius-default);
+}
+/* Flash colors already defined by warm variables */
+
+/* --- Logs Page Styles --- */
+#log-statistics-section,
+#detailed-logs-section {
+    background-color: var(--panel-secondary-bg-color); /* Lighter tan, consistent with other content blocks */
+    padding: 20px 25px;
+    border-radius: var(--border-radius-default);
+    margin-bottom: 30px;
+    box-shadow: var(--box-shadow-default);
+}
+
+#log-statistics-section h2,
+#detailed-logs-section h2 {
+    font-family: var(--font-headings);
+    color: var(--text-label-strong-color); /* Coffee color for section titles */
+    margin-top: 0;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--hr-color);
+}
+
+.filters-container, /* For stats section */
+#log-search-form {   /* For detailed logs section */
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Gap between direct children (e.g. filter groups, action buttons) */
+}
+
+/* Styling for individual filter items wrapper, if any */
+.filters-container > div, /* e.g. stats custom date range wrapper */
+#log-search-form .log-search-grid > div, /* Each cell in the grid */
+#log-search-form .time-filter-group > div { /* Specific for date inputs in custom range */
+    /* This is for the div that contains label + input */
+}
+
+
+/* Stats custom date range specific layout */
+#stats-custom-date-range,
+#search-custom-date-range {
+    /* display:none; is set inline initially */
+    display: flex;
+    flex-direction: row; /* Layout start and end date side-by-side */
+    gap: 20px; /* Gap between start_date_div and end_date_div */
+    align-items: flex-end; /* Align items based on their bottom edge */
+}
+#stats-custom-date-range > div, /* The div containing label+input for start_date */
+#search-custom-date-range > div { /* The div containing label+input for start_date */
+    flex-grow: 1; /* Allow date input groups to take available space */
+    display: flex;
+    flex-direction: column; /* Label on top of input */
+    gap: 5px; /* Gap between label and input */
+}
+
+#stats-custom-date-range input[type="date"],
+#search-custom-date-range input[type="date"] {
+    padding: 9px 11px; /* Consistent padding for date inputs */
+}
+
+/* Log Search Grid */
+.log-search-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* Responsive grid */
+    gap: 20px 25px; /* Row gap, Column gap */
+}
+.log-search-grid > div { /* Each cell in the grid */
+    display: flex;
+    flex-direction: column; /* Stack label above input */
+    gap: 5px; /* Gap between label and input in a grid cell */
+}
+
+
+.form-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-start;
+    margin-top: 15px; /* Space above the action buttons */
+}
+
+.chart-container {
+    position: relative;
+    margin: 25px auto;
+    height: 350px; /* Default height, adjust as needed */
+    width: 100%;
+    max-width: 800px;
+    background-color: var(--body-bg-color); /* Linen background for chart area */
+    border: 1px solid var(--input-border-color);
+    border-radius: var(--border-radius-default);
+    padding: 20px;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.05);
+}
+
+#stats-loading-message,
+#logs-loading-message {
+    padding: 15px;
+    text-align: center;
+    color: var(--text-secondary-color);
+    font-style: italic;
+    font-size: 1.05em;
+}
+
+.error-message { /* Already styled by .flash-error via variable, but make it specific if needed */
+    padding: 12px 18px;
+    margin-bottom: 15px;
+    background-color: var(--flash-error-bg-color);
+    color: var(--flash-error-text-color);
+    border: 1px solid var(--flash-error-border-color);
+    border-left: 5px solid var(--flash-error-border-color); /* Stronger left border */
+    border-radius: var(--border-radius-default);
+    font-weight: normal; /* Override .flash-message bold if this is just info */
+}
+
+.results-summary {
+    margin: 20px 0;
+    padding: 12px 18px;
+    background-color: var(--panel-bg-color);
+    border: 1px solid var(--panel-tertiary-bg-color);
+    border-radius: var(--border-radius-default);
+    font-size: 0.95em;
+    color: var(--text-primary-color);
+}
+
+.table-responsive {
+    overflow-x: auto;
+    margin-top: 15px;
+    border: 1px solid var(--table-border-color);
+    border-radius: var(--border-radius-default);
+    background-color: var(--body-bg-color); /* Match table container */
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08); /* Match rules table container */
+}
+
+#detailed-logs-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px; /* Ensure table has a minimum width for better layout of columns */
+}
+
+#detailed-logs-table th,
+#detailed-logs-table td {
+    border: 1px solid var(--table-border-color); /* Use theme's table border */
+    padding: 10px 14px;
+    text-align: left;
+    color: var(--table-text-color);
+    font-size: 0.9em;
+    vertical-align: top; /* Align content to top for multi-line cells */
+}
+
+#detailed-logs-table th {
+    background-color: var(--table-header-bg-color);
+    color: var(--text-label-strong-color); /* Coffee, like other headers */
+    font-family: var(--font-headings);
+    font-weight: 400;
+    letter-spacing: 0.2px;
+    border-bottom: 2px solid var(--button-primary-bg-color); /* Coffee underline */
+    white-space: nowrap; /* Prevent headers from wrapping */
+}
+
+#detailed-logs-table tbody tr {
+    background-color: var(--table-row-odd-bg-color);
+    transition: background-color 0.15s ease;
+}
+#detailed-logs-table tbody tr:nth-child(even) {
+    background-color: var(--table-row-even-bg-color);
+}
+#detailed-logs-table tbody tr:hover {
+    background-color: var(--table-row-hover-bg-color);
+}
+
+#detailed-logs-table td {
+    /* Allow long strings to break and wrap */
+    overflow-wrap: break-word;
+    word-wrap: break-word; /* Legacy */
+    word-break: break-word; /* For CJK, but overflow-wrap is preferred */
+}
+
+/* Specific column widths or behaviors if needed */
+#detailed-logs-table td:nth-child(1) { width: 15%; min-width: 140px; } /* Timestamp */
+#detailed-logs-table td:nth-child(3) { width: 15%; min-width: 150px; } /* File Hash/Summary */
+#detailed-logs-table td:nth-child(6) { width: 20%; min-width: 200px; } /* Details/Parameters */
+#detailed-logs-table td:nth-child(7), /* Run ID */
+#detailed-logs-table td:nth-child(8)  /* Log/Exec ID */
+{
+    width: 10%;
+    min-width: 120px;
+    font-family: 'Courier New', Courier, monospace; /* Monospace for IDs */
+    font-size: 0.85em;
+}
+
+
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 25px;
+    padding: 10px;
+}
+
+.pagination-controls button {
+    padding: 8px 14px;
+    font-size: 0.9em;
+    /* Uses default button styling (Cornsilk background, Coffee text) */
+}
+.pagination-controls button:disabled {
+    background-color: var(--input-disabled-bg-color);
+    color: var(--input-disabled-text-color);
+    border-color: var(--input-disabled-border-color);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+.pagination-controls button:disabled:hover {
+    transform: none; /* No hover effect for disabled */
+    box-shadow: 0 2px 3px rgba(0,0,0,0.1), inset 0 -1px 1px rgba(0,0,0,0.05); /* Reset to base */
+}
+.pagination-controls span {
+    padding: 8px 12px;
+    color: var(--text-primary-color);
+    font-size: 0.95em;
+}
+
+.note {
+     padding: 15px;
+     font-size: 0.95em;
+     border-left-width: 5px;
+     border-radius: var(--border-radius-default);
+     box-shadow: inset 3px 0 0 var(--note-border-color), var(--box-shadow-default);
+}

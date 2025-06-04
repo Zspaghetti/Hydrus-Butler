@@ -1,0 +1,935 @@
+@import url('./fonts/google-fonts-1748599609291.css'); 
+
+:root {
+    /* General */
+    --font-primary: 'Montserrat', sans-serif;
+    --font-monospace: 'Roboto Mono', monospace;
+    --body-bg-dark: #0A0A0A; /* Very dark, near black */
+    --body-text-light: #E0E0E0; /* Light grey for text */
+    --border-radius-sharp: 2px;
+    --border-radius-soft: 4px;
+    --border-radius-round: 50%;
+
+    --overlay-bg-color: rgba(0, 0, 0, 0.8);
+    --box-shadow-interface-color: rgba(0, 174, 239, 0.2); /* Subtle blue glow */
+    --box-shadow-interface: 0 0 10px var(--box-shadow-interface-color);
+    --box-shadow-modal-color: rgba(0, 174, 239, 0.35);
+    --box-shadow-modal: 0 0 25px var(--box-shadow-modal-color);
+
+    /* Panel Colors (Header, Modal, Table Headers) */
+    --panel-bg-darker: #1A1A1A; /* Darker panel */
+    --panel-bg-mid: #222222;    /* Mid panel */
+    --panel-text-color: var(--body-text-light);
+    --panel-border-subtle: #333333;
+    --panel-border-sharp: #444444;
+
+    /* Accent Colors (The "Matrix Glitch") */
+    --accent-electric-blue: #00AEEF;
+    --accent-electric-blue-hover: #00CFFF;
+    --accent-electric-blue-translucent: rgba(0, 174, 239, 0.5);
+    --accent-lime-green: #32CD32;
+    --accent-lime-green-hover: #3CFF3C;
+    --accent-lime-green-translucent: rgba(50, 205, 50, 0.5);
+    --accent-hot-pink: #FF007F;
+    --accent-hot-pink-hover: #FF3399;
+    --accent-hot-pink-rgb: 255, 0, 127; /* For use in rgba() */
+
+
+    /* Text Colors */
+    --text-primary-color: var(--body-text-light);
+    --text-secondary-color: #999999; /* Muted grey for less important text */
+    --text-on-accent-color: #0A0A0A;   /* Black text on bright buttons */
+    --text-placeholder-color: #666666;
+    --text-label-color: #BBBBBB;
+    --text-label-strong-color: var(--accent-electric-blue);
+
+    /* Input/Control Colors */
+    --input-bg-color: #101010;
+    --input-text-color: var(--body-text-light);
+    --input-border-color: var(--panel-border-subtle);
+    --input-focus-border-color: var(--accent-electric-blue);
+    --input-focus-box-shadow-color: var(--accent-electric-blue-translucent);
+    --input-disabled-bg-color: #252525;
+    --input-disabled-text-color: #555555;
+    --input-disabled-border-color: #303030;
+
+    /* Button Colors (Semantic) */
+    /* Primary (Save, main positive actions) */
+    --button-primary-bg-color: var(--accent-electric-blue);
+    --button-primary-text-color: var(--text-on-accent-color);
+    --button-primary-hover-bg-color: var(--accent-electric-blue-hover);
+    /* Secondary (Navigation, standard actions, default for <button>) */
+    --button-secondary-bg-color: transparent;
+    --button-secondary-text-color: var(--accent-electric-blue);
+    --button-secondary-border-color: var(--accent-electric-blue);
+    --button-secondary-hover-bg-color: var(--accent-electric-blue-translucent);
+    --button-secondary-hover-text-color: var(--body-text-light);
+    /* Accent ("Add Another", "Add Condition" - Lime Green) */
+    --button-accent-bg-color: var(--accent-lime-green);
+    --button-accent-text-color: var(--text-on-accent-color);
+    --button-accent-hover-bg-color: var(--accent-lime-green-hover);
+    /* Edit/Warning (Can use secondary blue or a neutral dark grey) */
+    --button-edit-bg-color: #555555;
+    --button-edit-text-color: var(--body-text-light);
+    --button-edit-hover-bg-color: #666666;
+    /* Danger/Delete (Destructive actions - Hot Pink) */
+    --button-danger-bg-color: var(--accent-hot-pink);
+    --button-danger-text-color: #FFFFFF; /* White text on pink */
+    --button-danger-hover-bg-color: var(--accent-hot-pink-hover);
+
+    /* Link Colors */
+    --link-color: var(--accent-electric-blue);
+    --link-hover-color: var(--accent-electric-blue-hover);
+    --link-text-decoration: none;
+    --link-hover-text-decoration: underline;
+    --link-hover-text-decoration-color: var(--accent-electric-blue-hover);
+
+    /* Table Colors */
+    --table-header-bg-color: #000000; /* Pure black for headers */
+    --table-header-text-color: var(--accent-electric-blue);
+    --table-border-color: var(--panel-border-sharp);
+    --table-row-odd-bg-color: transparent;
+    --table-row-even-bg-color: #161616; /* Slightly off-black */
+    --table-row-hover-bg-color: #282828;
+    --table-text-color: var(--text-primary-color);
+
+    /* Conditional UI Colors (Rule Editor) */
+    --condition-row-bg-color: var(--panel-bg-mid);
+    --condition-row-text-color: var(--text-primary-color);
+    --condition-row-nested-bg-color: #2A2A2A;
+    --condition-row-nested-border-color: var(--accent-lime-green);
+    --condition-options-area-bg-color: var(--input-bg-color);
+    --condition-options-area-border-color: var(--input-border-color);
+    --or-group-border-color: var(--accent-electric-blue); /* Dashed Blue */
+
+    /* Flash Message Colors (System Alerts) */
+    --flash-success-border-color: var(--accent-lime-green);
+    --flash-error-border-color: var(--accent-hot-pink);
+    --flash-info-border-color: var(--accent-electric-blue);
+
+    /* Filetype UI Colors */
+    --filetype-container-bg-color: var(--panel-bg-darker);
+    --filetype-container-border-color: var(--panel-border-subtle);
+    --filetype-separator-color: var(--panel-border-subtle);
+    --filetype-toggle-color: var(--text-label-strong-color); /* Electric Blue */
+
+    /* Note/Info Box Colors */
+    --note-bg-color: var(--panel-bg-darker);
+    --note-text-color: var(--text-primary-color);
+    --note-border-color: var(--accent-electric-blue);
+    --hr-color: var(--panel-border-sharp); /* Default HR before glow */
+
+    /* Toggle Switch Checkbox Specifics */
+    --toggle-track-bg: #333;
+    --toggle-nub-bg: #777;
+}
+
+/* --- Global Resets & Base Styles --- */
+html {
+    height: 100%;
+    box-sizing: border-box;
+    font-size: 15px; /* Slightly smaller base for a denser, digital feel */
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: var(--font-primary);
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    background-color: var(--body-bg-dark);
+    color: var(--body-text-light);
+    min-height: 100%;
+    line-height: 1.6;
+    letter-spacing: 0.2px; /* Subtle letter spacing for clarity */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Scrollbars */
+body::-webkit-scrollbar { width: 8px; }
+body::-webkit-scrollbar-track { background: #000000; }
+body::-webkit-scrollbar-thumb { background-color: #333; border-radius: 4px; }
+body::-webkit-scrollbar-thumb:hover { background-color: var(--accent-electric-blue); }
+body { scrollbar-width: thin; scrollbar-color: #333 #000000; }
+
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-primary); /* Montserrat for headings too */
+    color: var(--text-primary-color);
+    margin-top: 1.2em;
+    margin-bottom: 0.5em;
+    font-weight: 600; /* Montserrat SemiBold */
+    text-transform: uppercase; /* Digital/Console feel */
+    letter-spacing: 1px;
+}
+h1 { font-size: 2em; color: var(--accent-electric-blue); font-weight: 700; }
+h2 { font-size: 1.6em; }
+h3 { font-size: 1.3em; color: var(--text-label-strong-color); } /* Blue for H3 */
+
+p { line-height: 1.65; margin-bottom: 1.1em; }
+
+a {
+    color: var(--link-color);
+    text-decoration: var(--link-text-decoration);
+    font-weight: 500; /* Montserrat Medium */
+    transition: color 0.15s ease, text-decoration-color 0.15s ease;
+}
+a:hover {
+    color: var(--link-hover-color);
+    text-decoration: var(--link-hover-text-decoration);
+    text-decoration-color: var(--link-hover-text-decoration-color);
+}
+
+hr { /* Glowing Line */
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right,
+        transparent,
+        var(--accent-electric-blue-translucent),
+        var(--accent-electric-blue),
+        var(--accent-electric-blue-translucent),
+        transparent
+    );
+    box-shadow: 0 0 5px var(--accent-electric-blue);
+    margin: 35px 0;
+}
+
+ul { list-style: none; padding-left: 0; }
+ul li {
+    margin-bottom: 6px;
+    padding-left: 18px; /* Space for custom bullet */
+    position: relative;
+}
+ul li::before { /* Digital Square Bullet */
+    content: "■";
+    color: var(--accent-electric-blue);
+    font-size: 0.7em;
+    position: absolute;
+    left: 0;
+    top: 5px; /* Adjust for vertical alignment */
+    line-height: 1;
+}
+
+/* --- Layout Components --- */
+header {
+    background-color: var(--panel-bg-darker);
+    color: var(--panel-text-color);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #000000; /* Black separator line */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5); /* Stronger shadow for depth */
+    position: sticky; top: 0; z-index: 900; /* Sticky header */
+}
+
+header h1 { /* App Title */
+    color: var(--accent-electric-blue);
+    margin: 0;
+    font-size: 1.6em;
+    font-weight: 700; /* Montserrat Bold */
+    letter-spacing: 1.5px;
+}
+
+nav button { /* Settings button etc. uses default button styling now */
+    /* Specific overrides for nav buttons if needed, otherwise they use the new default <button> style */
+    margin-left: 8px; /* Example if spacing needed */
+}
+
+main {
+    padding: 25px;
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+    margin-top: 30px;
+    color: var(--text-secondary-color);
+    font-size: 0.8em;
+    border-top: 1px solid #000000;
+    background-color: var(--body-bg-dark);
+    font-family: var(--font-monospace);
+    letter-spacing: 0.5px;
+}
+
+/* --- General Form Styles --- */
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500; /* Montserrat Medium */
+    color: var(--text-label-color);
+    font-size: 0.85em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="date"], /* Added date input styling */
+select,
+textarea {
+    width: 100%;
+    padding: 9px 10px;
+    background-color: var(--input-bg-color);
+    border: 1px solid var(--input-border-color);
+    color: var(--input-text-color);
+    border-radius: var(--border-radius-sharp);
+    margin-bottom: 12px;
+    font-family: var(--font-monospace); /* Monospace for inputs */
+    font-size: 0.95em;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="date"]:focus, /* Added date input styling */
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--input-focus-border-color);
+    box-shadow: 0 0 5px var(--input-focus-box-shadow-color), inset 0 0 3px var(--input-focus-box-shadow-color);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--text-placeholder-color);
+    opacity: 0.7;
+}
+
+select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%2300AEEF'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'/%3E%3C/svg%3E"); /* Blue chevron */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px 16px;
+    padding-right: 30px;
+}
+select option {
+    background-color: var(--input-bg-color);
+    color: var(--input-text-color);
+    font-family: var(--font-monospace);
+}
+
+/* --- Button Styles --- */
+/* Default styling for buttons (secondary look) */
+button,
+input[type="button"] {
+    padding: 9px 18px;
+    border-radius: var(--border-radius-sharp);
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 600; /* Montserrat SemiBold */
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    transition: all 0.15s ease-out;
+    border-style: solid;
+    border-width: 1px;
+    background-color: var(--button-secondary-bg-color);
+    color: var(--button-secondary-text-color);
+    border-color: var(--button-secondary-border-color);
+}
+button:hover,
+input[type="button"]:hover {
+    background-color: var(--button-secondary-hover-bg-color);
+    color: var(--button-secondary-hover-text-color);
+    border-color: var(--button-secondary-border-color); /* Keep border for contrast on fill */
+    filter: none; /* Remove brightness filter if explicit colors are set */
+}
+button:active,
+input[type="button"]:active {
+    filter: brightness(0.9); /* Slight dim on active */
+    transform: translateY(1px);
+}
+
+/* Primary action buttons (e.g., Save, Submit) */
+button[type="submit"],
+input[type="submit"] {
+    background-color: var(--button-primary-bg-color);
+    color: var(--button-primary-text-color);
+    border-color: var(--button-primary-bg-color);
+}
+button[type="submit"]:hover,
+input[type="submit"]:hover {
+    background-color: var(--button-primary-hover-bg-color);
+    border-color: var(--button-primary-hover-bg-color);
+    color: var(--button-primary-text-color); /* Ensure text color persists or updates */
+}
+
+/* Specific button classes will override the defaults above */
+.add-button { /* Code Injector (FAB - Lime Green) */
+    background-color: var(--accent-lime-green);
+    color: var(--text-on-accent-color);
+    border-color: var(--accent-lime-green); /* Added border color for consistency */
+    font-family: var(--font-monospace);
+    font-size: 2em;
+    font-weight: 700;
+    width: 50px; height: 50px;
+    border-radius: 8px; /* Rounded square */
+    box-shadow: 0 0 10px var(--accent-lime-green),
+                0 0 20px var(--accent-lime-green-translucent),
+                inset 0 0 3px rgba(255,255,255,0.2);
+    line-height: 50px; text-align: center;
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, background-color 0.2s ease;
+    position: fixed;
+    bottom: 25px; left: 25px; /* Bottom-left */
+    z-index: 500;
+}
+.add-button:hover {
+    background-color: var(--accent-lime-green-hover);
+    border-color: var(--accent-lime-green-hover); /* Added border color for consistency */
+    box-shadow: 0 0 15px var(--accent-lime-green-hover),
+                0 0 30px var(--accent-lime-green-translucent),
+                inset 0 0 5px rgba(255,255,255,0.3);
+    transform: scale(1.1) translateY(-2px);
+    color: var(--text-on-accent-color); /* Ensure text color persists */
+}
+.add-button:active { transform: scale(1.05) translateY(-1px); }
+
+.secondary-button { /* Explicit class for secondary actions if needed, reinforces default <button> style */
+    background-color: var(--button-secondary-bg-color);
+    color: var(--button-secondary-text-color);
+    border-color: var(--button-secondary-border-color);
+    margin-bottom: 10px; /* This was in original, might be too specific for general class */
+}
+.secondary-button:hover {
+    background-color: var(--button-secondary-hover-bg-color);
+    color: var(--button-secondary-hover-text-color);
+    border-color: var(--button-secondary-border-color);
+}
+
+.add-destination-button { /* Accent: Add Another Destination (Lime Green Solid) */
+    background-color: var(--button-accent-bg-color);
+    color: var(--button-accent-text-color);
+    border-color: var(--button-accent-bg-color);
+    margin-top: 10px; margin-bottom: 10px;
+}
+.add-destination-button:hover {
+    background-color: var(--button-accent-hover-bg-color);
+    border-color: var(--button-accent-hover-bg-color);
+    color: var(--button-accent-text-color);
+}
+
+
+/* --- Settings Form Specific Styles (#settings-form) --- */
+#settings-form div:not(.checkbox-row) { margin-bottom: 18px; }
+
+#settings-form input[type="number"] {
+    width: 80px; text-align: center;
+}
+
+/* Toggle Switch Checkboxes */
+#settings-form .checkbox-row {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 12px;
+}
+#settings-form .checkbox-row label {
+     margin-bottom: 0; font-weight: 400; color: var(--text-label-color);
+     font-family: var(--font-primary); /* Montserrat */
+     text-transform: none; letter-spacing: 0.2px;
+     flex-grow: 1;
+ }
+#settings-form .checkbox-row input[type="checkbox"],
+.filetype-category-header input[type="checkbox"],
+.filetype-extension-row input[type="checkbox"] {
+    appearance: none;
+    width: 38px; height: 20px;
+    background-color: var(--toggle-track-bg);
+    border-radius: 10px;
+    position: relative; cursor: pointer;
+    vertical-align: middle; margin: 0 8px 0 0; flex-shrink: 0;
+    transition: background-color 0.2s ease-in-out;
+    outline: none;
+}
+#settings-form .checkbox-row input[type="checkbox"]::before,
+.filetype-category-header input[type="checkbox"]::before,
+.filetype-extension-row input[type="checkbox"]::before {
+    content: ""; position: absolute;
+    width: 16px; height: 16px;
+    background-color: var(--toggle-nub-bg);
+    border-radius: 50%; top: 2px; left: 2px;
+    transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+#settings-form .checkbox-row input[type="checkbox"]:checked,
+.filetype-category-header input[type="checkbox"]:checked,
+.filetype-extension-row input[type="checkbox"]:checked {
+    background-color: var(--accent-lime-green-translucent);
+}
+#settings-form .checkbox-row input[type="checkbox"]:checked::before,
+.filetype-category-header input[type="checkbox"]:checked::before,
+.filetype-extension-row input[type="checkbox"]:checked::before {
+    transform: translateX(18px);
+    background-color: var(--accent-lime-green);
+}
+#settings-form .checkbox-row input[type="checkbox"]:focus-visible,
+.filetype-category-header input[type="checkbox"]:focus-visible,
+.filetype-extension-row input[type="checkbox"]:focus-visible {
+    box-shadow: 0 0 0 2px var(--body-bg-dark), 0 0 0 4px var(--accent-electric-blue);
+}
+
+
+/* --- Rules Table (#rules-table-container, #rules-table) --- */
+#rules-table-container {
+    margin-top: 25px; overflow-x: auto;
+    border: 1px solid var(--panel-border-sharp);
+    border-radius: var(--border-radius-sharp);
+    background-color: var(--panel-bg-darker);
+    box-shadow: var(--box-shadow-interface);
+}
+#rules-table { width: 100%; border-collapse: collapse; }
+#rules-table th, #rules-table td {
+    border: 1px solid var(--table-border-color);
+    padding: 10px 12px; text-align: left;
+    color: var(--table-text-color);
+    vertical-align: middle;
+    font-size: 0.9em;
+}
+#rules-table th {
+    background-color: var(--table-header-bg-color);
+    color: var(--table-header-text-color); /* Blue */
+    font-family: var(--font-primary);
+    font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
+}
+#rules-table tbody tr:nth-child(even) { background-color: var(--table-row-even-bg-color); }
+#rules-table tbody tr:hover {
+    background-color: var(--table-row-hover-bg-color);
+    color: var(--accent-electric-blue-hover);
+}
+/* Buttons within the table cells */
+#rules-table td button {
+    padding: 4px 8px; margin-right: 5px; font-size: 0.8em; letter-spacing: 0.5px;
+}
+#rules-table td button.run-button { /* Blue Outline - uses default button style */
+}
+#rules-table td button.run-button:hover { /* Uses default button:hover style */
+}
+#rules-table td button.edit-button { /* Neutral Dark Grey */
+    background-color: var(--button-edit-bg-color); color: var(--button-edit-text-color); border-color: var(--button-edit-bg-color);
+}
+#rules-table td button.edit-button:hover { background-color: var(--button-edit-hover-bg-color); border-color: var(--button-edit-hover-bg-color); color: var(--button-edit-text-color); }
+#rules-table td button.delete-button { /* Hot Pink */
+    background-color: var(--button-danger-bg-color); color: var(--button-danger-text-color); border-color: var(--button-danger-bg-color);
+}
+#rules-table td button.delete-button:hover { background-color: var(--button-danger-hover-bg-color); border-color: var(--button-danger-hover-bg-color); color: var(--button-danger-text-color); }
+
+
+/* --- Modal Styles (.modal-overlay, .modal-content) --- */
+.modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: var(--overlay-bg-color);
+    backdrop-filter: blur(3px) brightness(0.5);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 1000; padding: 20px; box-sizing: border-box;
+    opacity: 0; transition: opacity 0.25s ease-out;
+}
+.modal-overlay:not([style*="display: none"]) { opacity: 1; }
+
+.modal-content {
+    background-color: var(--panel-bg-mid);
+    border-radius: var(--border-radius-soft);
+    border: 1px solid var(--panel-border-sharp);
+    width: 100%; max-width: 700px;
+    max-height: calc(100vh - 40px);
+    color: var(--panel-text-color);
+    box-shadow: var(--box-shadow-modal);
+    position: relative; display: flex; flex-direction: column;
+    transform: translateY(-20px) scale(0.98); opacity: 0;
+    transition: transform 0.25s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.25s ease-out;
+}
+.modal-overlay:not([style*="display: none"]) .modal-content {
+    transform: translateY(0) scale(1); opacity: 1;
+}
+
+/* Custom scrollbar for modal content itself */
+.modal-content {
+    scrollbar-width: thin; scrollbar-color: #444 var(--panel-bg-mid);
+}
+.modal-content::-webkit-scrollbar { width: 8px; }
+.modal-content::-webkit-scrollbar-track { background: var(--panel-bg-mid); }
+.modal-content::-webkit-scrollbar-thumb { background-color: #444; border-radius: 4px; }
+.modal-content::-webkit-scrollbar-thumb:hover { background-color: var(--accent-electric-blue); }
+
+.modal-content form {
+    padding: 20px; overflow-y: auto; flex-grow: 1;
+}
+
+.modal-content h3 { /* Data Stream Header */
+    font-family: var(--font-primary); /* Montserrat */
+    color: var(--accent-electric-blue);
+    font-size: 1.4em; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 1.5px;
+    padding: 15px 20px; margin: 0;
+    border-bottom: 1px solid var(--panel-border-sharp);
+    display: flex; align-items: center;
+    background-color: var(--panel-bg-darker); /* Darker header bar for modal */
+    border-top-left-radius: var(--border-radius-soft);
+    border-top-right-radius: var(--border-radius-soft);
+}
+.modal-content h3::after { /* Blinking Cursor */
+    content: '_'; font-weight: bold; margin-left: 8px;
+    animation: blink-cursor 1s infinite step-end;
+    opacity: 0; color: var(--accent-electric-blue);
+}
+@keyframes blink-cursor { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+.close-button {
+    position: absolute; top: 12px; right: 15px;
+    font-size: 1.6em; font-weight: 700; /* Bolder X */
+    color: var(--text-secondary-color);
+    background: none; border: none; cursor: pointer;
+    line-height: 1; padding: 5px;
+    transition: color 0.15s ease, transform 0.15s ease;
+    z-index: 10;
+}
+.close-button:hover {
+    color: var(--accent-hot-pink); transform: scale(1.2);
+}
+
+/* --- Rule Form Styles (#rule-form) --- */
+#rule-form h4 { /* "Conditions (IF):", "Action (THEN):" */
+    font-size: 1em; color: var(--text-label-strong-color);
+    margin-top: 18px; margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px dotted var(--panel-border-subtle); /* Dotted line */
+}
+
+#rule-form .add-condition-button { /* Lime Green */
+    background-color: var(--button-accent-bg-color); color: var(--button-accent-text-color); border-color: var(--button-accent-bg-color);
+    margin-right: 8px;
+}
+#rule-form .add-condition-button:hover { background-color: var(--button-accent-hover-bg-color); border-color: var(--button-accent-hover-bg-color); color: var(--button-accent-text-color); }
+#rule-form .remove-condition-button, #rule-form .remove-destination-button { /* Hot Pink */
+    background-color: var(--button-danger-bg-color); color: var(--button-danger-text-color); border-color: var(--button-danger-bg-color);
+}
+#rule-form .remove-condition-button:hover, #rule-form .remove-destination-button:hover { background-color: var(--button-danger-hover-bg-color); border-color: var(--button-danger-hover-bg-color); color: var(--button-danger-text-color); }
+
+/* Condition Rows */
+.condition-row {
+    background-color: var(--condition-row-bg-color);
+    padding: 10px; margin-bottom: 8px;
+    border-radius: var(--border-radius-sharp);
+    border: 1px solid var(--panel-border-subtle);
+    gap: 8px;
+}
+.condition-row.nested-condition-row {
+    background-color: var(--condition-row-nested-bg-color);
+    border-left: 3px solid var(--condition-row-nested-border-color); /* Lime Green */
+    margin-left: 15px;
+}
+.condition-row .options-area {
+    background-color: var(--condition-options-area-bg-color);
+    border: 1px solid var(--condition-options-area-border-color);
+    padding: 8px; border-radius: var(--border-radius-sharp);
+}
+.or-group-conditions-container {
+    border: 1px dashed var(--or-group-border-color); /* Blue dashed */
+    padding: 12px; margin: 12px 0; border-radius: var(--border-radius-sharp);
+    background-color: rgba(10,10,10,0.3); /* Darker transparent bg */
+}
+
+/* --- Filetype UI in Modal --- */
+.filetype-options-container {
+    background-color: var(--filetype-container-bg-color);
+    padding: 12px; border-radius: var(--border-radius-sharp);
+    border: 1px solid var(--filetype-container-border-color);
+    margin-top: 12px;
+}
+.filetype-category-header label { /* Category labels: Audio, Image etc. */
+    font-family: var(--font-primary);
+    font-weight: 500; font-size: 1em;
+    color: var(--filetype-toggle-color); /* Blue */
+    text-transform: uppercase; letter-spacing: 0.5px;
+}
+.filetype-toggle-extensions { /* The expand/collapse arrow */
+    color: var(--filetype-toggle-color); font-size: 1.4em;
+    transition: transform 0.2s ease;
+}
+.filetype-toggle-extensions.expanded { transform: rotate(180deg); }
+.filetype-extension-row label { /* Individual extension labels */
+    font-family: var(--font-monospace);
+    color: var(--text-label-color);
+    font-size: 0.9em;
+}
+
+/* --- Flashed Messages (System Alerts) --- */
+#flashes-container {
+    position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+    z-index: 1200; width: auto; max-width: 90%;
+    display: flex; flex-direction: column-reverse; gap: 8px;
+}
+.flash-message {
+    background-color: var(--panel-bg-darker);
+    color: var(--body-text-light);
+    border: 1px solid var(--panel-border-subtle);
+    border-left-width: 4px; /* Colored status indicator */
+    border-radius: var(--border-radius-sharp);
+    padding: 10px 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    font-family: var(--font-monospace);
+    font-size: 0.9em;
+    opacity: 0; transform: translateY(20px);
+    animation: flash-slide-in 0.3s ease-out forwards;
+}
+@keyframes flash-slide-in { to { opacity: 1; transform: translateY(0); } }
+.flash-success { border-left-color: var(--flash-success-border-color); } /* Lime */
+.flash-error { border-left-color: var(--flash-error-border-color); }   /* Pink */
+.flash-info { border-left-color: var(--flash-info-border-color); }    /* Blue */
+
+/* --- Note/Info Box --- */
+.note {
+     margin-top: 20px; padding: 12px;
+     background-color: var(--note-bg-color);
+     color: var(--note-text-color);
+     border: 1px solid var(--panel-border-subtle);
+     border-left: 3px solid var(--note-border-color); /* Blue accent */
+     border-radius: var(--border-radius-sharp);
+     font-size: 0.9em;
+     font-family: var(--font-monospace);
+}
+.note p { font-size: 1em; line-height: 1.5; }
+.note hr { margin: 15px 0; width: 100%; }
+
+
+/* --- Status Message (from settings.html inline style) --- */
+.status-message { /* Similar to flash messages but typically inline */
+    margin-top: 15px; padding: 10px 15px;
+    border-radius: var(--border-radius-sharp); display: none;
+    font-family: var(--font-monospace); font-size: 0.9em;
+    background-color: var(--panel-bg-darker);
+    color: var(--body-text-light);
+    border: 1px solid var(--panel-border-subtle);
+    border-left-width: 4px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+}
+.status-message.success { border-left-color: var(--flash-success-border-color); }
+.status-message.error { border-left-color: var(--flash-error-border-color); }
+.status-message:not(.success):not(.error) { border-left-color: var(--flash-info-border-color); }
+
+
+/* --- Utility Classes --- */
+.loading-cursor, .loading-cursor * {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2300AEEF' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 12a9 9 0 11-6.219-8.56'%3E%3C/path%3E%3C/svg%3E") 12 12, wait !important; /* Blue spinning loader */
+}
+
+/* --- Logs Page Specific Styles --- */
+main section { /* Style for sections within the main content, like on logs page */
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: var(--panel-bg-darker);
+    border: 1px solid var(--panel-border-sharp);
+    border-radius: var(--border-radius-soft);
+    box-shadow: var(--box-shadow-interface);
+}
+
+.filters-container,
+.log-search-grid {
+    display: grid;
+    gap: 15px 20px; /* row-gap column-gap */
+    margin-bottom: 20px;
+    align-items: end;
+}
+.filters-container { /* For stats filters */
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+.log-search-grid { /* For detailed log search filters */
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+/* Ensure labels and inputs within grid items are displayed correctly */
+.filters-container > div, .log-search-grid > div {
+    display: flex;
+    flex-direction: column; /* Stack label above input */
+}
+.filters-container label, .log-search-grid label {
+    margin-bottom: 4px; /* Reduce default label margin */
+}
+.filters-container input, .filters-container select,
+.log-search-grid input, .log-search-grid select {
+    margin-bottom: 0; /* Remove default input margin as grid handles spacing */
+}
+
+/* Custom date range styling */
+#stats-custom-date-range,
+#search-custom-date-range {
+    grid-column: 1 / -1; /* Span full width */
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+    gap: 10px 15px; /* Spacing between date inputs and labels */
+    align-items: end; /* Align items along their baseline */
+    margin-top: 5px; /* Add some space above if it appears below a select */
+}
+#stats-custom-date-range > label,
+#search-custom-date-range > label,
+#stats-custom-date-range > div > label, /* If label is in a sub-div */
+#search-custom-date-range > div > label {
+    margin-bottom: 4px;
+    flex-basis: auto; /* Allow label to size naturally */
+}
+#stats-custom-date-range input[type="date"],
+#search-custom-date-range input[type="date"] {
+    min-width: 150px; /* Ensure date inputs are usable */
+    flex-grow: 1;
+}
+#stats-custom-date-range > div, /* If date input is wrapped in a div */
+#search-custom-date-range > div {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+
+.form-actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+}
+
+.error-message { /* For displaying errors from API calls, etc. */
+    margin: 15px 0;
+    padding: 10px 15px;
+    border-radius: var(--border-radius-sharp);
+    font-family: var(--font-monospace);
+    font-size: 0.9em;
+    background-color: rgba(var(--accent-hot-pink-rgb), 0.1);
+    color: var(--accent-hot-pink);
+    border: 1px solid var(--accent-hot-pink);
+}
+/* Loading messages style */
+#stats-loading-message,
+#logs-loading-message {
+    padding: 15px;
+    color: var(--text-secondary-color);
+    text-align: center;
+    font-style: italic;
+}
+
+.chart-container {
+    width: 100%;
+    max-width: 900px; /* Max width for readability */
+    margin: 25px auto;
+    background-color: var(--panel-bg-mid);
+    padding: 20px;
+    border-radius: var(--border-radius-soft);
+    border: 1px solid var(--panel-border-subtle);
+}
+.chart-container canvas {
+    max-height: 400px; /* Limit chart height */
+}
+
+.table-responsive { /* Wrapper for logs table */
+    overflow-x: auto;
+    margin-top: 20px;
+    border: 1px solid var(--panel-border-sharp);
+    border-radius: var(--border-radius-sharp);
+    background-color: var(--panel-bg-darker);
+    box-shadow: var(--box-shadow-interface);
+}
+
+#detailed-logs-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 900px; /* Minimum width before horizontal scroll appears */
+}
+#detailed-logs-table th,
+#detailed-logs-table td {
+    border: 1px solid var(--table-border-color);
+    padding: 9px 11px;
+    text-align: left;
+    color: var(--table-text-color);
+    vertical-align: top;
+    font-size: 0.85em;
+    word-break: break-word;
+}
+#detailed-logs-table th {
+    background-color: var(--table-header-bg-color);
+    color: var(--table-header-text-color);
+    font-family: var(--font-primary);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    position: sticky; /* For scrollable table body with fixed header */
+    top: 0;
+    z-index: 1; /* Ensure header is above table content during scroll */
+}
+#detailed-logs-table tbody tr:nth-child(even) {
+    background-color: var(--table-row-even-bg-color);
+}
+#detailed-logs-table tbody tr:hover {
+    background-color: var(--table-row-hover-bg-color);
+    color: var(--accent-electric-blue-hover);
+}
+#detailed-logs-table td code,
+#detailed-logs-table td .log-id-short { /* For short hashes or IDs */
+    font-family: var(--font-monospace);
+    font-size: 0.9em;
+    color: var(--text-secondary-color);
+    background-color: var(--input-bg-color);
+    padding: 1px 4px;
+    border-radius: var(--border-radius-sharp);
+    white-space: nowrap; /* Prevent wrapping for short codes */
+}
+#detailed-logs-table td .log-details { /* For longer details that might contain JSON */
+    font-family: var(--font-monospace);
+    font-size: 0.9em;
+    white-space: pre-wrap; /* Allow wrapping for pre-formatted text */
+    max-height: 100px; /* Limit height and make scrollable if needed */
+    overflow-y: auto;
+    display: block; /* To enable max-height and overflow */
+    background-color: var(--input-bg-color);
+    padding: 5px;
+    border-radius: var(--border-radius-sharp);
+    border: 1px solid var(--panel-border-subtle);
+}
+
+
+.results-summary {
+    margin: 15px 0;
+    padding: 10px 15px;
+    background-color: var(--panel-bg-mid);
+    border: 1px solid var(--panel-border-subtle);
+    border-left: 3px solid var(--accent-electric-blue);
+    font-size: 0.9em;
+    color: var(--text-primary-color);
+    border-radius: var(--border-radius-sharp);
+}
+
+.pagination-controls {
+    margin-top: 25px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+.pagination-controls button {
+    padding: 6px 12px;
+    font-size: 0.85em;
+    /* Default button styling (secondary) applies */
+}
+.pagination-controls button.active { /* Current page */
+    background-color: var(--accent-electric-blue);
+    color: var(--text-on-accent-color);
+    border-color: var(--accent-electric-blue);
+    cursor: default;
+}
+.pagination-controls button:disabled {
+    background-color: var(--input-disabled-bg-color);
+    color: var(--input-disabled-text-color);
+    border-color: var(--input-disabled-border-color);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+.pagination-controls .page-info {
+    font-size: 0.9em;
+    color: var(--text-secondary-color);
+    margin: 0 5px;
+}

@@ -1,0 +1,1229 @@
+/* --- START OF FILE Velvel_Nightshade.css --- */
+
+html {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: var(--font-primary);
+    margin: 0;
+    padding: 0;
+    background-color: var(--body-bg-color);
+    color: var(--body-text-color);
+    min-height: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-primary-color);
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+}
+
+p {
+    line-height: 1.6;
+}
+
+a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--link-hover-color);
+    text-decoration: underline;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid var(--hr-color);
+    margin: 20px 0;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    margin-bottom: 5px;
+}
+
+/* --- Layout Components --- */
+header {
+    background-color: var(--panel-bg-color);
+    color: var(--panel-text-color);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    color: var(--panel-text-color);
+    margin: 0;
+    font-size: 1.5em;
+}
+
+nav button {
+    padding: 8px 15px;
+    background-color: var(--button-secondary-bg-color);
+    color: var(--button-secondary-text-color);
+    border: none;
+    border-radius: var(--border-radius-default);
+    cursor: pointer;
+    font-size: 1em;
+}
+
+nav button:hover {
+    background-color: var(--button-secondary-hover-bg-color);
+}
+
+main {
+    padding: 20px;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+    color: var(--text-secondary-color);
+    font-size: 0.9em;
+}
+
+/* --- General Form Styles --- */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: var(--text-label-strong-color);
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="date"], /* Added date type */
+select,
+textarea {
+    width: 100%;
+    padding: 8px;
+    background-color: var(--input-bg-color);
+    border: 1px solid var(--input-border-color);
+    color: var(--input-text-color);
+    border-radius: var(--border-radius-default);
+    margin-bottom: 10px;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="date"]:focus, /* Added date type */
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--input-focus-border-color);
+    box-shadow: 0 0 0 2px var(--input-focus-border-color_opacified, rgba(93, 173, 226, 0.3));
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--text-placeholder-color);
+}
+
+/* --- Button Styles --- */
+button,
+input[type="button"],
+input[type="submit"] {
+    padding: 10px 20px;
+    /* Default to secondary button style for generic buttons */
+    background-color: var(--button-secondary-bg-color);
+    color: var(--button-secondary-text-color);
+    border: none;
+    border-radius: var(--border-radius-default);
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
+}
+button:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover {
+    /* General hover for secondary, specific buttons will override */
+    background-color: var(--button-secondary-hover-bg-color);
+}
+button:active, input[type="button"]:active, input[type="submit"]:active {
+    transform: translateY(1px) scale(0.99);
+}
+button:focus, input[type="button"]:focus, input[type="submit"]:focus {
+    outline: none; /* Remove default outline */
+    box-shadow: 0 0 0 2px var(--body-bg-color), 0 0 0 4px var(--input-focus-border-color); /* Create a focus ring */
+}
+
+
+/* Primary button styles (for submit and explicit .primary-button class) */
+button[type="submit"],
+.primary-button {
+    background-color: var(--button-primary-bg-color);
+    color: var(--button-primary-text-color);
+}
+button[type="submit"]:hover,
+.primary-button:hover {
+    background-color: var(--button-primary-hover-bg-color);
+}
+
+.add-button {
+    padding: 10px 15px;
+    font-size: 1.5em;
+    background-color: var(--button-primary-bg-color);
+    color: var(--button-primary-text-color);
+    border: none;
+    border-radius: var(--border-radius-round);
+    cursor: pointer;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    box-shadow: var(--box-shadow-default);
+    line-height: 1;
+    z-index: 500;
+}
+.add-button:hover {
+    background-color: var(--button-primary-hover-bg-color);
+}
+
+.secondary-button { /* Class for explicit secondary buttons, aligns with default <button> */
+    padding: 8px 15px;
+    background-color: var(--button-secondary-bg-color);
+    color: var(--button-secondary-text-color);
+    margin-bottom: 10px; /* May not always be desired, consider removing or scoping */
+}
+.secondary-button:hover {
+    background-color: var(--button-secondary-hover-bg-color);
+}
+
+.add-destination-button {
+    padding: 8px 15px;
+    background-color: var(--button-accent-bg-color);
+    color: var(--button-accent-text-color);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.add-destination-button:hover {
+    background-color: var(--button-accent-hover-bg-color);
+}
+
+/* --- Settings Form Specific Styles (#settings-form) --- */
+#settings-form div {
+    margin-bottom: 15px;
+}
+
+#settings-form input[type="number"] {
+    width: 100px;
+}
+
+#settings-form .checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+#settings-form .checkbox-row label {
+     margin-bottom: 0;
+     font-weight: normal;
+     color: var(--text-label-color);
+     display: inline-block;
+ }
+#settings-form .checkbox-row input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+/* --- Rules Table (#rules-table-container, #rules-table) --- */
+#rules-table-container {
+    margin-top: 20px;
+    overflow-x: auto;
+}
+
+#rules-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+#rules-table th,
+#rules-table td {
+    border: 1px solid var(--table-border-color);
+    padding: 10px;
+    text-align: left;
+    color: var(--table-text-color);
+}
+
+#rules-table th {
+    background-color: var(--table-header-bg-color);
+    color: var(--table-header-text-color);
+    font-weight: bold;
+}
+
+#rules-table tbody tr {
+    background-color: var(--table-row-odd-bg-color);
+}
+#rules-table tbody tr:nth-child(even) {
+    background-color: var(--table-row-even-bg-color);
+}
+
+#rules-table tbody tr:hover {
+    background-color: var(--table-row-hover-bg-color);
+}
+
+#rules-table td button {
+    padding: 5px 10px;
+    margin-right: 5px;
+}
+
+#rules-table td button.run-button {
+    background-color: var(--button-secondary-bg-color);
+    color: var(--button-secondary-text-color);
+}
+#rules-table td button.run-button:hover { background-color: var(--button-secondary-hover-bg-color); }
+
+#rules-table td button.edit-button {
+    background-color: var(--button-edit-bg-color);
+    color: var(--button-edit-text-color);
+}
+#rules-table td button.edit-button:hover { background-color: var(--button-edit-hover-bg-color); }
+
+
+#rules-table td button.delete-button {
+    background-color: var(--button-danger-bg-color);
+    color: var(--button-danger-text-color);
+}
+#rules-table td button.delete-button:hover { background-color: var(--button-danger-hover-bg-color); }
+
+
+/* --- Modal Styles (.modal-overlay, .modal-content) --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--overlay-bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: var(--panel-bg-color);
+    padding: 20px;
+    border-radius: var(--border-radius-default);
+    width: 90%;
+    max-width: 700px;
+    max-height: 80vh;
+    overflow-y: auto;
+    color: var(--panel-text-color);
+    box-shadow: var(--box-shadow-modal);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-content form {
+    padding-bottom: 20px;
+}
+
+.modal-content h3 {
+    color: var(--panel-text-color);
+    margin-top: 0;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--panel-text-color);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.close-button:hover {
+    color: var(--button-danger-bg-color);
+}
+
+/* --- Rule Form Styles (#rule-form) --- */
+#rule-form .add-condition-button,
+#rule-form .remove-condition-button,
+#rule-form .remove-destination-button {
+    padding: 8px 15px;
+    margin-top: 10px;
+}
+
+#rule-form .add-condition-button {
+    background-color: var(--button-secondary-bg-color);
+    color: var(--button-secondary-text-color);
+    margin-right: 10px;
+}
+#rule-form .add-condition-button:hover { background-color: var(--button-secondary-hover-bg-color); }
+
+#rule-form .remove-condition-button,
+#rule-form .remove-destination-button {
+    background-color: var(--button-danger-bg-color);
+    color: var(--button-danger-text-color);
+}
+#rule-form .remove-condition-button:hover,
+#rule-form .remove-destination-button:hover { background-color: var(--button-danger-hover-bg-color); }
+
+.condition-row {
+    background-color: var(--condition-row-bg-color);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: var(--border-radius-default);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.condition-row label {
+    color: var(--condition-row-text-color);
+    font-weight: normal;
+}
+
+.condition-row.nested-condition-row {
+    background-color: var(--condition-row-nested-bg-color);
+    border-left: 4px solid var(--condition-row-nested-border-color);
+    margin-left: 20px;
+    gap: 8px;
+}
+
+.condition-row .remove-condition-button {
+     flex-shrink: 0;
+     margin-bottom: 0;
+}
+
+.condition-row select,
+.condition-row input[type="text"],
+.condition-row input[type="number"],
+.condition-row textarea {
+     width: auto;
+     flex-grow: 1;
+     margin-bottom: 0;
+}
+
+.condition-row label {
+    display: inline-block;
+    margin-bottom: 0;
+    flex-shrink: 0;
+}
+
+.condition-row .options-area {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    gap: 8px;
+    background-color: var(--condition-options-area-bg-color);
+    padding: 8px;
+    border-radius: var(--border-radius-default);
+    border: 1px solid var(--condition-options-area-border-color);
+}
+
+.or-group-conditions-container {
+    border: 1px dashed var(--or-group-border-color);
+    padding: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: var(--border-radius-default);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.or-group-conditions-container .condition-row.nested-condition-row {
+    margin: 0;
+}
+
+/* --- Filetype UI in Modal --- */
+.filetype-options-container {
+    background-color: var(--filetype-container-bg-color);
+    padding: 10px;
+    border-radius: var(--border-radius-default);
+    border: 1px solid var(--filetype-container-border-color);
+    margin-top: 10px;
+    width: 100%;
+}
+
+.filetype-category-row {
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    border-bottom: 1px dashed var(--filetype-separator-color);
+}
+.filetype-category-row:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.filetype-category-header {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 5px 0;
+}
+.filetype-category-header input[type="checkbox"] {
+    flex-shrink: 0;
+    margin-right: 5px;
+    width: auto;
+}
+.filetype-category-header label {
+    flex-grow: 1;
+    margin: 0;
+    font-weight: bold;
+    cursor: pointer;
+    color: var(--text-label-strong-color);
+}
+
+.filetype-toggle-extensions {
+    margin-left: auto;
+    background: none;
+    border: none;
+    color: var(--filetype-toggle-color);
+    cursor: pointer;
+    font-size: 0.9em;
+    padding: 0 5px;
+    transition: transform 0.2s ease;
+}
+
+.filetype-extensions-container {
+    padding-left: 20px;
+    margin-top: 5px;
+    display: none;
+}
+.filetype-extension-row {
+    margin-bottom: 3px;
+    display: flex;
+    align-items: center;
+}
+.filetype-extension-row input[type="checkbox"] {
+    flex-shrink: 0;
+    margin-right: 5px;
+    width: auto;
+}
+.filetype-extension-row label {
+    margin: 0;
+    font-weight: normal;
+    color: var(--text-label-color);
+}
+
+/* --- Flashed Messages --- */
+#flashes-container {
+    margin-bottom: 20px;
+}
+
+.flash-message {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: var(--border-radius-default);
+    font-weight: bold;
+}
+
+.flash-success {
+    background-color: var(--flash-success-bg-color);
+    color: var(--flash-success-text-color);
+    border-left: 4px solid var(--flash-success-border-color);
+}
+
+.flash-error {
+    background-color: var(--flash-error-bg-color);
+    color: var(--flash-error-text-color);
+    border-left: 4px solid var(--flash-error-border-color);
+}
+
+.flash-info {
+    background-color: var(--flash-info-bg-color);
+    color: var(--flash-info-text-color);
+    border-left: 4px solid var(--flash-info-border-color);
+}
+
+/* --- Note/Info Box (e.g., for Settings page) --- */
+.note {
+     margin-top: 20px;
+     padding: 10px;
+     background-color: var(--note-bg-color);
+     color: var(--note-text-color);
+     border-left: 4px solid var(--note-border-color);
+     border-radius: var(--border-radius-default);
+     font-size: 0.9em;
+}
+.note p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+.note p:first-child {
+    margin-top: 0;
+}
+.note p:last-child {
+    margin-bottom: 0;
+}
+.note ul {
+    margin-top: 0.5em;
+    margin-left: 20px;
+    list-style: disc;
+}
+.note hr {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-top: 1px solid var(--hr-color);
+}
+
+/* --- Status Message (from settings.html inline style) --- */
+.status-message {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: var(--border-radius-default);
+    display: none;
+    background-color: var(--flash-info-bg-color);
+    color: var(--flash-info-text-color);
+    border-left: 4px solid var(--flash-info-border-color);
+}
+.status-message.success {
+    background-color: var(--flash-success-bg-color);
+    color: var(--flash-success-text-color);
+    border-left-color: var(--flash-success-border-color);
+}
+.status-message.error {
+    background-color: var(--flash-error-bg-color);
+    color: var(--flash-error-text-color);
+    border-left-color: var(--flash-error-border-color);
+}
+
+/* --- Utility Classes --- */
+.loading-cursor, .loading-cursor * {
+    cursor: wait !important;
+}
+/* --- END OF FILE templatestyle.css --- */
+
+
+/* --- START OF THEME: Velvet Nightshade --- */
+@import url('./fonts/google-fonts-1748599622854.css'); 
+
+:root {
+    /* General */
+    --font-primary: 'Merriweather Sans', sans-serif; /* Clean, modern sans-serif */
+    --font-headings: 'Playfair Display', serif;    /* Elegant serif for headings */
+    --body-bg-color: #1c1a2e; /* Deep desaturated indigo/purple */
+    --body-text-color: #d8d4e8; /* Pale lavender */
+    --border-radius-default: 5px; /* Slightly softer radius */
+    --border-radius-round: 50%;
+    --box-shadow-default-color: rgba(0, 0, 0, 0.25);
+    --box-shadow-default: 0 2px 6px var(--box-shadow-default-color);
+    --box-shadow-modal-color: rgba(0, 0, 0, 0.4);
+    --box-shadow-modal: 0 5px 20px var(--box-shadow-modal-color);
+    --overlay-bg-color: rgba(15, 13, 28, 0.85); /* Darker, slightly purple overlay */
+
+    /* Panel Colors (Header, Modal, Table Headers) */
+    --panel-bg-color: #28253f; /* Dark muted purple */
+    --panel-text-color: #e8e4f8;
+    --panel-secondary-bg-color: #322f4e; /* For table even rows, input bg */
+    --panel-tertiary-bg-color: #403c5c;   /* Table hover, condition row bg, input/container borders */
+
+    /* Text Colors */
+    --text-primary-color: var(--body-text-color);
+    --text-secondary-color: #a098b8; /* Muted lavender for less important text */
+    --text-on-accent-color: #FFFFFF;
+    --text-on-dark-accent-color: #1c1a2e; /* For light accent buttons */
+    --text-placeholder-color: #706888;
+    --text-label-color: #c0b8d8;
+    --text-label-strong-color: var(--panel-text-color); /* Brighter for strong labels */
+
+    /* Input/Control Colors */
+    --input-bg-color: #221f36; /* Darker than panel secondary, almost body */
+    --input-text-color: var(--text-primary-color);
+    --input-border-color: var(--panel-tertiary-bg-color);
+    --input-focus-border-color: #9e78c2; /* Muted Orchid/Plum */
+    --input-focus-border-color_opacified: rgba(158, 120, 194, 0.3);
+    --input-disabled-bg-color: #28253f; /* Panel bg for disabled */
+    --input-disabled-text-color: #605878;
+    --input-disabled-border-color: #322f4e;
+
+    /* Button Colors (Semantic) - Softer, more desaturated palette */
+    /* Primary (Save, main positive actions) - Muted Teal/Aqua */
+    --button-primary-bg-color: #5f9ea0; /* Cadet Blue / Muted Teal */
+    --button-primary-text-color: #FFFFFF;
+    --button-primary-hover-bg-color: #528b8b;
+    /* Secondary (Navigation, standard actions) - Soft Plum */
+    --button-secondary-bg-color: #7d6c9e;
+    --button-secondary-text-color: #FFFFFF;
+    --button-secondary-hover-bg-color: #6a5a8a;
+    /* Accent (Distinct actions, e.g., "Add Another") - Dusty Rose */
+    --button-accent-bg-color: #b0808c;
+    --button-accent-text-color: #FFFFFF;
+    --button-accent-hover-bg-color: #9c6f7a;
+    /* Edit/Warning - Old Gold / Bronze */
+    --button-edit-bg-color: #b8860b; /* DarkGoldenrod */
+    --button-edit-text-color: #FFFFFF;
+    --button-edit-hover-bg-color: #a0740a;
+    /* Danger/Delete (Destructive actions) - Muted Crimson */
+    --button-danger-bg-color: #a52a2a; /* Brown (less aggressive red) */
+    --button-danger-text-color: #FFFFFF;
+    --button-danger-hover-bg-color: #8b2323;
+
+    /* Link Colors */
+    --link-color: #ab82c5; /* Light Orchid/Plum */
+    --link-hover-color: #c3a0de;
+
+    /* Table Colors */
+    --table-header-bg-color: var(--panel-bg-color);
+    --table-header-text-color: var(--panel-text-color);
+    --table-border-color: var(--panel-tertiary-bg-color);
+    --table-row-odd-bg-color: transparent; /* Adjusted from panel-bg-color for contrast with even rows */
+    --table-row-even-bg-color: var(--panel-secondary-bg-color);
+    --table-row-hover-bg-color: #3a3756; /* Slightly distinct hover */
+    --table-text-color: var(--text-primary-color);
+
+    /* Conditional UI Colors (Rule Editor) */
+    --condition-row-bg-color: var(--panel-tertiary-bg-color);
+    --condition-row-text-color: var(--text-primary-color);
+    --condition-row-nested-bg-color: #4a466a; /* Slightly lighter than tertiary */
+    --condition-row-nested-border-color: var(--button-secondary-bg-color); /* Soft Plum border */
+    --condition-options-area-bg-color: var(--input-bg-color);
+    --condition-options-area-border-color: var(--input-border-color);
+    --or-group-border-color: var(--panel-tertiary-bg-color);
+
+    /* Flash Message Colors */
+    --flash-success-bg-color: rgba(95, 158, 160, 0.2); /* Muted Teal base */
+    --flash-success-text-color: #a1cfd0;
+    --flash-success-border-color: #5f9ea0;
+    --flash-error-bg-color: rgba(165, 42, 42, 0.2); /* Muted Crimson base */
+    --flash-error-text-color: #d0a1a1;
+    --flash-error-border-color: #a52a2a;
+    --flash-info-bg-color: rgba(125, 108, 158, 0.2); /* Soft Plum base */
+    --flash-info-text-color: #c0b8d8;
+    --flash-info-border-color: #7d6c9e;
+
+    /* Filetype UI Colors */
+    --filetype-container-bg-color: var(--input-bg-color);
+    --filetype-container-border-color: var(--input-border-color);
+    --filetype-separator-color: var(--input-border-color);
+    --filetype-toggle-color: var(--text-label-strong-color);
+
+    /* Note/Info Box Colors */
+    --note-bg-color: var(--panel-secondary-bg-color);
+    --note-text-color: var(--text-primary-color);
+    --note-border-color: var(--button-secondary-bg-color); /* Soft Plum */
+    --hr-color: var(--panel-tertiary-bg-color);
+}
+
+/* --- Theme-Specific Style Overrides --- */
+body {
+    font-weight: 400; /* Merriweather Sans Regular */
+    font-size: 15px;
+    line-height: 1.65;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-headings); /* Playfair Display */
+    font-weight: 500; /* Playfair Display Medium/Regular */
+    color: var(--panel-text-color);
+    letter-spacing: 0.2px; /* Reduce spacing for serif */
+}
+h1 { font-size: 2.2em; font-weight: 700; margin-bottom: 0.6em;} /* Playfair Bold */
+h2 { font-size: 1.8em; }
+h3 { font-size: 1.5em; }
+
+p { line-height: 1.7; }
+
+a {
+    font-weight: 400; /* Merriweather Sans Regular for links */
+    transition: color 0.15s ease-in-out, text-decoration-color 0.15s ease-in-out;
+}
+a:hover {
+    text-decoration-color: var(--link-hover-color);
+}
+
+hr {
+    margin: 25px 0;
+    border-top: 1px solid var(--hr-color);
+}
+
+ul li { margin-bottom: 6px; }
+ul li:not(.no-bullet)::before { /* Add .no-bullet to li to suppress */
+    content: "•"; /* Simple dot */
+    color: var(--link-color); /* Link color for bullets */
+    margin-right: 10px;
+    font-size: 1em;
+    opacity: 0.8;
+}
+
+header {
+    padding: 15px 25px; /* More spacious header */
+    border-bottom: 1px solid var(--panel-tertiary-bg-color);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+header h1 { font-size: 1.7em; letter-spacing: 0.5px; } /* Playfair is wider */
+
+nav button {
+    font-family: var(--font-primary); /* Merriweather Sans */
+    font-weight: 500; /* Merriweather Sans Medium */
+    font-size: 0.95em;
+    padding: 9px 18px; /* Slightly larger nav buttons */
+    /* border: 1px solid transparent; /* Handled by base button style */
+}
+
+
+main { padding: 25px; }
+
+footer {
+    padding: 18px;
+    margin-top: 30px;
+    font-size: 0.85em;
+    border-top: 1px solid var(--panel-tertiary-bg-color);
+}
+
+label {
+    font-weight: 500; /* Merriweather Sans Medium */
+    font-size: 0.9em;
+    color: var(--text-label-color);
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="date"],
+select,
+textarea {
+    padding: 10px 12px;
+    font-family: var(--font-primary);
+    font-size: 0.95em;
+    border-width: 1px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="date"]:focus,
+select:focus,
+textarea:focus {
+    background-color: var(--body-bg-color); /* Darken slightly on focus */
+}
+
+select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23a098b8'%3E%3Cpath fill-rule='evenodd' d='M4.293 5.293a1 1 0 011.414 0L8 7.586l2.293-2.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z' clip-rule='evenodd'/%3E%3C/svg%3E"); /* Softer chevron */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px 16px;
+    padding-right: 35px;
+}
+select option {
+    background-color: var(--panel-bg-color);
+    color: var(--input-text-color);
+}
+
+/* Updated Button Base Styles in templatestyle.css are inherited by default */
+/* Theme specific button font and letter spacing */
+button,
+input[type="button"],
+input[type="submit"] {
+    font-family: var(--font-primary);
+    font-weight: 500; /* Merriweather Sans Medium */
+    font-size: 0.95em;
+    letter-spacing: 0.3px;
+    border: 1px solid transparent; /* Ensure all buttons have a consistent border treatment initially */
+}
+/* Focus state for buttons already handled by templatestyle.css focus combined with :root vars */
+
+.add-button { /* Specifics for .add-button */
+    padding: 11px;
+    width: 48px; height: 48px;
+    font-size: 1.5em; /* Overrides base font-size */
+    box-shadow: 0 3px 7px rgba(0,0,0,0.3);
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease; /* Add transform and shadow */
+}
+.add-button:hover {
+    /* transform: translateY(-1px) scale(1.03); /* Already defined in templatestyle */
+    /* box-shadow: 0 4px 9px rgba(0,0,0,0.35); /* Already defined in templatestyle */
+    /* Background color hover is handled by its specific primary button color */
+}
+
+
+#settings-form input[type="number"] { width: 95px; }
+#settings-form .checkbox-row {
+    gap: 8px;
+    padding: 8px 0;
+    border: none; /* Removed border from theme, templatestyle had none */
+}
+#settings-form .checkbox-row:hover {
+    background-color: transparent; /* Ensure no hover bg if not desired */
+}
+#settings-form .checkbox-row label {
+     font-weight: 400; /* Merriweather Sans Regular */
+     color: var(--text-label-color);
+     font-size: 0.95em;
+ }
+#settings-form .checkbox-row input[type="checkbox"] {
+    appearance: none;
+    width: 17px; height: 17px;
+    border: 1px solid var(--input-border-color);
+    border-radius: 4px; /* Softer checkbox */
+    position: relative;
+    cursor: pointer;
+    vertical-align: middle;
+    background-color: var(--input-bg-color);
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+#settings-form .checkbox-row input[type="checkbox"]:hover {
+    border-color: var(--input-focus-border-color); /* Orchid/Plum */
+}
+#settings-form .checkbox-row input[type="checkbox"]:checked {
+    background-color: var(--button-primary-bg-color); /* Muted Teal */
+    border-color: var(--button-primary-bg-color);
+}
+#settings-form .checkbox-row input[type="checkbox"]:checked::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 5px; height: 9px; /* Checkmark dimensions */
+    border: solid var(--text-on-accent-color); /* White check */
+    border-width: 0 2px 2px 0;
+    transform: translate(-50%, -60%) rotate(45deg); /* Adjust for checkmark shape */
+}
+
+
+#rules-table-container { /* This style applies to the wrapper */
+    margin-top: 25px;
+    border: 1px solid var(--table-border-color);
+    border-radius: var(--border-radius-default);
+    background-color: var(--panel-bg-color); /* Table wrapper has panel background */
+    box-shadow: var(--box-shadow-default);
+    /* overflow-x: auto; is in templatestyle.css */
+}
+#rules-table th, #rules-table td { /* Styles for cells directly */
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--table-border-color); /* Cell bottom border */
+    border-left: none; border-right: none; /* No vertical cell borders */
+    /* Top border will be from previous row's bottom border or table's top border */
+}
+#rules-table tr:first-child th { /* Top border for header cells */
+    border-top: none; /* No top border if table container has one */
+}
+#rules-table th {
+    font-family: var(--font-primary);
+    font-weight: 600; /* Semibold for clarity */
+    font-size: 0.9em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    /* border-bottom-width: 1px; /* Set explicitly for header */
+    color: var(--panel-text-color);
+}
+#rules-table td button { padding: 6px 9px; font-size: 0.85em; }
+
+.modal-content {
+    padding: 30px; /* Generous modal padding */
+    max-width: 680px;
+    border: 1px solid var(--panel-tertiary-bg-color);
+}
+.modal-content h3 { /* Modal title */
+    font-size: 1.6em; /* Playfair Display */
+    border-bottom: 1px solid var(--hr-color);
+    padding-bottom: 15px; margin-bottom: 20px;
+}
+.close-button {
+    font-size: 1.5em; top: 15px; right: 15px;
+    color: var(--text-secondary-color);
+}
+.close-button:hover {
+    color: var(--button-danger-hover-bg-color); /* Muted Crimson for close hover */
+}
+
+.condition-row {
+    padding: 14px;
+    margin-bottom: 12px;
+    border: 1px solid var(--panel-tertiary-bg-color);
+}
+.condition-row.nested-condition-row { margin-left: 18px; }
+.condition-row .options-area { padding: 12px; }
+.or-group-conditions-container {
+    padding: 14px; margin-top: 12px; margin-bottom: 12px;
+    background-color: rgba(0,0,0,0.07); /* Slightly more distinct bg for OR group */
+}
+
+.filetype-options-container { padding: 14px; margin-top: 14px; }
+.filetype-category-header label {
+    font-family: var(--font-primary); /* Merriweather Sans */
+    font-weight: 700;
+    font-size: 1em;
+    color: var(--text-label-strong-color);
+}
+.filetype-category-header input[type="checkbox"],
+.filetype-extension-row input[type="checkbox"] {
+    /* Same as settings checkbox */
+    appearance: none; width: 16px; height: 16px;
+    border: 1px solid var(--input-border-color);
+    border-radius: 4px; position: relative; cursor: pointer;
+    vertical-align: middle; background-color: var(--input-bg-color);
+    margin-right: 7px;
+}
+.filetype-category-header input[type="checkbox"]:hover,
+.filetype-extension-row input[type="checkbox"]:hover {
+    border-color: var(--input-focus-border-color);
+}
+.filetype-category-header input[type="checkbox"]:checked,
+.filetype-extension-row input[type="checkbox"]:checked {
+    background-color: var(--button-secondary-bg-color); /* Soft Plum for filetype */
+    border-color: var(--button-secondary-bg-color);
+}
+.filetype-category-header input[type="checkbox"]:checked::before,
+.filetype-extension-row input[type="checkbox"]:checked::before {
+    content: ''; position: absolute; top: 50%; left: 50%;
+    width: 4px; height: 8px; border: solid var(--text-on-accent-color);
+    border-width: 0 2px 2px 0; transform: translate(-50%, -60%) rotate(45deg);
+}
+.filetype-toggle-extensions { font-size: 0.9em; }
+.filetype-toggle-extensions.expanded { color: var(--button-secondary-bg-color); } /* Make expanded toggle more prominent */
+.filetype-extensions-container { padding-left: 20px; }
+
+.flash-message {
+    padding: 11px 16px;
+    font-weight: 400; /* Merriweather Sans Regular */
+    border-left-width: 5px;
+    box-shadow: var(--box-shadow-default);
+    background-color: var(--panel-secondary-bg-color); /* Darker bg for flashes */
+}
+
+.note {
+     padding: 14px;
+     font-size: 0.95em;
+     border-left-width: 5px;
+     box-shadow: none; /* Notes are less prominent than flashes */
+}
+
+
+/* --- Logs Page Specific Styles --- */
+#log-statistics-section + hr,
+#detailed-logs-section + hr { /* Targeting hr between sections on logs page */
+    border-top: 1px solid var(--panel-secondary-bg-color); /* Even more subtle for logs page */
+    margin: 35px 0; /* More spacing around hr on logs page */
+}
+
+/* Filters and Search Forms for Logs Page */
+.filters-container,
+#log-search-form {
+    background-color: var(--panel-secondary-bg-color);
+    padding: 20px; /* More padding */
+    border-radius: var(--border-radius-default);
+    margin-bottom: 25px;
+    border: 1px solid var(--panel-tertiary-bg-color);
+}
+
+.filters-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+.filters-container label {
+    margin-bottom: 0;
+    margin-right: 5px;
+    color: var(--text-label-color);
+    align-self: center;
+}
+.filters-container select,
+.filters-container input[type="date"] {
+    min-width: 160px;
+    margin-bottom: 0;
+}
+.filters-container button#update-stats-chart-button {
+    margin-left: auto; /* Push update button to the right */
+}
+
+
+#stats-custom-date-range,
+#search-custom-date-range { /* This is the container for date pairs */
+    display: flex; /* Will be controlled by JS for visibility */
+    align-items: center;
+    gap: 10px;
+    /* margin-left: 10px; /* Indent slightly if it follows another control */
+}
+/* For individual date input groups within the custom range container */
+#stats-custom-date-range > div,
+#search-custom-date-range > div { /* If #search-custom-date-range has direct div children for start/end */
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+#stats-custom-date-range label, /* Label for Start Date / End Date */
+#search-custom-date-range label { /* General label for the "Custom Range" itself if any */
+    margin-bottom: 0;
+    white-space: nowrap;
+}
+#stats-custom-date-range input[type="date"],
+#search-custom-date-range input[type="date"] { /* Direct date inputs or nested ones */
+    width: auto;
+    min-width: 130px;
+    margin-bottom: 0;
+}
+
+
+.log-search-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Slightly wider min for items */
+    gap: 20px; /* Increased gap */
+    margin-bottom: 20px;
+}
+.log-search-grid > div { /* Each direct child grid item */
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Space between label and its input/select */
+}
+.log-search-grid > div label { /* Label directly in a grid item div */
+    margin-bottom: 0; /* Already gapped by parent flex */
+}
+
+/* Styling for the #search-custom-date-range when it's a grid item */
+#search-custom-date-range.time-filter-group { /* Is a direct child of .log-search-grid */
+    /* It inherits flex-direction: column and gap: 5px from .log-search-grid > div */
+    /* The "Custom Range" text would be its implicit label or a <p>/<span> above the date inputs */
+    gap: 10px; /* Gap between the start date group and end date group if nested */
+}
+#search-custom-date-range.time-filter-group > div { /* The inner divs holding label+input for Start/End Date */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+#search-custom-date-range.time-filter-group > div label {
+    flex-shrink: 0;
+}
+#search-custom-date-range.time-filter-group > div input[type="date"] {
+    flex-grow: 1;
+}
+
+
+#log-search-form .form-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+    margin-top: 15px; /* More space above action buttons */
+}
+
+/* Chart Section */
+.chart-container {
+    width: 100%;
+    max-width: 850px; /* Slightly larger max chart width */
+    margin: 25px auto;
+    background-color: var(--panel-bg-color);
+    padding: 25px; /* More padding */
+    border-radius: var(--border-radius-default);
+    border: 1px solid var(--panel-tertiary-bg-color);
+    box-shadow: var(--box-shadow-default);
+}
+
+/* Loading and Error Messages */
+#stats-loading-message,
+#logs-loading-message {
+    text-align: center;
+    padding: 25px; /* More padding */
+    font-style: italic;
+    color: var(--text-secondary-color);
+    font-size: 1.05em;
+}
+
+.error-message { /* For general error message display, e.g. API errors */
+    padding: 12px 18px;
+    margin: 15px 0; /* Consistent margin */
+    border-radius: var(--border-radius-default);
+    font-weight: 400;
+    border-left: 5px solid var(--flash-error-border-color);
+    background-color: var(--flash-error-bg-color);
+    color: var(--flash-error-text-color);
+    box-shadow: var(--box-shadow-default);
+}
+
+
+/* Detailed Logs Table & Summary */
+.results-summary {
+    margin-bottom: 12px;
+    font-size: 0.95em;
+    color: var(--text-secondary-color);
+    padding: 5px 0;
+}
+
+.table-responsive {
+    overflow-x: auto;
+    width: 100%;
+    border: 1px solid var(--table-border-color);
+    border-radius: var(--border-radius-default);
+    background-color: var(--panel-bg-color);
+    box-shadow: var(--box-shadow-default);
+    margin-bottom: 20px;
+}
+
+#detailed-logs-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 1000px; /* Ensure enough width for columns before scroll */
+}
+#detailed-logs-table th,
+#detailed-logs-table td {
+    /* Inherit from #rules-table styles in theme */
+    padding: 12px 15px; /* Slightly more padding for logs table cells */
+    word-break: break-word;
+    hyphens: auto;
+}
+#detailed-logs-table th {
+    /* Inherit from #rules-table th in theme for font, weight, case, spacing, color */
+    position: sticky;
+    top: 0;
+    background-color: var(--table-header-bg-color); /* Ensure bg for sticky header */
+    z-index: 10;
+}
+/* Column specific min-widths for detailed-logs-table */
+#detailed-logs-table td:nth-child(1), #detailed-logs-table th:nth-child(1) { min-width: 160px; } /* Timestamp */
+#detailed-logs-table td:nth-child(2), #detailed-logs-table th:nth-child(2) { min-width: 200px; } /* Rule Name/Context */
+#detailed-logs-table td:nth-child(3), #detailed-logs-table th:nth-child(3) { min-width: 170px; } /* File Hash/Summary */
+#detailed-logs-table td:nth-child(4), #detailed-logs-table th:nth-child(4) { min-width: 120px; } /* Action Type */
+#detailed-logs-table td:nth-child(5), #detailed-logs-table th:nth-child(5) { min-width: 100px; } /* Status */
+#detailed-logs-table td:nth-child(6), #detailed-logs-table th:nth-child(6) { min-width: 220px; } /* Details/Parameters */
+#detailed-logs-table td:nth-child(7), #detailed-logs-table th:nth-child(7) { min-width: 150px; } /* Run ID */
+#detailed-logs-table td:nth-child(8), #detailed-logs-table th:nth-child(8) { min-width: 150px; } /* Log/Exec ID */
+
+
+/* Pagination Controls */
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 20px 0; /* More padding */
+}
+.pagination-controls button {
+    padding: 8px 15px; /* Slightly larger pagination buttons */
+    font-size: 0.9em;
+    /* Uses default button (secondary) styling */
+}
+.pagination-controls button:disabled {
+    background-color: var(--input-disabled-bg-color);
+    color: var(--input-disabled-text-color);
+    border-color: var(--input-disabled-border-color); /* Match border if buttons have one */
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+.pagination-controls .page-info {
+    color: var(--text-secondary-color);
+    font-size: 0.95em;
+    margin: 0 10px; /* Space around page info text */
+}

@@ -1,0 +1,24 @@
+{
+    "api_address": "http://localhost:45869",
+    "api_key": "b5f6a78465bf2a99fbc944b58e69f7f91528526fad75a556d7c6491f55944a72",
+    "rule_interval_seconds": 4,
+    "last_viewed_threshold_seconds": 644,
+    "secret_key": "e92abcd27ba49e99946199bfa59fa6dfdcb14cc9bf4b74b4",
+    "show_run_notifications": false,
+    "show_run_all_notifications": false,
+    "theme": "arcane_library",
+    "available_themes": [
+        "Arctic",
+        "Blueprint",
+        "Cherry_Blossom",
+        "Mocha",
+        "Neon",
+        "Velvel_nightshade",
+        "arcane_library",
+        "correcttemplate",
+        "monochrome_matrix",
+        "obsidian"
+    ],
+    "butler_name": "Sebas",
+    "log_overridden_actions": false
+}

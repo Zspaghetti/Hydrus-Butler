@@ -1,0 +1,1008 @@
+@import url('./fonts/google-fonts-1748599587962.css'); 
+
+:root {
+    /* General */
+    --font-primary: 'Inter', sans-serif;
+    --body-bg-color: #e5e9f0; /* Polar Night - Very light grey/blue */
+    --body-text-color: #2e3440; /* Nord0 - Darkest grey/blue */
+    --border-radius-default: 3px; /* Slightly sharper */
+    --border-radius-round: 50%;
+    --box-shadow-default-color: rgba(46, 52, 64, 0.1);
+    --box-shadow-default: 0 1px 3px var(--box-shadow-default-color);
+    --box-shadow-modal-color: rgba(46, 52, 64, 0.15);
+    --box-shadow-modal: 0 4px 10px var(--box-shadow-modal-color);
+    --overlay-bg-color: rgba(46, 52, 64, 0.6);
+
+    /* Panel Colors (Header, Modal, Table Headers) */
+    --panel-bg-color: #d8dee9; /* Nord5 - Light grey */
+    --panel-text-color: #2e3440; /* Nord0 */
+    --panel-secondary-bg-color: #eceff4; /* Nord6 - Even lighter grey */
+    --panel-tertiary-bg-color: #cdd4df;   /* Custom - Between Nord5 and Nord4 for hover/borders */
+
+    /* Text Colors */
+    --text-primary-color: #2e3440;    /* Nord0 */
+    --text-secondary-color: #4c566a; /* Nord3 - Lighter grey for less important text */
+    --text-on-accent-color: #e5e9f0;   /* Nord6 - For text on dark accent buttons */
+    --text-on-light-accent-color: #2e3440; /* Nord0 - For text on light accent buttons (e.g., yellow, light green) */
+    --text-placeholder-color: #6c788c; /* Custom muted grey */
+    --text-label-color: #3b4252; /* Nord1 - Slightly darker than primary text for non-strong labels */
+    --text-label-strong-color: var(--text-primary-color); /* Nord0 for bold labels */
+
+    /* Input/Control Colors */
+    --input-bg-color: #ffffff; /* Pure white for inputs */
+    --input-text-color: var(--text-primary-color);
+    --input-border-color: #d8dee9; /* Nord5 */
+    --input-focus-border-color: #88c0d0; /* Nord8 - Frost Blue for focus */
+    --input-focus-border-color_opacified: rgba(136, 192, 208, 0.3); /* Opacified Nord8 for box-shadow focus */
+    --input-disabled-bg-color: #eceff4; /* Nord6 */
+    --input-disabled-text-color: #9097a2; /* Custom muted */
+    --input-disabled-border-color: #d8dee9; /* Nord5 */
+
+    /* Button Colors (Semantic) */
+    /* Primary (Save, main positive actions) */
+    --button-primary-bg-color: #5e81ac; /* Nord10 - Blue */
+    --button-primary-text-color: var(--text-on-accent-color);
+    --button-primary-hover-bg-color: #506d90; /* Darker Nord10 */
+    /* Secondary (Navigation, standard actions) */
+    --button-secondary-bg-color: #81a1c1; /* Nord9 - Lighter Blue */
+    --button-secondary-text-color: var(--text-on-accent-color);
+    --button-secondary-hover-bg-color: #708da9; /* Darker Nord9 */
+    /* Accent (Distinct actions, e.g., "Add Another") */
+    --button-accent-bg-color: #8fbcbb; /* Nord7 - Teal/Mint */
+    --button-accent-text-color: var(--text-on-light-accent-color);
+    --button-accent-hover-bg-color: #7aa9a8; /* Darker Nord7 */
+    /* Edit/Warning */
+    --button-edit-bg-color: #ebcb8b; /* Nord13 - Yellow */
+    --button-edit-text-color: var(--text-on-light-accent-color);
+    --button-edit-hover-bg-color: #d9b973; /* Darker Nord13 */
+    /* Danger/Delete (Destructive actions) */
+    --button-danger-bg-color: #bf616a; /* Nord11 - Red */
+    --button-danger-text-color: var(--text-on-accent-color);
+    --button-danger-hover-bg-color: #a75159; /* Darker Nord11 */
+
+    /* Link Colors */
+    --link-color: #5e81ac; /* Nord10 - Blue */
+    --link-hover-color: #81a1c1; /* Nord9 - Lighter Blue */
+
+    /* Table Colors */
+    --table-header-bg-color: var(--panel-bg-color);
+    --table-header-text-color: var(--panel-text-color);
+    --table-border-color: var(--panel-tertiary-bg-color);
+    --table-row-odd-bg-color: transparent;
+    --table-row-even-bg-color: var(--panel-secondary-bg-color);
+    --table-row-hover-bg-color: #e0e4ea; /* Custom - slightly different from panel-secondary */
+    --table-text-color: var(--text-primary-color);
+
+    /* Conditional UI Colors (Rule Editor) */
+    --condition-row-bg-color: var(--panel-secondary-bg-color);
+    --condition-row-text-color: var(--text-primary-color);
+    --condition-row-nested-bg-color: #e0e4ea; /* Custom - slightly different from panel-secondary */
+    --condition-row-nested-border-color: var(--button-secondary-bg-color);
+    --condition-options-area-bg-color: #ffffff; /* White for good contrast with inputs */
+    --condition-options-area-border-color: var(--input-border-color);
+    --or-group-border-color: var(--panel-tertiary-bg-color);
+
+    /* Flash Message Colors */
+    --flash-success-bg-color: #a3be8c; /* Nord14 - Green */
+    --flash-success-text-color: var(--text-on-light-accent-color);
+    --flash-success-border-color: #8c9f70; /* Darker Nord14 */
+    --flash-error-bg-color: var(--button-danger-bg-color);
+    --flash-error-text-color: var(--button-danger-text-color);
+    --flash-error-border-color: var(--button-danger-hover-bg-color);
+    --flash-info-bg-color: var(--button-secondary-bg-color);
+    --flash-info-text-color: var(--button-secondary-text-color);
+    --flash-info-border-color: var(--button-secondary-hover-bg-color);
+
+    /* Filetype UI Colors */
+    --filetype-container-bg-color: var(--panel-secondary-bg-color);
+    --filetype-container-border-color: var(--input-border-color);
+    --filetype-separator-color: var(--input-border-color);
+    --filetype-toggle-color: var(--text-primary-color);
+
+    /* Note/Info Box Colors */
+    --note-bg-color: var(--panel-secondary-bg-color);
+    --note-text-color: var(--text-primary-color);
+    --note-border-color: var(--button-secondary-bg-color);
+    --hr-color: var(--panel-tertiary-bg-color);
+}
+
+/* --- Global Resets & Base Styles --- */
+body {
+    font-family: var(--font-primary);
+    margin: 0;
+    padding: 0;
+    background-color: var(--body-bg-color);
+    color: var(--body-text-color);
+    font-size: 15px; /* Base font size for better readability */
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-primary-color);
+    margin-top: 1.2em;
+    margin-bottom: 0.6em;
+    font-weight: 600; /* Slightly bolder headings */
+}
+h1 { font-size: 2em; }
+h2 { font-size: 1.6em; }
+h3 { font-size: 1.3em; }
+
+p {
+    line-height: 1.6;
+    margin-bottom: 1em;
+}
+
+a {
+    color: var(--link-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+a:hover {
+    color: var(--link-hover-color);
+    text-decoration: underline;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid var(--hr-color);
+    margin: 25px 0; /* More spacing around HR */
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    margin-bottom: 8px;
+}
+
+/* --- Layout Components --- */
+header {
+    background-color: var(--panel-bg-color);
+    color: var(--panel-text-color);
+    padding: 15px 25px; /* More spacious header */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--hr-color); /* Subtle separation */
+}
+
+header h1 {
+    color: var(--panel-text-color);
+    margin: 0;
+    font-size: 1.4em; /* Slightly smaller for a cleaner header */
+    font-weight: 700;
+}
+
+nav button { /* Styling handled by .secondary-button class via variable mapping */
+    padding: 8px 15px; /* Original padding */
+    background-color: var(--button-secondary-bg-color);
+    color: var(--button-secondary-text-color);
+    border: none; /* Flat buttons */
+    border-radius: var(--border-radius-default);
+    cursor: pointer;
+    font-size: 0.95em; /* Slightly smaller nav buttons */
+    font-weight: 500;
+}
+
+nav button:hover {
+    background-color: var(--button-secondary-hover-bg-color);
+}
+
+main {
+    padding: 25px;
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+    margin-top: 30px;
+    color: var(--text-secondary-color);
+    font-size: 0.9em;
+    border-top: 1px solid var(--hr-color);
+}
+
+/* --- General Form Styles --- */
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600; /* Bolder labels */
+    color: var(--text-label-strong-color); /* Using strong color for all main labels */
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="date"], /* Added date type for consistent styling */
+select,
+textarea {
+    width: 100%; /* Simpler width */
+    padding: 10px 12px; /* More comfortable padding */
+    box-sizing: border-box;
+    background-color: var(--input-bg-color);
+    border: 1px solid var(--input-border-color);
+    color: var(--input-text-color);
+    border-radius: var(--border-radius-default);
+    margin-bottom: 15px; /* More space below inputs */
+    font-family: var(--font-primary);
+    font-size: 0.95em;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="date"]:focus, /* Added date type for consistent styling */
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--input-focus-border-color);
+    box-shadow: 0 0 0 3px var(--input-focus-border-color_opacified);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--text-placeholder-color);
+    opacity: 1; /* Ensure placeholder is not too faint */
+}
+
+select {
+    appearance: none; /* Basic reset for custom arrow */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%234c566a'%3E%3Cpath d='M8 11L2 5h12z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 10px 10px;
+    padding-right: 35px; /* Make space for arrow */
+}
+
+/* --- Button Styles --- */
+button,
+input[type="button"],
+input[type="submit"] {
+    padding: 10px 18px;
+    border-radius: var(--border-radius-default);
+    cursor: pointer;
+    font-size: 0.95em;
+    font-weight: 600; /* Bolder buttons */
+    text-align: center;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+    border: none; /* Default to no border for semantic buttons */
+}
+
+/* Default button style (if not specifically classed as primary, secondary etc.) */
+button:not([class*="-button"]):not([type="submit"]),
+input[type="button"]:not([class*="-button"]) {
+    background-color: var(--panel-bg-color); /* Subtle default button */
+    color: var(--text-primary-color);
+    border: 1px solid var(--input-border-color);
+}
+button:not([class*="-button"]):not([type="submit"]):hover,
+input[type="button"]:not([class*="-button"]):hover {
+    background-color: var(--panel-tertiary-bg-color);
+    border-color: var(--panel-tertiary-bg-color);
+}
+
+button[type="submit"] {
+    background-color: var(--button-primary-bg-color);
+    color: var(--button-primary-text-color);
+}
+button[type="submit"]:hover {
+    background-color: var(--button-primary-hover-bg-color);
+}
+
+/* Focus style for all buttons */
+button:focus,
+input[type="button"]:focus,
+input[type="submit"]:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--input-focus-border-color_opacified);
+}
+
+
+.add-button { /* Floating Action Button */
+    padding: 12px; /* Good for icon only */
+    font-size: 1.8em; /* Larger icon */
+    background-color: var(--button-primary-bg-color);
+    color: var(--button-primary-text-color);
+    /* border: none; inherited */
+    border-radius: var(--border-radius-round);
+    /* cursor: pointer; inherited */
+    position: fixed;
+    bottom: 25px; /* Slightly more offset */
+    right: 25px;
+    box-shadow: 0 3px 8px rgba(46, 52, 64, 0.25); /* Enhanced shadow for FAB */
+    line-height: 1;
+    z-index: 500;
+}
+.add-button:hover {
+    background-color: var(--button-primary-hover-bg-color);
+    transform: translateY(-2px); /* Subtle lift */
+}
+
+.secondary-button {
+    padding: 8px 15px; /* Original padding */
+    background-color: var(--button-secondary-bg-color);
+    color: var(--button-secondary-text-color);
+    margin-bottom: 10px; /* This might be too general, consider context */
+}
+.secondary-button:hover {
+    background-color: var(--button-secondary-hover-bg-color);
+}
+
+.add-destination-button {
+    padding: 8px 15px;
+    background-color: var(--button-accent-bg-color);
+    color: var(--button-accent-text-color);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.add-destination-button:hover {
+    background-color: var(--button-accent-hover-bg-color);
+}
+
+/* --- Style for "View Activity Logs" button on index.html (to match nav buttons) --- */
+/* This selector is specific to the current HTML structure for the logs button */
+main > div[style*="margin-top: 30px"] > a > button {
+    padding: 8px 15px;
+    background-color: var(--button-secondary-bg-color);
+    color: var(--button-secondary-text-color);
+    border: none;
+    border-radius: var(--border-radius-default);
+    cursor: pointer;
+    font-size: 0.95em;
+    font-weight: 500;
+}
+main > div[style*="margin-top: 30px"] > a > button:hover {
+    background-color: var(--button-secondary-hover-bg-color);
+}
+
+
+/* --- Settings Form Specific Styles (#settings-form) --- */
+#settings-form div {
+    margin-bottom: 18px; /* Consistent spacing */
+}
+
+#settings-form input[type="number"] {
+    width: 120px; /* Slightly wider number inputs */
+}
+
+#settings-form .checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Smaller gap */
+    margin-bottom: 18px;
+}
+#settings-form .checkbox-row label {
+     margin-bottom: 0;
+     font-weight: normal;
+     color: var(--text-label-color); /* Use non-strong label color */
+     display: inline-block;
+ }
+#settings-form .checkbox-row input[type="checkbox"] {
+    width: auto;
+    margin: 0 5px 0 0; /* Checkbox margin right */
+    flex-shrink: 0;
+    transform: scale(1.1); /* Slightly larger checkboxes */
+}
+
+/* --- Rules Table (#rules-table-container, #rules-table) --- */
+#rules-table-container {
+    margin-top: 25px;
+    overflow-x: auto;
+    border: 1px solid var(--table-border-color); /* Border around container */
+    border-radius: var(--border-radius-default);
+}
+
+#rules-table {
+    width: 100%;
+    border-collapse: collapse;
+    /* margin-top: 10px; removed as container has border */
+}
+
+#rules-table th,
+#rules-table td {
+    border: none; /* Remove individual cell borders */
+    border-bottom: 1px solid var(--table-border-color); /* Horizontal lines only */
+    padding: 12px 15px; /* More padding */
+    text-align: left;
+    color: var(--table-text-color);
+    vertical-align: middle;
+}
+#rules-table tr:last-child td {
+    border-bottom: none; /* No border for last row */
+}
+
+#rules-table th {
+    background-color: var(--table-header-bg-color);
+    color: var(--table-header-text-color);
+    font-weight: 600;
+    border-bottom-width: 2px; /* Thicker border below header */
+}
+
+#rules-table tbody tr {
+    background-color: var(--table-row-odd-bg-color); /* Uses --body-bg-color via transparent */
+}
+#rules-table tbody tr:nth-child(even) {
+    background-color: var(--table-row-even-bg-color);
+}
+
+#rules-table tbody tr:hover {
+    background-color: var(--table-row-hover-bg-color);
+}
+
+#rules-table td button {
+    padding: 6px 12px; /* Smaller buttons in table */
+    margin-right: 6px;
+    font-size: 0.9em;
+}
+#rules-table td button:last-child {
+    margin-right: 0;
+}
+
+#rules-table td button.run-button {
+    background-color: var(--button-secondary-bg-color);
+    color: var(--button-secondary-text-color);
+}
+#rules-table td button.run-button:hover { background-color: var(--button-secondary-hover-bg-color); }
+
+#rules-table td button.edit-button {
+    background-color: var(--button-edit-bg-color);
+    color: var(--button-edit-text-color);
+}
+#rules-table td button.edit-button:hover { background-color: var(--button-edit-hover-bg-color); }
+
+
+#rules-table td button.delete-button {
+    background-color: var(--button-danger-bg-color);
+    color: var(--button-danger-text-color);
+}
+#rules-table td button.delete-button:hover { background-color: var(--button-danger-hover-bg-color); }
+
+
+/* --- Modal Styles (.modal-overlay, .modal-content) --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--overlay-bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px; /* Allow space for modal shadow and avoid edge snapping */
+    box-sizing: border-box;
+}
+
+.modal-content {
+    background-color: var(--panel-bg-color); /* Use panel bg for modal */
+    padding: 25px; /* More padding */
+    border-radius: var(--border-radius-default);
+    width: 100%; /* Full width within padding constraints */
+    max-width: 650px; /* Adjusted max-width */
+    max-height: calc(100vh - 40px); /* Max height considering overlay padding */
+    overflow-y: auto;
+    color: var(--panel-text-color);
+    box-shadow: var(--box-shadow-modal);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-content form {
+    padding-bottom: 0; /* Remove extra padding if modal has its own */
+}
+
+.modal-content h3 {
+    color: var(--panel-text-color);
+    margin-top: 0;
+    margin-bottom: 20px; /* More space below title */
+    font-size: 1.4em;
+}
+
+.close-button {
+    position: absolute;
+    top: 15px; /* Adjusted position */
+    right: 15px;
+    font-size: 1.8em; /* Larger close icon */
+    font-weight: bold;
+    color: var(--panel-text-color);
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 1;
+    padding: 5px; /* Clickable area */
+}
+.close-button:hover {
+    color: var(--button-danger-bg-color);
+}
+
+/* --- Rule Form Styles (#rule-form) --- */
+#rule-form label {
+    /* color: var(--panel-text-color); if specific color needed, else inherited */
+}
+
+#rule-form input[type="text"],
+#rule-form input[type="number"],
+#rule-form select,
+#rule-form textarea {
+    margin-bottom: 15px; /* Consistent spacing */
+}
+
+#rule-form .add-condition-button,
+#rule-form .remove-condition-button,
+#rule-form .remove-destination-button {
+    padding: 8px 15px;
+    margin-top: 5px; /* Reduced top margin, rely on gap or row margin */
+    margin-bottom: 5px;
+}
+
+#rule-form .add-condition-button {
+    background-color: var(--button-secondary-bg-color);
+    color: var(--button-secondary-text-color);
+    margin-right: 10px;
+}
+#rule-form .add-condition-button:hover { background-color: var(--button-secondary-hover-bg-color); }
+
+#rule-form .remove-condition-button,
+#rule-form .remove-destination-button {
+    background-color: var(--button-danger-bg-color);
+    color: var(--button-danger-text-color);
+}
+#rule-form .remove-condition-button:hover,
+#rule-form .remove-destination-button:hover { background-color: var(--button-danger-hover-bg-color); }
+
+
+/* Styling for individual condition rows (.condition-row) */
+.condition-row {
+    background-color: var(--condition-row-bg-color);
+    padding: 15px; /* More padding */
+    margin-bottom: 12px;
+    border-radius: var(--border-radius-default);
+    border: 1px solid var(--input-border-color); /* Add border for clarity */
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px; /* Consistent gap */
+}
+.condition-row label {
+    color: var(--condition-row-text-color);
+    font-weight: normal;
+    margin-bottom: 0; /* Reset margin for inline labels */
+}
+
+.condition-row.nested-condition-row {
+    background-color: var(--condition-row-nested-bg-color);
+    border-left: 4px solid var(--condition-row-nested-border-color);
+    margin-left: 25px; /* Indent nested rows more */
+    gap: 10px;
+}
+
+.condition-row .remove-condition-button {
+     flex-shrink: 0;
+     margin: 0; /* Reset margin for alignment */
+}
+
+.condition-row select,
+.condition-row input[type="text"],
+.condition-row input[type="number"],
+.condition-row textarea {
+     width: auto;
+     flex-grow: 1;
+     margin-bottom: 0;
+}
+
+
+/* Style for the area holding dynamic options within a condition row */
+.condition-row .options-area {
+    display: flex;
+    align-items: center;
+    flex-grow: 2; /* Allow more growth */
+    flex-wrap: wrap;
+    gap: 10px;
+    background-color: var(--condition-options-area-bg-color);
+    padding: 10px;
+    border-radius: var(--border-radius-default);
+    border: 1px solid var(--condition-options-area-border-color);
+}
+
+/* Styling for the container holding conditions within an OR group */
+.or-group-conditions-container {
+    border: 1px dashed var(--or-group-border-color);
+    padding: 20px; /* More padding */
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-radius: var(--border-radius-default);
+    /* width: calc(100% - 30px); auto width now with box-sizing */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background-color: rgba(0,0,0,0.02); /* Very subtle background to distinguish */
+}
+
+
+/* --- Filetype UI in Modal --- */
+.filetype-options-container {
+    background-color: var(--filetype-container-bg-color);
+    padding: 15px;
+    border-radius: var(--border-radius-default);
+    border: 1px solid var(--filetype-container-border-color);
+    margin-top: 15px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.filetype-category-row {
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed var(--filetype-separator-color);
+}
+.filetype-category-row:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.filetype-category-header {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 5px 0;
+}
+.filetype-category-header input[type="checkbox"] {
+    flex-shrink: 0;
+    margin-right: 8px;
+    width: auto;
+    transform: scale(1.1); /* Match settings form checkbox */
+}
+.filetype-category-header label {
+    flex-grow: 1;
+    margin: 0;
+    font-weight: 600; /* Bolder category labels */
+    cursor: pointer;
+    color: var(--text-label-strong-color);
+}
+
+.filetype-toggle-extensions {
+    margin-left: auto;
+    background: none;
+    border: none;
+    color: var(--filetype-toggle-color);
+    cursor: pointer;
+    font-size: 1em; /* Slightly larger toggle */
+    padding: 0 5px;
+    transition: transform 0.2s ease;
+}
+.filetype-toggle-extensions.expanded { /* Style for when expanded */
+    transform: rotate(90deg);
+}
+
+.filetype-extensions-container {
+    padding-left: 25px; /* Indent extensions more */
+    margin-top: 8px;
+    display: none;
+}
+.filetype-extension-row {
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+}
+.filetype-extension-row input[type="checkbox"] {
+    flex-shrink: 0;
+    margin-right: 8px;
+    width: auto;
+    transform: scale(1.1);
+}
+.filetype-extension-row label {
+    margin: 0;
+    font-weight: normal;
+    color: var(--text-label-color);
+}
+
+/* --- Flashed Messages --- */
+#flashes-container {
+    margin-bottom: 20px; /* Keep above main content */
+    position: sticky; /* Make flashes stick at top if desired, or fixed */
+    top: 10px; /* Example if sticky/fixed */
+    z-index: 1100; /* Above modal overlay if needed */
+}
+
+.flash-message {
+    padding: 12px 15px;
+    margin: 0 auto 10px auto; /* Centered with auto margin */
+    max-width: 600px; /* Limit width of flash messages */
+    border-radius: var(--border-radius-default);
+    font-weight: 500;
+    border-left-width: 5px; /* Thicker accent bar */
+    border-left-style: solid;
+    box-shadow: var(--box-shadow-default);
+}
+
+.flash-success {
+    background-color: var(--flash-success-bg-color);
+    color: var(--flash-success-text-color);
+    border-left-color: var(--flash-success-border-color);
+}
+
+.flash-error {
+    background-color: var(--flash-error-bg-color);
+    color: var(--flash-error-text-color);
+    border-left-color: var(--flash-error-border-color);
+}
+
+.flash-info {
+    background-color: var(--flash-info-bg-color);
+    color: var(--flash-info-text-color);
+    border-left-color: var(--flash-info-border-color);
+}
+
+/* --- Note/Info Box (e.g., for Settings page) --- */
+.note {
+     margin-top: 25px;
+     padding: 15px;
+     background-color: var(--note-bg-color);
+     color: var(--note-text-color);
+     border-left: 5px solid var(--note-border-color);
+     border-radius: var(--border-radius-default);
+     font-size: 0.95em;
+     box-shadow: inset 2px 0 0 var(--note-border-color), var(--box-shadow-default); /* Subtle inset highlight */
+}
+.note p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+.note p:first-child { margin-top: 0; }
+.note p:last-child { margin-bottom: 0; }
+
+.note ul {
+    margin-top: 0.8em;
+    margin-left: 20px;
+    list-style: disc;
+}
+.note hr {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-top: 1px solid var(--hr-color);
+}
+
+
+/* --- Status Message (from settings.html inline style) --- */
+.status-message {
+    margin-top: 20px;
+    padding: 12px 15px;
+    border-radius: var(--border-radius-default);
+    display: none;
+    font-weight: 500;
+    border-left-width: 5px;
+    border-left-style: solid;
+    box-shadow: var(--box-shadow-default);
+}
+.status-message.success {
+    background-color: var(--flash-success-bg-color);
+    color: var(--flash-success-text-color);
+    border-left-color: var(--flash-success-border-color);
+}
+.status-message.error {
+    background-color: var(--flash-error-bg-color);
+    color: var(--flash-error-text-color);
+    border-left-color: var(--flash-error-border-color);
+}
+/* Default status message if no class is applied, use info style */
+.status-message:not(.success):not(.error) {
+    background-color: var(--flash-info-bg-color);
+    color: var(--flash-info-text-color);
+    border-left-color: var(--flash-info-border-color);
+}
+
+
+/* --- Utility Classes --- */
+.loading-cursor, .loading-cursor * {
+    cursor: wait !important;
+}
+
+/* --- Logs Page Specific Styles --- */
+.filters-container,
+.log-search-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px 15px; /* row-gap column-gap */
+    margin-bottom: 20px;
+    align-items: flex-end; /* Align filter groups nicely */
+}
+
+.filters-container > div, /* Direct children holding label+input in stats filters */
+.log-search-grid > div {   /* Direct children holding label+input in log search */
+    flex: 1 1 200px; /* Grow, shrink, base width */
+    min-width: 180px;
+}
+
+/* Ensure select and input elements within these containers behave as expected */
+.filters-container select,
+.filters-container input[type="date"],
+.log-search-grid select,
+.log-search-grid input[type="text"],
+.log-search-grid input[type="date"] {
+    margin-bottom: 0; /* Remove default margin if they are part of a flex row */
+}
+
+#stats-custom-date-range,
+#search-custom-date-range {
+    /* display: none; is handled by inline style + JS */
+    display: flex;
+    gap: 10px;
+    align-items: center; /* Align labels and date inputs */
+    flex-basis: 100%; /* Take full width if wraps to new line */
+    flex-wrap: wrap;
+}
+#stats-custom-date-range div,
+#search-custom-date-range div { /* For label+input pairs within custom date range */
+    display: flex;
+    flex-direction: column; /* Stack label above input */
+    flex: 1 1 auto;
+}
+#stats-custom-date-range input[type="date"],
+#search-custom-date-range input[type="date"] {
+    width: auto; /* Override full width for date inputs here */
+    min-width: 160px; /* Ensure date inputs are not too small */
+}
+
+/* Specific styling for log search form action buttons */
+#log-search-form .form-actions {
+    margin-top: 10px; /* Reduced from 15 to align better if filters wrap */
+    display: flex;
+    gap: 10px;
+    flex-basis: 100%; /* Ensure it takes full width */
+    justify-content: flex-start;
+}
+#log-search-form .form-actions button {
+    margin-bottom: 0; /* Overrides .secondary-button margin-bottom */
+}
+
+
+.error-message { /* Generic error message class used on logs page */
+    padding: 10px 15px;
+    margin: 10px 0;
+    border-radius: var(--border-radius-default);
+    color: var(--flash-error-text-color);
+    background-color: var(--flash-error-bg-color);
+    border: 1px solid var(--flash-error-border-color);
+    font-weight: 500;
+}
+
+#stats-loading-message,
+#logs-loading-message {
+    padding: 10px;
+    color: var(--text-secondary-color);
+    font-style: italic;
+    text-align: center;
+}
+
+.chart-container {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: var(--panel-secondary-bg-color);
+    border-radius: var(--border-radius-default);
+    border: 1px solid var(--table-border-color);
+    box-shadow: var(--box-shadow-default);
+    max-width: 100%;
+}
+#filesProcessedChart {
+    max-height: 450px; /* Adjust as needed */
+    width: 100% !important; /* Ensure Chart.js respects container width */
+}
+
+.table-responsive { /* Wrapper for detailed logs table */
+    overflow-x: auto;
+    border: 1px solid var(--table-border-color);
+    border-radius: var(--border-radius-default);
+    margin-top: 15px;
+    background-color: var(--body-bg-color); /* Match table odd rows if transparent */
+}
+
+#detailed-logs-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+#detailed-logs-table th,
+#detailed-logs-table td {
+    border: none;
+    border-bottom: 1px solid var(--table-border-color);
+    padding: 10px 12px; /* Slightly less padding for denser logs */
+    text-align: left;
+    color: var(--table-text-color);
+    vertical-align: top; /* Good for multi-line details */
+}
+#detailed-logs-table tr:last-child td {
+    border-bottom: none;
+}
+#detailed-logs-table th {
+    background-color: var(--table-header-bg-color);
+    color: var(--table-header-text-color);
+    font-weight: 600;
+    border-bottom-width: 2px;
+    position: sticky; /* Sticky headers for scrolling */
+    top: 0;
+    z-index: 10; /* Above table content when scrolling */
+}
+#detailed-logs-table tbody tr {
+    background-color: var(--table-row-odd-bg-color);
+}
+#detailed-logs-table tbody tr:nth-child(even) {
+    background-color: var(--table-row-even-bg-color);
+}
+#detailed-logs-table tbody tr:hover {
+    background-color: var(--table-row-hover-bg-color);
+}
+
+/* Column-specific styling for log table */
+#detailed-logs-table td:nth-child(1) { min-width: 150px; } /* Timestamp */
+#detailed-logs-table td:nth-child(2) { min-width: 180px; word-break: break-word; } /* Rule Name/Context */
+#detailed-logs-table td:nth-child(3) { min-width: 150px; word-break: break-all; } /* File Hash/Summary */
+#detailed-logs-table td:nth-child(4) { min-width: 120px; } /* Action Type */
+#detailed-logs-table td:nth-child(5) { min-width: 100px; } /* Status */
+#detailed-logs-table td:nth-child(6) { min-width: 200px; word-break: break-word; } /* Details/Parameters */
+#detailed-logs-table td:nth-child(7), /* Run ID */
+#detailed-logs-table td:nth-child(8) { /* Log/Exec ID */
+    min-width: 120px;
+    word-break: break-all; /* For UUIDs */
+    font-family: 'Courier New', Courier, monospace; /* Monospace for IDs */
+    font-size: 0.9em;
+}
+
+
+.results-summary { /* Used for log search summary */
+    margin: 15px 0;
+    padding: 10px 15px;
+    background-color: var(--panel-secondary-bg-color);
+    border: 1px solid var(--table-border-color);
+    border-radius: var(--border-radius-default);
+    font-size: 0.95em;
+    color: var(--text-secondary-color);
+}
+
+.pagination-controls {
+    margin-top: 20px;
+    text-align: center;
+    padding-bottom: 10px; /* Space at the bottom */
+}
+.pagination-controls button,
+.pagination-controls span {
+    margin: 0 4px; /* Slightly more space */
+    padding: 8px 12px;
+    border-radius: var(--border-radius-default);
+    background-color: var(--button-secondary-bg-color);
+    color: var(--button-secondary-text-color);
+    border: none;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+.pagination-controls button:hover:not(:disabled) {
+    background-color: var(--button-secondary-hover-bg-color);
+}
+.pagination-controls button:disabled {
+    background-color: var(--input-disabled-bg-color);
+    color: var(--input-disabled-text-color);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+.pagination-controls span.current-page {
+    background-color: var(--button-primary-bg-color);
+    color: var(--button-primary-text-color);
+    font-weight: bold;
+    cursor: default;
+}
+.pagination-controls span.ellipsis {
+    background-color: transparent;
+    color: var(--text-secondary-color);
+    cursor: default;
+    padding: 8px 6px;
+}

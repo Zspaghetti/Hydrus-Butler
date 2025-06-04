@@ -1,0 +1,81 @@
+[
+    {
+        "id": "8857c459-7544-49f6-8b1c-f22bd9c6691b",
+        "name": "Rule 1",
+        "priority": 1,
+        "conditions": [
+            {
+                "type": "tags",
+                "value": [
+                    "test"
+                ],
+                "operator": "search_terms"
+            }
+        ],
+        "action": {
+            "type": "add_tags",
+            "tag_service_key": "646f776e6c6f616465722074616773",
+            "tags_to_process": [
+                "namespace:tag2"
+            ]
+        }
+    },
+    {
+        "id": "87e7a5f4-203e-458d-9b9c-0f437d97b5dd",
+        "name": "Rule name",
+        "priority": 3,
+        "conditions": [
+            {
+                "type": "rating",
+                "service_key": "6661766f757269746573",
+                "operator": "is",
+                "value": true
+            }
+        ],
+        "action": {
+            "type": "remove_tags",
+            "tag_service_key": "6c6f63616c2074616773",
+            "tags_to_process": [
+                "tag1"
+            ]
+        }
+    },
+    {
+        "id": "35ccd8bd-158f-40be-a6bc-d5a0b93f1878",
+        "name": "Rule 2",
+        "priority": 4,
+        "conditions": [
+            {
+                "type": "boolean",
+                "operator": "inbox",
+                "value": true
+            }
+        ],
+        "action": {
+            "type": "add_to",
+            "destination_service_keys": [
+                "163b7acb4e5b84243a7caed39c37b826092aea9253939feb77cdd497b5423bb2",
+                "aae647fe2b8a0454a870177822e2e130a7e1eeb958f89c7b7ea0a91616969cc3",
+                "ba86dc0fc675444f4a5ac8cbf2b30ec9f1ace64c8510025ae72b3df838e6e7e8"
+            ]
+        }
+    },
+    {
+        "id": "5fac3684-9749-4bae-b881-b1e335bf137d",
+        "name": "Example",
+        "priority": 1,
+        "conditions": [
+            {
+                "type": "file_service",
+                "operator": "is_not_in",
+                "value": "32d00441bc6da8b1df6320394392779a59eac4e1ae4d238aa875163caea8bc43"
+            }
+        ],
+        "action": {
+            "type": "force_in",
+            "destination_service_keys": [
+                "0fc12ad84f6042ed8045475b61eb73c6c98dfbb6d2477d725dc6889285fcfa11"
+            ]
+        }
+    }
+]

@@ -1,0 +1,915 @@
+@import url('./fonts/google-fonts-1748599613138.css'); 
+
+:root {
+    /* General */
+    --font-primary: 'Rajdhani', sans-serif; /* Techy sans-serif */
+    --font-headings: 'Orbitron', sans-serif; /* Futuristic, blocky display font */
+    --body-bg-color: #0d0c1d; /* Deep space blue/purple */
+    --body-text-color: #c0c0ff; /* Light lavender/cyan */
+    --border-radius-default: 2px; /* Sharp, digital edges */
+    --border-radius-round: 50%;
+
+    /* Neon Accents (Choose 2-3 main ones) */
+    --neon-pink: #ff00ff;
+    --neon-cyan: #00ffff;
+    --neon-lime: #39ff14;
+    --neon-orange: #ff8c00;
+
+    --box-shadow-default-color: var(--neon-pink); /* Glow effect */
+    --box-shadow-default: 0 0 8px var(--box-shadow-default-color), 0 0 12px var(--box-shadow-default-color);
+    --box-shadow-modal-color: var(--neon-cyan);
+    --box-shadow-modal: 0 0 15px var(--box-shadow-modal-color), 0 0 25px var(--box-shadow-modal-color);
+    --overlay-bg-color: rgba(13, 12, 29, 0.85); /* Dark, slightly transparent */
+
+    /* Panel Colors */
+    --panel-bg-color: #1a1832; /* Slightly lighter deep blue/purple */
+    --panel-text-color: var(--body-text-color);
+    --panel-secondary-bg-color: #232044; /* For table even rows, input bg */
+    --panel-tertiary-bg-color: #2c2855;   /* Table hover, borders */
+
+    /* Text Colors */
+    --text-primary-color: var(--body-text-color);
+    --text-secondary-color: #8a8aff; /* Muted lavender */
+    --text-on-accent-color: #0d0c1d;   /* Dark text on bright neon buttons (if needed, usually light text) */
+    --text-on-neon-text-color: #ffffff; /* Pure white for text on neon elements */
+    --text-placeholder-color: #5c5c8a;
+    --text-label-color: var(--text-secondary-color);
+    --text-label-strong-color: var(--neon-cyan); /* Strong labels glow cyan */
+
+    /* Input/Control Colors */
+    --input-bg-color: #100e23; /* Very dark, almost black */
+    --input-text-color: var(--neon-lime); /* Lime green text in inputs */
+    --input-border-color: var(--panel-tertiary-bg-color);
+    --input-focus-border-color: var(--neon-pink);
+    --input-focus-box-shadow-color: var(--neon-pink);
+    --input-disabled-bg-color: #1f1d30;
+    --input-disabled-text-color: #4a4a6a;
+    --input-disabled-border-color: #2a2840;
+
+    /* Button Colors (Semantic) */
+    /* Primary (Save, main positive actions) */
+    --button-primary-bg-color: transparent;
+    --button-primary-text-color: var(--neon-pink);
+    --button-primary-border-color: var(--neon-pink);
+    --button-primary-hover-bg-color: var(--neon-pink);
+    --button-primary-hover-text-color: #0d0c1d;
+    /* Secondary (Navigation, standard actions) */
+    --button-secondary-bg-color: transparent;
+    --button-secondary-text-color: var(--neon-cyan);
+    --button-secondary-border-color: var(--neon-cyan);
+    --button-secondary-hover-bg-color: var(--neon-cyan);
+    --button-secondary-hover-text-color: #0d0c1d;
+    /* Accent (Distinct actions, e.g., "Add Another") */
+    --button-accent-bg-color: transparent;
+    --button-accent-text-color: var(--neon-lime);
+    --button-accent-border-color: var(--neon-lime);
+    --button-accent-hover-bg-color: var(--neon-lime);
+    --button-accent-hover-text-color: #0d0c1d;
+    /* Edit/Warning */
+    --button-edit-bg-color: transparent;
+    --button-edit-text-color: var(--neon-orange);
+    --button-edit-border-color: var(--neon-orange);
+    --button-edit-hover-bg-color: var(--neon-orange);
+    --button-edit-hover-text-color: #0d0c1d;
+    /* Danger/Delete (Destructive actions) */
+    --button-danger-bg-color: transparent;                         
+    --button-danger-text-color: var(--flash-error-text-color);   
+    --button-danger-border-color: var(--flash-error-border-color); 
+    --button-danger-hover-bg-color: #ff0000;
+    --button-danger-hover-text-color: #ffffff;
+
+    /* Link Colors */
+    --link-color: var(--neon-cyan);
+    --link-hover-color: var(--neon-pink);
+    --link-text-shadow: 0 0 5px var(--link-color);
+
+    /* Table Colors */
+    --table-header-bg-color: var(--panel-bg-color);
+    --table-header-text-color: var(--neon-pink);
+    --table-border-color: var(--panel-tertiary-bg-color);
+    --table-row-odd-bg-color: transparent;
+    --table-row-even-bg-color: var(--panel-secondary-bg-color);
+    --table-row-hover-bg-color: var(--panel-tertiary-bg-color);
+    --table-text-color: var(--text-primary-color);
+
+    /* Conditional UI Colors (Rule Editor) */
+    --condition-row-bg-color: rgba(35, 32, 68, 0.7); /* More transparent */
+    --condition-row-text-color: var(--text-primary-color);
+    --condition-row-nested-bg-color: rgba(44, 40, 85, 0.7);
+    --condition-row-nested-border-color: var(--neon-lime);
+    --condition-options-area-bg-color: var(--input-bg-color);
+    --condition-options-area-border-color: var(--input-border-color);
+    --or-group-border-color: var(--neon-cyan); /* Dashed Cyan border for OR group */
+
+    /* Flash Message Colors */
+    --flash-success-bg-color: rgba(57, 255, 20, 0.15); /* Lime */
+    --flash-success-text-color: var(--neon-lime);
+    --flash-success-border-color: var(--neon-lime);
+    --flash-error-bg-color: rgba(255, 51, 51, 0.15); /* Red */
+    --flash-error-text-color: #ff3333;
+    --flash-error-border-color: #ff3333;
+    --flash-info-bg-color: rgba(0, 255, 255, 0.15); /* Cyan */
+    --flash-info-text-color: var(--neon-cyan);
+    --flash-info-border-color: var(--neon-cyan);
+
+    /* Filetype UI Colors */
+    --filetype-container-bg-color: rgba(26, 24, 50, 0.8);
+    --filetype-container-border-color: var(--neon-pink);
+    --filetype-separator-color: var(--panel-tertiary-bg-color);
+    --filetype-toggle-color: var(--neon-cyan);
+
+    /* Note/Info Box Colors */
+    --note-bg-color: var(--panel-secondary-bg-color);
+    --note-text-color: var(--text-primary-color);
+    --note-border-color: var(--neon-orange);
+    --hr-color: var(--panel-tertiary-bg-color);
+
+    /* Text shadow for glowing effect */
+    --text-glow-default: 0 0 5px currentColor;
+    --text-glow-strong: 0 0 8px currentColor, 0 0 10px currentColor;
+}
+
+/* --- Global Resets & Base Styles --- */
+body {
+    font-family: var(--font-primary);
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    background-color: var(--body-bg-color);
+    /* Optional: Subtle grid background */
+    background-image:
+        linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 30px 30px;
+    color: var(--body-text-color);
+    font-size: 16px;
+    line-height: 1.6;
+    text-shadow: 0 0 2px rgba(192, 192, 255, 0.2); /* Subtle general text glow */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-headings);
+    color: var(--neon-pink); /* Headings are Pink */
+    margin-top: 1.5em;
+    margin-bottom: 0.6em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: var(--text-glow-strong);
+}
+h1 { font-size: 2.8em; font-weight: 900; }
+h2 { font-size: 2.2em; }
+h3 { font-size: 1.8em; color: var(--neon-cyan); } /* Tertiary headings in Cyan */
+
+p { margin-bottom: 1.2em; }
+
+a {
+    color: var(--link-color);
+    text-decoration: none;
+    font-weight: 500;
+    text-shadow: var(--link-text-shadow);
+    transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+a:hover {
+    color: var(--link-hover-color);
+    text-decoration: none; /* No underline, rely on color change and glow */
+    text-shadow: 0 0 8px var(--link-hover-color);
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, transparent, var(--neon-cyan), transparent);
+    margin: 30px 0;
+}
+
+ul { list-style: none; padding: 0; }
+ul li { margin-bottom: 8px; }
+ul li::before { /* Custom bullet points */
+    content: '» ';
+    color: var(--neon-pink);
+    margin-right: 8px;
+    text-shadow: var(--text-glow-default);
+}
+
+
+/* --- Layout Components --- */
+header {
+    background-color: rgba(13, 12, 29, 0.7); /* Semi-transparent header */
+    backdrop-filter: blur(5px); /* Glassmorphism if browser supports */
+    color: var(--panel-text-color);
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--neon-cyan);
+    box-shadow: 0 2px 10px rgba(0, 255, 255, 0.2);
+    position: sticky; /* Sticky header */
+    top: 0;
+    z-index: 900;
+}
+
+header h1 {
+    color: var(--neon-pink); /* Header title is pink */
+    margin: 0;
+    font-size: 1.8em;
+    text-shadow: 0 0 10px var(--neon-pink);
+}
+
+nav button {
+    padding: 8px 15px;
+    background-color: var(--button-secondary-bg-color);
+    color: var(--button-secondary-text-color);
+    border: 1px solid var(--button-secondary-border-color);
+    border-radius: var(--border-radius-default);
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 500;
+    text-transform: uppercase;
+    transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, text-shadow 0.2s ease;
+    text-shadow: 0 0 5px currentColor;
+    box-shadow: 0 0 3px currentColor, inset 0 0 2px rgba(255,255,255,0.2);
+}
+nav button:hover {
+    background-color: var(--button-secondary-hover-bg-color);
+    color: var(--button-secondary-hover-text-color);
+    text-shadow: 0 0 8px currentColor, 0 0 10px currentColor;
+    box-shadow: 0 0 8px currentColor, 0 0 12px currentColor, inset 0 0 5px rgba(0,0,0,0.3);
+}
+nav button:focus {
+    outline: none;
+    box-shadow: 0 0 8px currentColor, 0 0 12px currentColor, 0 0 0 2px var(--body-bg-color), 0 0 0 4px currentColor;
+}
+
+
+main {
+    padding: 30px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    color: var(--text-secondary-color);
+    font-size: 0.9em;
+    border-top: 1px solid var(--neon-pink);
+    background-color: var(--body-bg-color); /* Match body for seamless feel */
+}
+footer p {
+    text-shadow: none; /* Remove general text glow for footer if too much */
+}
+
+/* --- General Form Styles --- */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--text-label-strong-color); /* Cyan labels */
+    text-transform: uppercase;
+    font-size: 0.9em;
+    letter-spacing: 0.5px;
+    text-shadow: var(--text-glow-default);
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="date"], /* Added date input */
+select,
+textarea {
+    width: 100%;
+    padding: 10px 12px;
+    box-sizing: border-box;
+    background-color: var(--input-bg-color);
+    border: 1px solid var(--input-border-color);
+    color: var(--input-text-color);
+    border-radius: var(--border-radius-default);
+    margin-bottom: 18px;
+    font-family: var(--font-primary);
+    font-size: 1em;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    caret-color: var(--neon-lime); /* Cursor color */
+}
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="date"]:focus, /* Added date input */
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--input-focus-border-color);
+    box-shadow: 0 0 8px var(--input-focus-box-shadow-color), inset 0 0 5px rgba(255,0,255,0.3); /* Glow and inner glow */
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--text-placeholder-color);
+    opacity: 0.7;
+}
+
+/* Special styling for date input to hint it might look different */
+input[type="date"] {
+    /* Most styling comes from the shared block above.
+       Browsers handle date pickers differently.
+       This ensures the box itself is styled like other inputs. */
+    min-height: 40px; /* Ensure consistent height like other inputs */
+}
+/* Attempt to style the date picker indicator for WebKit browsers */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1) sepia(100%) saturate(10000%) hue-rotate(270deg) brightness(1.1); /* Try to make it neon-ish */
+    cursor: pointer;
+}
+
+
+select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%2300ffff'%3E%3Cpath d='M4.293 6.707L8 10.414l3.707-3.707L13.121 8.12l-5.121 5.121-5.121-5.121z'/%3E%3C/svg%3E"); /* Neon arrow */
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 12px 12px;
+    padding-right: 35px;
+}
+select option { /* Style dropdown options */
+    background-color: var(--input-bg-color);
+    color: var(--input-text-color);
+}
+
+
+/* --- Button Styles --- */
+button,
+input[type="button"],
+input[type="submit"] {
+    padding: 10px 20px;
+    border-radius: var(--border-radius-default);
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 700; /* Bold buttons */
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, text-shadow 0.2s ease, transform 0.1s ease;
+    border-style: solid;
+    border-width: 1px;
+    position: relative; /* For pseudo-elements if needed for effects */
+
+    /* Integrated base style effects */
+    text-shadow: 0 0 5px currentColor;
+    box-shadow: 0 0 3px currentColor, inset 0 0 2px rgba(255,255,255,0.2);
+}
+button:hover, input[type="button"]:hover, input[type="submit"]:hover {
+    text-shadow: 0 0 8px currentColor, 0 0 10px currentColor;
+    box-shadow: 0 0 8px currentColor, 0 0 12px currentColor, inset 0 0 5px rgba(0,0,0,0.3);
+}
+button:focus, input[type="button"]:focus, input[type="submit"]:focus {
+    outline: none; /* Custom focus applied below or by specific button type */
+    box-shadow: 0 0 8px currentColor, 0 0 12px currentColor, 0 0 0 2px var(--body-bg-color), 0 0 0 4px currentColor;
+}
+button:active, input[type="button"]:active, input[type="submit"]:active {
+    transform: translateY(1px);
+}
+
+/* Primary button (e.g. Save Rule, Search Logs) */
+button[type="submit"] {
+    background-color: var(--button-primary-bg-color);
+    color: var(--button-primary-text-color);
+    border-color: var(--button-primary-border-color);
+}
+button[type="submit"]:hover {
+    background-color: var(--button-primary-hover-bg-color);
+    color: var(--button-primary-hover-text-color);
+}
+
+/* Secondary button (e.g. Update Services, Run All Rules, Reset Filters) */
+.secondary-button {
+    background-color: var(--button-secondary-bg-color);
+    color: var(--button-secondary-text-color);
+    border-color: var(--button-secondary-border-color);
+    margin-bottom: 10px; /* Existing specific margin */
+}
+.secondary-button:hover {
+    background-color: var(--button-secondary-hover-bg-color);
+    color: var(--button-secondary-hover-text-color);
+}
+
+/* "View Activity Logs" button in index.html main section */
+main > div > a > button {
+    background-color: var(--button-secondary-bg-color);
+    color: var(--button-secondary-text-color);
+    border-color: var(--button-secondary-border-color);
+    padding: 10px 20px; /* Ensure it has standard padding */
+}
+main > div > a > button:hover {
+    background-color: var(--button-secondary-hover-bg-color);
+    color: var(--button-secondary-hover-text-color);
+}
+/* Ensure focus and active states from general button apply */
+main > div > a > button:focus {
+    box-shadow: 0 0 8px var(--button-secondary-text-color), 0 0 12px var(--button-secondary-text-color), 0 0 0 2px var(--body-bg-color), 0 0 0 4px var(--button-secondary-text-color);
+}
+
+
+.add-button { /* Floating Action Button */
+    width: 50px; height: 50px;
+    font-size: 1.8em;
+    background-color: var(--neon-pink);
+    color: var(--body-bg-color);
+    border: none; /* Override general button border */
+    border-radius: var(--border-radius-round);
+    position: fixed;
+    bottom: 30px; right: 30px;
+    box-shadow: 0 0 15px var(--neon-pink), 0 0 25px var(--neon-pink), 0 0 5px #fff inset; /* Strong glow */
+    line-height: 50px; /* Center icon */
+    text-align: center;
+    z-index: 500;
+    transition: all 0.3s ease;
+    text-shadow: none; /* FAB typically doesn't have text-shadow on the icon/text itself */
+}
+.add-button:hover {
+    background-color: var(--neon-pink); /* Keep bg */
+    color: #fff; /* Brighter text */
+    transform: scale(1.1) rotate(90deg); /* Funky hover */
+    box-shadow: 0 0 20px var(--neon-pink), 0 0 35px var(--neon-pink), 0 0 10px #fff inset;
+}
+.add-button:focus {
+    box-shadow: 0 0 20px var(--neon-pink), 0 0 35px var(--neon-pink), 0 0 10px #fff inset, 0 0 0 2px var(--body-bg-color), 0 0 0 4px var(--neon-pink);
+}
+
+.add-destination-button {
+    background-color: var(--button-accent-bg-color);
+    color: var(--button-accent-text-color);
+    border-color: var(--button-accent-border-color);
+    margin-top: 10px; margin-bottom: 10px;
+}
+.add-destination-button:hover {
+    background-color: var(--button-accent-hover-bg-color);
+    color: var(--button-accent-hover-text-color);
+}
+
+/* Table action buttons */
+#rules-table td button, #detailed-logs-table td button {
+    padding: 6px 10px; margin-right: 5px; font-size: 0.85em;
+}
+#rules-table td button.run-button, #detailed-logs-table td button.run-button {
+    background-color: var(--button-secondary-bg-color); color: var(--button-secondary-text-color); border-color: var(--button-secondary-border-color);
+}
+#rules-table td button.run-button:hover, #detailed-logs-table td button.run-button:hover { background-color: var(--button-secondary-hover-bg-color); color: var(--button-secondary-hover-text-color); }
+
+#rules-table td button.edit-button, #detailed-logs-table td button.edit-button {
+    background-color: var(--button-edit-bg-color); color: var(--button-edit-text-color); border-color: var(--button-edit-border-color);
+}
+#rules-table td button.edit-button:hover, #detailed-logs-table td button.edit-button:hover { background-color: var(--button-edit-hover-bg-color); color: var(--button-edit-hover-text-color); }
+
+#rules-table td button.delete-button, #detailed-logs-table td button.delete-button {
+    background-color: var(--button-danger-bg-color); color: var(--button-danger-text-color); border-color: var(--button-danger-border-color);
+}
+#rules-table td button.delete-button:hover, #detailed-logs-table td button.delete-button:hover { background-color: var(--button-danger-hover-bg-color); color: var(--button-danger-hover-text-color); }
+
+
+/* --- Settings Form Specific Styles (#settings-form) --- */
+#settings-form div:not(.checkbox-row) { margin-bottom: 20px; }
+#settings-form input[type="number"] { width: 120px; }
+
+#settings-form .checkbox-row {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 10px; padding: 10px 5px;
+    border: 1px solid transparent; /* For hover effect */
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+#settings-form .checkbox-row:hover {
+    border-color: var(--neon-pink);
+    background-color: rgba(255,0,255,0.05);
+}
+#settings-form .checkbox-row label {
+     margin-bottom: 0; font-weight: 400; color: var(--text-primary-color); /* Regular text for these labels */
+     flex-grow: 1; padding-right: 15px; text-transform: none; text-shadow: none; letter-spacing: 0;
+ }
+#settings-form .checkbox-row input[type="checkbox"] {
+    width: auto; margin: 0; flex-shrink: 0;
+    appearance: none; /* Custom checkbox */
+    width: 18px; height: 18px;
+    border: 1px solid var(--neon-cyan);
+    border-radius: 2px;
+    position: relative;
+    cursor: pointer;
+    vertical-align: middle;
+}
+#settings-form .checkbox-row input[type="checkbox"]:checked {
+    background-color: var(--neon-cyan);
+    box-shadow: 0 0 5px var(--neon-cyan);
+}
+#settings-form .checkbox-row input[type="checkbox"]:checked::before {
+    content: '✓'; /* Or a more techy symbol */
+    font-family: sans-serif; /* Ensure checkmark renders */
+    position: absolute;
+    top: -1px; left: 3px;
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--body-bg-color);
+}
+
+/* --- Table Styles (#rules-table-container, #rules-table, #detailed-logs-table) --- */
+/* Container for tables */
+#rules-table-container,
+.table-responsive { /* .table-responsive is used on logs.html */
+    margin-top: 30px;
+    overflow-x: auto;
+    border: 1px solid var(--neon-pink);
+    border-radius: var(--border-radius-default);
+    box-shadow: var(--box-shadow-default);
+    background-color: rgba(26, 24, 50, 0.5); /* Semi-transparent table bg */
+}
+.table-responsive { margin-top: 15px; } /* Specific margin for log table container */
+
+/* General table styling */
+#rules-table,
+#detailed-logs-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+#rules-table th, #rules-table td,
+#detailed-logs-table th, #detailed-logs-table td {
+    border: 1px solid var(--table-border-color); /* Grid lines */
+    padding: 12px 15px;
+    text-align: left;
+    color: var(--table-text-color);
+    vertical-align: middle;
+}
+#rules-table th,
+#detailed-logs-table th {
+    background-color: var(--table-header-bg-color);
+    color: var(--table-header-text-color);
+    font-family: var(--font-headings);
+    font-weight: 700; font-size: 0.95em;
+    text-transform: uppercase; letter-spacing: 0.8px;
+    text-shadow: var(--text-glow-strong);
+}
+#rules-table tbody tr:nth-child(even),
+#detailed-logs-table tbody tr:nth-child(even) {
+    background-color: var(--table-row-even-bg-color);
+}
+#rules-table tbody tr:hover,
+#detailed-logs-table tbody tr:hover {
+    background-color: var(--table-row-hover-bg-color);
+    color: var(--neon-lime); /* Text turns lime on hover */
+}
+#rules-table tbody tr:hover td,
+#detailed-logs-table tbody tr:hover td {
+    border-color: var(--neon-lime);
+}
+
+/* --- Modal Styles (.modal-overlay, .modal-content) --- */
+.modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: var(--overlay-bg-color);
+    backdrop-filter: blur(3px) brightness(0.7);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 1000; padding: 20px; box-sizing: border-box;
+}
+
+.modal-content {
+    background-color: var(--panel-bg-color);
+    padding: 20px 25px;
+    border-radius: var(--border-radius-default);
+    border: 1px solid var(--neon-cyan);
+    width: 100%; max-width: 750px;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    color: var(--panel-text-color);
+    box-shadow: var(--box-shadow-modal);
+    position: relative; display: flex; flex-direction: column;
+
+    scrollbar-width: thin;
+    scrollbar-color: var(--neon-pink) var(--panel-secondary-bg-color);
+}
+.modal-content::-webkit-scrollbar { width: 8px; }
+.modal-content::-webkit-scrollbar-track { background: var(--panel-secondary-bg-color); }
+.modal-content::-webkit-scrollbar-thumb { background-color: var(--neon-pink); border-radius: 4px; border: 2px solid var(--panel-secondary-bg-color); }
+
+.modal-header {
+    padding: 15px 25px;
+    border-bottom: 1px solid var(--neon-cyan);
+}
+.modal-body {
+    padding: 20px 25px;
+    overflow-y: auto; flex-grow: 1;
+    min-height: 0;
+}
+.modal-footer {
+    padding: 15px 25px;
+    border-top: 1px solid var(--neon-cyan);
+    text-align: right; background-color: var(--panel-secondary-bg-color);
+}
+.modal-footer button { margin-left: 10px; }
+
+.modal-content h3 {
+    color: var(--neon-cyan); margin: 0 0 20px 0;
+    font-size: 1.6em; text-shadow: var(--text-glow-strong);
+}
+.close-button {
+    position: absolute; top: 12px; right: 18px;
+    font-size: 1.6em;
+    font-weight: 600;
+    color: var(--neon-pink);
+    background: none; border: none; cursor: pointer;
+    line-height: 1; padding: 5px;
+    text-shadow: 0 0 6px var(--neon-pink);
+    transition: transform 0.2s ease, color 0.2s ease, text-shadow 0.2s ease;
+}
+.close-button:hover {
+    color: var(--neon-cyan);
+    text-shadow: 0 0 8px var(--neon-cyan);
+    transform: rotate(90deg) scale(1.1);
+}
+
+/* --- Rule Form Styles (#rule-form) --- */
+#rule-form .add-condition-button, #rule-form .remove-condition-button,
+#rule-form .remove-destination-button { padding: 8px 15px; margin: 8px 5px 8px 0; }
+
+#rule-form .add-condition-button {
+    background-color: var(--button-secondary-bg-color); color: var(--button-secondary-text-color); border-color: var(--button-secondary-border-color);
+}
+#rule-form .add-condition-button:hover { background-color: var(--button-secondary-hover-bg-color); color: var(--button-secondary-hover-text-color); }
+
+#rule-form .remove-condition-button, #rule-form .remove-destination-button {
+    background-color: var(--button-danger-bg-color); color: var(--button-danger-text-color); border-color: var(--button-danger-border-color);
+}
+#rule-form .remove-condition-button:hover, #rule-form .remove-destination-button:hover { background-color: var(--button-danger-hover-bg-color); color: var(--button-danger-hover-text-color); }
+
+/* Condition Rows */
+.condition-row {
+    background-color: var(--condition-row-bg-color);
+    padding: 15px; margin-bottom: 12px;
+    border-radius: var(--border-radius-default);
+    border: 1px solid var(--panel-tertiary-bg-color);
+    display: flex; align-items: center; flex-wrap: wrap; gap: 12px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.condition-row:hover {
+    border-color: var(--neon-lime);
+    box-shadow: 0 0 5px var(--neon-lime);
+}
+.condition-row.nested-condition-row {
+    background-color: var(--condition-row-nested-bg-color);
+    border-left: 3px solid var(--condition-row-nested-border-color);
+    margin-left: 25px;
+}
+.or-group-conditions-container {
+    border: 1px dashed var(--or-group-border-color);
+    box-shadow: 0 0 5px var(--or-group-border-color);
+    padding: 15px; margin: 15px 0; border-radius: var(--border-radius-default);
+    background-color: rgba(0,255,255,0.03);
+}
+
+/* --- Filetype UI in Modal --- */
+.filetype-options-container {
+    background-color: var(--filetype-container-bg-color);
+    padding: 15px; border-radius: var(--border-radius-default);
+    border: 1px solid var(--filetype-container-border-color);
+    box-shadow: 0 0 8px var(--filetype-container-border-color);
+    margin-top: 15px;
+}
+.filetype-category-header input[type="checkbox"] { /* Use custom checkbox style */
+    appearance: none; width: 16px; height: 16px;
+    border: 1px solid var(--neon-lime); border-radius: 2px;
+    position: relative; cursor: pointer; margin-right: 8px;
+}
+.filetype-category-header input[type="checkbox"]:checked {
+    background-color: var(--neon-lime); box-shadow: 0 0 5px var(--neon-lime);
+}
+.filetype-category-header input[type="checkbox"]:checked::before {
+    content: '✓'; font-family: sans-serif; position: absolute; top: -1px; left: 2px;
+    font-size: 12px; font-weight: bold; color: var(--body-bg-color);
+}
+.filetype-category-header label { color: var(--neon-lime); text-shadow: var(--text-glow-default); }
+.filetype-toggle-extensions {
+    color: var(--filetype-toggle-color); text-shadow: var(--text-glow-default); font-size: 1.5em;
+    transition: transform 0.3s ease, text-shadow 0.3s ease;
+}
+.filetype-toggle-extensions.expanded { transform: rotate(135deg); color: var(--neon-pink); text-shadow: 0 0 8px var(--neon-pink); }
+.filetype-extension-row input[type="checkbox"] { /* Copy custom checkbox style */
+    appearance: none; width: 14px; height: 14px;
+    border: 1px solid var(--neon-cyan); border-radius: 2px;
+    position: relative; cursor: pointer; margin-right: 8px;
+}
+.filetype-extension-row input[type="checkbox"]:checked {
+    background-color: var(--neon-cyan); box-shadow: 0 0 5px var(--neon-cyan);
+}
+.filetype-extension-row input[type="checkbox"]:checked::before {
+    content: '✓'; font-family: sans-serif; position: absolute; top: -1px; left: 1px;
+    font-size: 10px; font-weight: bold; color: var(--body-bg-color);
+}
+
+/* --- Flashed Messages --- */
+#flashes-container {
+    margin-bottom: 20px; position: fixed;
+    top: 80px; /* Below sticky header */
+    left: 50%; transform: translateX(-50%);
+    width: auto; max-width: 90%; z-index: 1100;
+}
+.flash-message {
+    padding: 12px 18px; margin: 0 auto 10px auto;
+    max-width: 600px; border-radius: var(--border-radius-default);
+    font-weight: 500; border-width: 1px; border-style: solid;
+    backdrop-filter: blur(3px);
+    box-shadow: 0 0 10px currentColor, 0 0 15px currentColor;
+    text-shadow: 0 0 5px currentColor;
+}
+.flash-success {
+    background-color: var(--flash-success-bg-color); color: var(--flash-success-text-color); border-color: var(--flash-success-border-color);
+}
+.flash-error { /* This is also used by .error-message on logs page */
+    background-color: var(--flash-error-bg-color); color: var(--flash-error-text-color); border-color: var(--flash-error-border-color);
+}
+.flash-info {
+    background-color: var(--flash-info-bg-color); color: var(--flash-info-text-color); border-color: var(--flash-info-border-color);
+}
+
+/* --- Note/Info Box --- */
+.note {
+     margin-top: 25px; padding: 15px;
+     background-color: var(--note-bg-color);
+     color: var(--note-text-color);
+     border: 1px solid var(--note-border-color);
+     border-left-width: 5px; /* Thicker left border */
+     border-radius: var(--border-radius-default);
+     box-shadow: 0 0 8px var(--note-border-color);
+}
+.note p { text-shadow: none; }
+.note ul li::before { color: var(--note-border-color); }
+
+
+/* --- Status Message (from settings.html inline style) --- */
+.status-message { /* Similar to flash messages */
+    margin-top: 20px; padding: 12px 18px;
+    border-radius: var(--border-radius-default); display: none; /* JS controls display */
+    font-weight: 500; border-width: 1px; border-style: solid;
+    backdrop-filter: blur(3px);
+    box-shadow: 0 0 10px currentColor, 0 0 15px currentColor;
+    text-shadow: 0 0 5px currentColor;
+}
+.status-message.success { background-color: var(--flash-success-bg-color); color: var(--flash-success-text-color); border-color: var(--flash-success-border-color); }
+.status-message.error { background-color: var(--flash-error-bg-color); color: var(--flash-error-text-color); border-color: var(--flash-error-border-color); }
+.status-message:not(.success):not(.error) { background-color: var(--flash-info-bg-color); color: var(--flash-info-text-color); border-color: var(--flash-info-border-color); }
+
+/* --- Utility Classes --- */
+.loading-cursor, .loading-cursor * {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32'%3E%3Cpath fill='%2300ffff' d='M16 0 A16 16 0 0 0 16 32 A16 16 0 0 0 16 0 M16 4 A12 12 0 0 1 16 28 A12 12 0 0 1 16 4Z'%3E%3CanimateTransform attributeName='transform' type='rotate' from='0 16 16' to='360 16 16' dur='1s' repeatCount='indefinite'/%3E%3C/path%3E%3C/svg%3E") 16 16, wait !important;
+}
+
+/* --- Logs Page Specific Styles --- */
+.filters-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: var(--panel-secondary-bg-color);
+    border: 1px solid var(--panel-tertiary-bg-color);
+    border-radius: var(--border-radius-default);
+}
+.filters-container label {
+    margin-bottom: 0; /* Override default label margin */
+}
+.filters-container select,
+.filters-container input[type="date"] {
+    margin-bottom: 0; /* Override default input margin */
+    width: auto; /* Allow them to size naturally or be controlled by flex */
+    min-width: 150px; /* Ensure they are not too small */
+}
+
+#stats-custom-date-range,
+#search-custom-date-range {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap; /* Allow wrapping if space is tight */
+}
+#stats-custom-date-range input[type="date"],
+#search-custom-date-range input[type="date"] {
+    width: auto; /* Adjust width for date inputs in these specific contexts */
+}
+
+.log-search-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px 25px; /* row-gap column-gap */
+    margin-bottom: 25px;
+    padding: 20px;
+    background-color: var(--panel-bg-color);
+    border: 1px solid var(--panel-tertiary-bg-color);
+    border-radius: var(--border-radius-default);
+}
+.log-search-grid > div {
+    display: flex;
+    flex-direction: column; /* Stack label above input */
+}
+.log-search-grid label {
+    font-size: 0.85em; /* Slightly smaller labels in grid */
+}
+.log-search-grid input,
+.log-search-grid select {
+    margin-bottom: 0; /* Remove default bottom margin for inputs in grid */
+}
+
+.form-actions {
+    text-align: right;
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 1px solid var(--hr-color);
+}
+.form-actions button {
+    margin-left: 10px;
+}
+
+.chart-container {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    padding: 20px;
+    background-color: rgba(26, 24, 50, 0.7); /* Slightly more opaque for chart background */
+    border: 1px solid var(--neon-cyan);
+    border-radius: var(--border-radius-default);
+    box-shadow: 0 0 10px var(--neon-cyan);
+}
+
+.error-message { /* General error message styling for logs page */
+    background-color: var(--flash-error-bg-color);
+    color: var(--flash-error-text-color);
+    border: 1px solid var(--flash-error-border-color);
+    padding: 12px 18px;
+    margin: 15px 0;
+    border-radius: var(--border-radius-default);
+    text-shadow: var(--text-glow-default);
+    font-weight: 500;
+}
+
+#stats-loading-message,
+#logs-loading-message {
+    color: var(--flash-info-text-color);
+    padding: 15px;
+    font-style: italic;
+    text-align: center;
+    background-color: var(--flash-info-bg-color);
+    border: 1px solid var(--flash-info-border-color);
+    border-radius: var(--border-radius-default);
+    margin: 15px 0;
+}
+
+.results-summary {
+    margin: 20px 0;
+    padding: 12px 18px;
+    background-color: var(--panel-secondary-bg-color);
+    border: 1px solid var(--panel-tertiary-bg-color);
+    border-left: 4px solid var(--neon-cyan);
+    color: var(--text-primary-color);
+    border-radius: var(--border-radius-default);
+    font-size: 0.95em;
+}
+
+.pagination-controls {
+    text-align: center;
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 1px solid var(--hr-color);
+}
+.pagination-controls button,
+.pagination-controls a.button-like { /* Assuming 'a' might be styled as a button if needed */
+    background-color: var(--button-secondary-bg-color);
+    color: var(--button-secondary-text-color);
+    border: 1px solid var(--button-secondary-border-color);
+    padding: 8px 15px;
+    margin: 0 5px;
+    border-radius: var(--border-radius-default);
+    text-decoration: none; /* For 'a' tags */
+    cursor: pointer;
+    font-size: 0.9em;
+    /* Inherits base button hover/focus/active from general button rules */
+}
+.pagination-controls button:hover,
+.pagination-controls a.button-like:hover {
+    background-color: var(--button-secondary-hover-bg-color);
+    color: var(--button-secondary-hover-text-color);
+}
+.pagination-controls button:disabled {
+    background-color: var(--input-disabled-bg-color);
+    color: var(--input-disabled-text-color);
+    border-color: var(--input-disabled-border-color);
+    cursor: not-allowed;
+    text-shadow: none;
+    box-shadow: none;
+}
+.pagination-controls .current-page {
+    font-weight: bold;
+    color: var(--neon-pink);
+    padding: 8px 15px;
+    margin: 0 5px;
+    display: inline-block; /* For proper spacing and alignment */
+    border: 1px solid var(--neon-pink);
+    border-radius: var(--border-radius-default);
+    background-color: rgba(255,0,255,0.1);
+}
