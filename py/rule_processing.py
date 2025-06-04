@@ -551,36 +551,37 @@ def _translate_rule_to_hydrus_predicates(rule_conditions_list, rule_action_obj,
                     translation_warnings.append(f"Warning: Action 'add_to': service key '{key}' not found for exclusion. Skipping exclusion.")
 
         elif action_type == 'force_in':
-            target_dest_keys_set = set()
-            raw_dest_keys = rule_action_obj.get('destination_service_keys', [])
-            if isinstance(raw_dest_keys, str):
-                if raw_dest_keys: target_dest_keys_set.add(raw_dest_keys)
-            elif isinstance(raw_dest_keys, list):
-                for k in raw_dest_keys:
-                    if k: target_dest_keys_set.add(k)
+                target_dest_keys_set = set()
+                raw_dest_keys = rule_action_obj.get('destination_service_keys', [])
+                if isinstance(raw_dest_keys, str):
+                    if raw_dest_keys: target_dest_keys_set.add(raw_dest_keys)
+                elif isinstance(raw_dest_keys, list):
+                    for k in raw_dest_keys:
+                        if k: target_dest_keys_set.add(k)
 
-            if not target_dest_keys_set:
-                translation_warnings.append(f"Warning: Action 'force_in': No valid target keys. Cannot generate search predicates.")
-            else:
-                other_local_file_services = []
-                if isinstance(available_services_list, list):
-                    for service in available_services_list:
-                        if isinstance(service, dict) and service.get('type') == 2 and \
-                           service.get('service_key') and service.get('service_key') not in target_dest_keys_set and \
-                           service.get('name'):
-                            other_local_file_services.append(service['name'])
-                force_in_or_group = []
-                if other_local_file_services:
-                    for other_s_name in other_local_file_services:
-                        force_in_or_group.append(f"system:file service currently in {other_s_name}")
-                for target_key in target_dest_keys_set:
-                    target_info = get_service_details(target_key)
-                    if target_info and target_info.get('name'):
-                        force_in_or_group.append(f"system:file service is not currently in {target_info['name']}")
+                if not target_dest_keys_set:
+                    translation_warnings.append(f"Warning: Action 'force_in': No valid target keys. Cannot generate search predicates.")
+                else:
+                    force_in_target_check_predicates = []
+                    for target_key in target_dest_keys_set:
+                        target_info = get_service_details(target_key)
+                        if target_info and target_info.get('name'):
+                            force_in_target_check_predicates.append(f"system:file service is not currently in {target_info['name']}")
+                        else:
+                            translation_warnings.append(f"Warning: Action 'force_in': Target key '{target_key}' not found for 'is not in' predicate generation.")
+                    
+                    if force_in_target_check_predicates:
+                        # If there's only one target, it's a simple predicate.
+                        # If multiple targets, they form an OR group: file must be missing from AT LEAST ONE target.
+                        if len(force_in_target_check_predicates) == 1:
+                            string_predicates.append(force_in_target_check_predicates[0])
+                        else:
+                            string_predicates.append(force_in_target_check_predicates) # This creates the OR group
+                        translation_warnings.append(f"Note: Action 'force_in' search predicates now only check if files are NOT in target(s): {target_dest_keys_set}.")
                     else:
-                        translation_warnings.append(f"Warning: Action 'force_in': Target key '{target_key}' not found for exclusion part.")
-                if force_in_or_group: string_predicates.append(force_in_or_group)
-                else: translation_warnings.append(f"Note: Action 'force_in': Could not generate specific OR-group predicates.")
+                        # This case (no valid target predicates) should ideally be caught by 'target_dest_keys_set' check,
+                        # or if all get_service_details fail for targets.
+                        translation_warnings.append(f"Warning: Action 'force_in': Could not generate any 'is not in target' predicates. Rule may not find files as expected.")
 
         elif action_type == 'add_tags':
             tag_key_from_action = rule_action_obj.get('tag_service_key')
