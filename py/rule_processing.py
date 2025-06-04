@@ -286,7 +286,7 @@ def _translate_rule_to_hydrus_predicates(rule_conditions_list, rule_action_obj,
                     max_stars = service_info.get('max_stars')
 
                     if operator == 'no_rating' and value is None: # Explicitly check value is None for no_rating
-                        predicate_string = f"system:no rating for {service_name}"
+                        predicate_string = f"system:does not have a rating for {service_name}"
                     elif operator == 'has_rating' and value is None: # Explicitly check value is None for has_rating
                         predicate_string = f"system:has a rating for {service_name}"
                     elif service_type == 7: # Like/Dislike
